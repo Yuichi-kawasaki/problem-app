@@ -37,5 +37,6 @@ https://docs.google.com/spreadsheets/d/1gJmec3Ryt621tyKXP9LdVCzR1xiO8dUcIfa_ivIs
 
 # 使用予定Gem
 carrierwave
-mini_magick
-devise
+/mini_magick
+/devise
+/rails-i18n
