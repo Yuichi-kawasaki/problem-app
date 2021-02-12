@@ -33,7 +33,7 @@
  .優先度：低
  
 # 各バージョン
-Ruby 2.6.5 Rails 5.2.4.5 Postgresql 13.1
+Ruby 2.6.5 /Rails 5.2.4.5 /Postgresql 13.1
 
 # カタログ設計/機能一覧/テーブル定義書/ER図/画面遷移図/ワイヤーフレーム
 https://docs.google.com/spreadsheets/d/1gJmec3Ryt621tyKXP9LdVCzR1xiO8dUcIfa_ivIs00c/edit#gid=1556774610
