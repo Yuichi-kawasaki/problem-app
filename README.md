@@ -35,8 +35,11 @@
 # 各バージョン
 Ruby 2.6.5 /Rails 5.2.4.5 /Postgresql 13.1
 
-# カタログ設計/機能一覧/テーブル定義書/ER図/画面遷移図/ワイヤーフレーム
+# カタログ設計/機能一覧/テーブル定義書/ER図/画面遷移図
 https://docs.google.com/spreadsheets/d/1gJmec3Ryt621tyKXP9LdVCzR1xiO8dUcIfa_ivIs00c/edit#gid=1556774610
+
+# ワイヤーフレーム
+https://drive.google.com/drive/folders/1_VrbTtQltm5SSAot3PMPScKVvD4rJGGs?usp=sharing
 
 # 使用予定Gem
 carrierwave
