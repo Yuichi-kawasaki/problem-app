@@ -1,0 +1,24 @@
+    <div class="timeline">
+
+
+      <article class="posts">
+        <div class="link_to_new">
+          <%= link_to new_problem_path, method: :get do %>
+            <i class="fa fa-plus">新しく作成する</i>
+          <% end %>
+        </div>
+
+          <% @problems.each do |problem| %>
+
+          <div class="post_nav">
+          <tr>
+             <td><%= problem.title %></td>
+             <td><%= problem.content %></td>
+             <td><%= link_to '詳細を確認する', problem_path(problem.id) %></td>
+             <td><%= link_to '困りごとの編集', edit_problem_path(problem.id) %></td>
+             <td><%= link_to '困りごとの消去', problem_path(problem.id), method: :delete, data: { confirm: '本当に消去しますか?' } %></td>
+          </tr>
+           <% end %>
+          </div>
+</article>
+</div>

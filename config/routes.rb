@@ -1,3 +1,12 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  root to: "problems#index"
+
+
+  resources :problems do
+      collection do
+        post :confirm
+
+        # resources :users, only: [:new, :create, :show]
+      end
+    end
 end

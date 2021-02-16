@@ -10,6 +10,18 @@
   </head>
 
   <body>
-    <%= yield %>
+    <div class="wrapper">
+          <header>
+          </header>
+
+        <div class="content">
+          <div class="title_parent">
+            <div class="title_child">
+              <%= yield%>
+            </div>
+          </div>
+        <%= yield :error %>
+ 
+    </div>
   </body>
 </html>

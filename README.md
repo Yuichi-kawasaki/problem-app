@@ -13,25 +13,35 @@
  ・優先度：高
     @困りごとを投稿することにより、その困りごとを見た解決できる人が
 		コメントします。
+#フォロー機能/就業Term
 
 2,メッセージ機能
  ・優先度：高
     @投稿した方とメッセージ交換ができます。
+＃メッセージ機能/就業Term
 
 3,リアクション機能
- ・優先度：中
+ ・優先度：高
     @投稿に対しリアクションができます。
 
 4,投稿機能（写真付き）
  ・優先度：高
     @困りごとを投稿できます。
+＃deviseの使用/就業Term
 
 5,facebookやtwitterのログイン情報でログインできる
- ・優先度：中
- 
-6,動画を投稿できる					
- .優先度：低
- 
+ ・優先度：高
+＃API keyの取得実装、Facebook, twitter/カリキュラム外のWebAPI使用
+＃deviseの使用/就業Term
+
+6,動画を投稿できる
+ ・優先度：低
+
+７,AWSの実装
+ ・優先度：高
+＃AWS/就業Term
+
+
 # 各バージョン
 Ruby 2.6.5 /Rails 5.2.4.5 /Postgresql 13.1
 
@@ -46,3 +56,6 @@ carrierwave
 /mini_magick
 /devise
 /rails-i18n
+/omniauth
+/omniauth-twitter
+/omniauth-facebook
