@@ -1,7 +1,14 @@
 
 <h1>困りごと詳細</h1>
-<p>画像： <%= image_tag @problem.image.url %></p>
 <p>タイトル: <%= @problem.title %></p>
+<p>画像：
+  <% if @problem.image.present? %>
+      <%= image_tag @problem.image.url, width: '50%', height: '50%' %>
+  <% else %>
+    <%= image_tag("default.png", :size => "50x50") %>
+  <% end %>
+</p>
+
 <p>内容: <%= @problem.content %></p>
 
 <%= link_to 'タスク一覧画面に戻る', problems_path, class: "btn btn-primary btn-lg" %>
