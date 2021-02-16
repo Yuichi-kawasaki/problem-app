@@ -13,6 +13,7 @@
           <div class="post_nav">
           <tr>
              <td><%= problem.title %></td>
+             <td><%= image_tag problem.image.url, width: '30%', height: '30%' %></td>
              <td><%= problem.content %></td>
              <td><%= link_to '詳細を確認する', problem_path(problem.id) %></td>
              <td><%= link_to '困りごとの編集', edit_problem_path(problem.id) %></td>

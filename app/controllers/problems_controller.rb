@@ -36,6 +36,6 @@ class ProblemsController < ApplicationController
 
     private
     def problem_params
-      params.require(:problem).permit(:title, :content)
+      params.require(:problem).permit(:title, :content, :image, :image_cache)
     end
   end
