@@ -2,6 +2,7 @@
 <html>
   <head>
     <title>ProblemApp</title>
+    <h1>ProblemApp</h1>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -11,17 +12,36 @@
 
   <body>
     <div class="wrapper">
-          <header>
-          </header>
+      <header>
+        <div class ="clearfix loggedout_menubar_container">
+          <div class="menu_login_container">
+            <% if logged_in? %>
+              <%= link_to "Profile", user_path(current_user.id), {class: "profile"} %>
+              <%= link_to "Logout", new_session_path, class: "logout", method: :delete%>
+            <% else %>
+              <%= link_to "Sign up", new_user_path, {class: "signup"} %>
+              <a href="/auth/twitter">ツイッターでログイン</a>
+              <%= link_to "Login", new_session_path, {class: "login"} %>
+            <% end %>
+          </div>
+        </div>
+      </header>
 
         <div class="content">
           <div class="title_parent">
             <div class="title_child">
-              <%= yield%>
+              <%= yield %>
             </div>
           </div>
         <%= yield :error %>
- 
+
+       </div>
+        <footer>
+          <div class ="footer_container">
+            <p>運営会社・・・・株式会社</p>
+            <p>© 2020 Copyright ・・・・ Corp.</p>
+          </div>
+        </footer>
     </div>
   </body>
 </html>

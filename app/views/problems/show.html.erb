@@ -5,7 +5,7 @@
   <% if @problem.image.present? %>
       <%= image_tag @problem.image.url, width: '50%', height: '50%' %>
   <% else %>
-    <%= image_tag("default.png", :size => "50x50") %>
+    <%= image_tag("noimage.png", :size => "100x100") %>
   <% end %>
 </p>
 

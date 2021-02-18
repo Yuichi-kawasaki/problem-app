@@ -1,0 +1,49 @@
+<% content_for :h1 do %>
+  <h1>新規アカウントを作成</h1>
+<% end %>
+  <div class="clearfix profile_bar">
+    <div class="profile_name"><%= @user.name %>のページ
+      <div class="profile_icon">
+        <% if @user.image? %>
+         <p><%= image_tag(@user.image.url, :size => "50x50") %></p>
+        <% else %>
+         <p><%= image_tag("default.png", :size => "50x50") %></p>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+
+
+<div class="profile_content">
+  <table>
+    <tr>
+      <th>メールアドレス:</th><td><%= @user.email %></td>
+    </tr>
+    <tr>
+      <th>性別:</th><td><%= gender_view(@user.gender) %></td>
+    </tr>
+    <tr>
+      <th>住所<br>都道府県:</th><td><%= @user.prefecture %></td>
+    </tr>
+    <tr>
+      <th>市区町村:</th><td><%= @user.city %></td>
+    </tr>
+    <tr>
+      <th>職業:</th><td><%= @user.profession %></td>
+    </tr>
+    <tr>
+      <th>職種:</th><td><%= @user.occupation %></td>
+    </tr>
+    <tr>
+      <th>自己紹介文:</th><td><%= @user.profile %></td>
+    </tr>
+  </table>
+</div>
+
+<% if logged_in? %>
+  <%= link_to "編集する", edit_user_path(current_user), class:'button login' %>
+  <%= link_to "投稿一覧画面へ", problem_path, class:'button login' %>
+<% else %>
+  <%= link_to "ログインする", new_session_path %>
+<% end %>

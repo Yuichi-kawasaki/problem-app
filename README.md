@@ -59,3 +59,6 @@ carrierwave
 /omniauth
 /omniauth-twitter
 /omniauth-facebook
+/bootstrap
+/carrierwave
+/mini_magick

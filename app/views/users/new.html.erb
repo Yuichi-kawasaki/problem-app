@@ -1,0 +1,77 @@
+<% content_for :h1 do %>
+  <h1>新規アカウントを作成</h1>
+<% end %>
+  <br>
+  <p>簡単に登録できます</p>
+
+<% if @user.errors.any? %>
+  <% content_for :error do %>
+    <div id="error_explanation">
+      <div class="alert alert-danger">
+        <h2><%= pluralize(@user.errors.count, "件") %>のエラーがあります。<%= @user.name %></h2>
+      <ul>
+      <% @user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+      </div>
+    </div>
+  <% end %>
+<% end %>
+
+<%= form_with(model: @user, local: true) do |f| %>
+<div class="image_small">
+  <% if @user.image.present? %>
+   <p><%= image_tag(@user.url, :size => "50x50") %></p>
+
+  <% else %>
+   <p><%= image_tag("default.png", :size => "50x50") %></p>
+  <% end %>
+  <%= f.file_field :image, class:"image_upload" %>
+  <%= f.hidden_field :image_cache %>
+</div>
+  <%= f.label :name, "お名前", class: "control-label" %>
+  <%= f.text_field :name, placeholder: 'お名前', class: "form-control has-error" %><br>
+  <%= f.label :email, "メールアドレス", class: "control-label" %>
+  <%= f.email_field :email, placeholder: 'メールアドレス', class: "form-control has-error" %><br>
+  <%= f.label :password, "パスワード", class: "control-label" %>
+  <%= f.password_field :password, placeholder: 'パスワード', class: "form-control has-error" %><br>
+  <%= f.label :password_confirmation, "確認用パスワード", class: "control-label" %>
+  <%= f.password_field :password_confirmation, placeholder: '確認用パスワード', class: "form-control has-error" %>
+
+  <div class= "gender_parent">
+    <%= f.label :gender, "性別", class:'gender_select', class: "control-label" %>
+    <span><%= f.radio_button :gender, 1, class:"input-group-addon has-error" %></span>
+    <span><%= f.label :gender, "男", class:"input-group-addon has-error" %></span>
+    <span><%= f.radio_button :gender, 2, class:"input-group-addon has-error" %></span>
+    <span><%= f.label :gender, "女", class:"input-group-addon has-error" %></span>
+    <span><%= f.radio_button :gender, 3, class:"input-group-addon has-error" %></span>
+    <span><%= f.label :gender, "カスタム", class:"input-group-addon has-error" %></span>
+  </div>
+
+
+<div class= "address">
+  <%= f.label :address,  "住所" %><br>
+  <%= f.label :prefecture, "都道府県", class:'pref_text' %>
+    <%= f.text_field :prefecture, placeholder: 'お住まいの都道府県', class: "form-address has-error" %><br>
+  <%= f.label :city, "市区町村", class:'city_text' %>
+    <%= f.text_field :city, placeholder: 'お住まいの市区町村', class: "form-address has-error" %>
+</div>
+
+<div class= "profession">
+  <%= f.label :profession, "職業", class:'occu_text' %>
+  <%= f.text_field :profession, placeholder: '職業', class: "form-occu has-error" %>
+</div>
+
+<div class= "occupation">
+  <%= f.label :occupation, "職種", class:'occu_text' %>
+  <%= f.text_field :occupation, placeholder: '職種', class: "form-occu has-error" %>
+</div>
+
+<div class= "prof">
+  <%= f.label :profile, "自己紹介文", class:'prof_text' %>
+  <%= f.text_area :profile, placeholder: '自己紹介文を書く', rows: 10, class: "form-prof has-error" %>
+</div>
+
+    <%= f.submit "アカウントを作成", class:'button' %>
+<% end %>
