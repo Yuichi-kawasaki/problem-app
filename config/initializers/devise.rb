@@ -14,8 +14,9 @@ Devise.setup do |config|
   # confirmation, reset password and unlock tokens in the database.
   # Devise will use the `secret_key_base` as its `secret_key`
   # by default. You can change it below and use your own secret key.
-  # config.secret_key = '1453150d00faa14a212f30ef526320d29d95043580a9d81634cf79119e49a72fbe50c37074881e9314f2d8812be7f3b58f0d6fe3861dd9cc15079f03f39a36aa'
-  config.omniauth :google_oauth2, ENV['TWITTER_API_KEY'], ENV['TWITTER_API_SECRET'], name: :twitter
+  config.secret_key = Rails.application.secrets.secret_key_base
+  config.omniauth :twitter, ENV['TWITTER_API_KEY'], ENV['TWITTER_API_SECRET'], name: :twitter
+  config.omniauth :facebook, ENV['FACEBOOK_ID'], ENV['FACEBOOK_SECRET_KEY'], name: :facebook
   # ==> Controller configuration
   # Configure the parent class to the devise controllers.
   # config.parent_controller = 'DeviseController'
@@ -37,7 +38,7 @@ Devise.setup do |config|
   # :mongoid (bson_ext recommended) by default. Other ORMs may be
   # available as additional gems.
   require 'devise/orm/active_record'
-
+  # require Rails.root.join("app/models/user.rb")
   # ==> Configuration for any authentication mechanism
   # Configure which keys are used when authenticating a user. The default is
   # just :email. You can configure it to use [:username, :subdomain], so for

@@ -1,19 +1,14 @@
 Rails.application.routes.draw do
-  root to:  'sessions#new'
+
+  root  'problems#index'
+
     devise_for :users, controllers: {
-    registrations: "users/registrations",
-    omniauth_callbacks: "users/omniauth_callbacks"
+      sessions: "users/sessions",
+      registrations: "users/registrations",
+      omniauth_callbacks: "users/omniauth_callbacks",
+      passwords: 'users/passwords'
   }
-
-
-  resources :sessions, only: [:new, :create, :destroy]
-  resources :users, only: [:new, :create, :show, :edit, :update]
-
-  # omniauth_for :users, controllers: { '/auth/:provider/callback'
-  #   to: 'sessions#create'}
-  #
-  # get '/logout', to: 'sessions#destroy'
-
+  resources :users, only: [:show]
 
   resources :problems do
       collection do

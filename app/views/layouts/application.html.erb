@@ -1,31 +1,38 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    
     <title>ProblemApp</title>
-    <h1>ProblemApp</h1>
+
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    <meta name="viewport" content="width=device-width">
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
+  <header>
+
+    <div class = "alert alert-success">
+      <h2>ProblemApp</h2>
+        <% if user_signed_in? %>
+          <%= link_to "Profile", user_path(current_user.id), {class: "profile"} %>
+          <%= link_to "Logout", destroy_user_session_path, method: :delete%>
+        <% else %>
+          <%= link_to "Sign up", new_user_registration_path, {class: "signup"} %>
+          <%= link_to "Login", new_user_session_path, {class: "loginin"} %>
+        <% end %>
+    </div>
+     <!-- </div> -->
+  </header>
   <body>
     <div class="wrapper">
-      <header>
-        <div class ="clearfix loggedout_menubar_container">
-          <div class="menu_login_container">
-            <% if logged_in? %>
-              <%= link_to "Profile", user_path(current_user.id), {class: "profile"} %>
-              <%= link_to "Logout", new_session_path, class: "logout", method: :delete%>
-            <% else %>
-              <%= link_to "Sign up", new_user_path, {class: "signup"} %>
-              <a href="/auth/twitter">ツイッターでログイン</a>
-              <%= link_to "Login", new_session_path, {class: "login"} %>
-            <% end %>
-          </div>
-        </div>
-      </header>
+      <% flash.each do |key, value| %>
+        <div class="alert <%= bootstrap_class_for(key) %>" ><%= value %></div>
+      <% end %>
 
         <div class="content">
           <div class="title_parent">
@@ -44,4 +51,5 @@
         </footer>
     </div>
   </body>
+
 </html>

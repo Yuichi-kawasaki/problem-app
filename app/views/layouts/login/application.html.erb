@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>ProblemApp</title>
+    <h1>ProblemApp</h1>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= render "users/shared/links" %>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <div class="wrapper">
+
+
+        <div class="content">
+          <div class="title_parent">
+            <div class="title_child">
+              <%= yield %>
+            </div>
+          </div>
+        <%= yield :error %>
+
+       </div>
+        <footer>
+          <div class ="footer_container">
+            <p>運営会社・・・・株式会社</p>
+            <p>© 2020 Copyright ・・・・ Corp.</p>
+          </div>
+        </footer>
+    </div>
+  </body>
+</html>

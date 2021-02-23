@@ -1,54 +1,87 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+User.create!(
+    [
+      {
+        image: File.open("./app/assets/images/default.png"),
+        name: 'テスト',
+        email: 'test@test.com',
+        password: '11111111',
+        gender: "1",
+        prefecture: "北海道",
+        city: "札幌",
+        profession: "運輸業",
+        occupation: "営業",
+        profile: "登録してみました。"
+      },
+      {
+        email: "admin@admin.com",
+        name:  "管理者",
+        password:  "00000000",
+        admin: true
+      },
+      {
+        image: File.open("./app/assets/images/default.png"),
+        name: 'テスト2',
+        email: 'test2@test2.com',
+        password: '22222222',
+        gender: "2",
+        prefecture: "大阪",
+        city: "大阪",
+        profession: "サービス業",
+        occupation: "経理",
+        profile: "がんばります"
+      },
+      {
+        image: File.open("./app/assets/images/default.png"),
+        name: 'テスト3',
+        email: 'test3@test3.com',
+        password: '33333333',
+        gender: "1",
+        prefecture: "神奈川",
+        city: "横浜",
+        profession: "IT",
+        occupation: "エンジニア",
+        profile: "趣味はサッカーです"
+      }
+    ]
+  )
 
-Problem.create!(
-   [
-     {
-       title: 'クライオポンプ',
-       limit_on: '2020-05-05',
-       status: '着手中',
-       priority: '中',
-       user_id: users[1].id
-     },
-     {
-       name: 'スパッタイオンポンプ',
-       limit_on: '2020-06-06',
-       status: '着手中',
-       priority: '高',
-       user_id: users[0].id
-     },
-     {
-       name: '電離真空系',
-       limit_on: '2020-07-07',
-       status: '未着手',
-       priority: '低',
-       user_id: users[7].id
-     },
-     {
-       name: 'ピラニ真空系',
-       limit_on: '2020-08-08',
-       status: '完了',
-       priority: '中',
-       user_id: users[5].id
-     },
-     {
-       name: '蒸着装置',
-       limit_on: '2020-09-09',
-       status: '未着手',
-       priority: '高',
-       user_id: users[8].id
-     },
-     {
-       name: 'スパッタ装置',
-       limit_on: '2020-10-10',
-       status: '着手中',
-       priority: '高',
-       user_id: users[0].id
-     }
-   ]
- )
+  # Label.create(title:'新規' )
+  # Label.create(title:'リピート' )
+  # Label.create(title:'修理' )
+  # Label.create(title:'返品' )
+  # Label.create(title:'追加' )
+  # Label.create(title:'部品' )
+  # Label.create(title:'転送' )
+  # Label.create(title:'値引' )
+  # Label.create(title:'現地確認' )
+  # Label.create(title:'危険物' )
+
+
+  Problem.create!(
+    [
+      {
+        title: 'ドライポンプ',
+        image: File.open("./app/assets/images/noimage.png"),
+        content: '壊れた',
+        user_id: users[0].id
+      },
+      {
+        title: 'ターボ分子ポンプ',
+        image: File.open("./app/assets/images/noimage.png"),
+        content: '壊れた',
+        user_id: users[1].id
+      },
+      {
+        title: '油回転真空ポンプ',
+        image: File.open("./app/assets/images/noimage.png"),
+        content: '壊れた',
+        user_id: users[2].id
+      },
+      {
+        title: 'メカニカルプースターポンプ',
+        image: File.open("./app/assets/images/noimage.png"),
+        content: '壊れた',
+        user_id: users[3].id
+      }
+    ]
+  )
