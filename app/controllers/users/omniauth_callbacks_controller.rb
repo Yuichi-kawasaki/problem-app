@@ -1,46 +1,22 @@
 class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
-    def facebook
-      callback_for(:facebook)
-    end
-    # callback for twitter
-    def twitter
-      callback_for(:twitter)
-    end
-
-    def callback_for(provider)
-        @user = User.from_omniauth(request.env["omniauth.auth"])
-        if @user.persisted?
-          sign_in_and_redirect @user, event: :authentication #this will throw if @user is not activated
-          set_flash_message(:notice, :success, kind: "#{provider}".capitalize) if is_navigational_format?
-        else
-          session["devise.#{provider}_data"] = request.env["omniauth.auth"].except("extra")
-          redirect_to new_user_registration_url
-        end
+    # いくつプロバイダーを利用しようが処理は共通しているので本メソッドをエイリアスとして流用。
+    def callback_for_all_providers
+      unless env["omniauth.auth"].present?
+        flash[:danger] = "Authentication data was not provided"
+        redirect_to root_url and return
       end
-    def failure
-      redirect_to root_path
+      provider = __callee__.to_s
+      user = OAuthService::GetOAuthUser.call(env["omniauth.auth"])
+      # ユーザーがデータベースに保存されており、且つemailを確認済みであれば、ユーザーをログインする。
+      if user.persisted? && user.email_verified?
+        sign_in_and_redirect user, event: :authentication
+        set_flash_message(:notice, :success, kind: provider.capitalize) if is_navigational_format?
+      else
+        user.reset_confirmation!
+        flash[:warning] = "We need your email address before proceeding."
+        redirect_to finish_signup_path(user)
+      end
     end
-
-  # def facebook
-  #   @user = User.find_for_facebook(request.env['omniauth.auth'])
-  #   if @user.persisted?
-  #     sign_in_and_redirect @user, event: :authentication
-  #     set_flash_message(:notice, :success, kind: "facebook") if is_navigational_format?
-  #   else
-  #     session['devise.facebook_data'] = request.env['omniauth.auth']
-  #     redirect_to new_user_registration_url
-  #   end
-  # end
-  #
-  # # callback for twitter
-  # def twitter
-  #   @user = User.find_for_twitter(request.env['omniauth.auth'])
-  #   if @user.persisted?
-  #     sign_in_and_redirect @user, event: :authentication
-  #     set_flash_message(:notice, :success, kind: "twitter") if is_navigational_format?
-  #   else
-  #     session['devise.twitter_data'] = request.env['omniauth.auth']
-  #     redirect_to new_user_registration_url
-  #   end
-  # end
-end
+    alias_method :facebook, :callback_for_all_providers
+    alias_method :twitter,  :callback_for_all_providers
+  end
