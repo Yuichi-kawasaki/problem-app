@@ -7,13 +7,13 @@
           <%= link_to "新しく困りごとを投稿する", new_problem_path %>
         </div>
         <h3>困り事一覧</h3>
-<div class="alert alert-success">
+<div class="alert alert-warning">
        <tbody>
           <% @problems.each do |problem| %>
 
-          <div class="post_nav">
+          <div class="py-3 text-body">
           <tr>
-             <td>タイトル：<%= problem.title %></td>
+             <td><strong>タイトル：<%= problem.title %></strong></td>
              <td>
                <div class="problem_image">
                  <% if problem.image.present? %>
@@ -24,11 +24,11 @@
                </div>
             </td>
              <td>内容：<%= problem.content %></td>
-                <td><%= link_to "(@user.name)のページ", user_path(problem.user.id),class:"btn btn-primary" %></td>
-             <div class="btn-toolbar" role="toolbar">
+                <td><%= link_to "#{problem.user.name}のページ", user_path(problem.user.id),class:"btn btn-secondary btn-sm" %></td>
+             <div class="mx-5" role="toolbar">
                <td><%= link_to '詳細を確認する', problem_path(problem.id),class:"btn btn-primary" %></td>
-               <td><%= link_to '困りごとの編集', edit_problem_path(problem.id), class:"btn btn-primary" %></td>
-               <td><%= link_to '困りごとの消去', problem_path(problem.id), method: :delete, data: { confirm: '本当に消去しますか?' },class:"btn btn-primary" %></td>
+               <td><%= link_to '困りごとの編集', edit_problem_path(problem.id), class:"btn btn-success" %></td>
+               <td><%= link_to '困りごとの消去', problem_path(problem.id), method: :delete, data: { confirm: '本当に消去しますか?' },class:"btn btn-danger" %></td>
              </div>
           </tr>
            <% end %>

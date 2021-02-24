@@ -11,4 +11,6 @@
 
 <p>内容: <%= @problem.content %></p>
 
-<%= link_to 'タスク一覧画面に戻る', problems_path, class: "btn btn-primary btn-lg" %>
+<%= link_to '困りごとの編集', edit_problem_path(@problem.id), class:"btn btn-success" %>
+
+<%= link_to 'タスク一覧画面に戻る', problems_path, class: "btn btn-primary" %>

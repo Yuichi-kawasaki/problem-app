@@ -42,8 +42,8 @@
 </div>
 
 <% if user_signed_in? %>
-  <%= link_to "編集する", edit_user_registration_path(current_user), class:'button login' %>
-  <%= link_to "投稿一覧画面へ", problems_path, class:'button login' %>
+  <%= link_to "編集する", edit_user_registration_path(current_user), class:'btn btn-success' %>
+  <%= link_to "投稿一覧画面へ", problems_path, class:'btn btn-warning' %>
 <% else %>
   <%= link_to "ログインする", new_session_path %>
 <% end %>

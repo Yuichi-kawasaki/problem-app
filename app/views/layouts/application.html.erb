@@ -4,7 +4,6 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    
     <title>ProblemApp</title>
 
     <%= csrf_meta_tags %>
@@ -16,7 +15,7 @@
 
   <header>
 
-    <div class = "alert alert-success">
+    <div class = "alert alert-warning">
       <h2>ProblemApp</h2>
         <% if user_signed_in? %>
           <%= link_to "Profile", user_path(current_user.id), {class: "profile"} %>
