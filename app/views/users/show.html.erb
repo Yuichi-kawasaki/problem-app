@@ -13,8 +13,6 @@
     </div>
   </div>
 
-
-
 <div class="profile_content">
   <table>
     <tr>
@@ -40,6 +38,17 @@
     </tr>
   </table>
 </div>
+
+<h2>投稿内容</h2>
+<% @user.problems.each do |problem| %>
+  <a href="/problems/<%= problem.id %>"><%= problem.content %></a>
+  <hr>
+<% end %>
+<h3>『解決できるかも！』している投稿</h3>
+<% @user.liked_problems.each do |problem| %>
+  <%= problem.user.email %>
+  <%= problem.content %>
+<% end %>
 
 <% if user_signed_in? %>
   <%= link_to "編集する", edit_user_registration_path(current_user), class:'btn btn-success' %>

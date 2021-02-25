@@ -1,12 +1,13 @@
 class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     # いくつプロバイダーを利用しようが処理は共通しているので本メソッドをエイリアスとして流用。
     def callback_for_all_providers
-      unless env["omniauth.auth"].present?
+      unless request.env["omniauth.auth"]
         flash[:danger] = "Authentication data was not provided"
         redirect_to root_url and return
       end
       provider = __callee__.to_s
-      user = OAuthService::GetOAuthUser.call(env["omniauth.auth"])
+      user = request.env["omniauth.auth"]
+      # user = OAuthService::GetOAuthUser.call(env["omniauth.auth"])
       # ユーザーがデータベースに保存されており、且つemailを確認済みであれば、ユーザーをログインする。
       if user.persisted? && user.email_verified?
         sign_in_and_redirect user, event: :authentication

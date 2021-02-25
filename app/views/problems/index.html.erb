@@ -7,7 +7,7 @@
           <%= link_to "新しく困りごとを投稿する", new_problem_path %>
         </div>
         <h3>困り事一覧</h3>
-<div class="alert alert-warning">
+    <div class="alert alert-warning">
        <tbody>
           <% @problems.each do |problem| %>
 
@@ -24,7 +24,9 @@
                </div>
             </td>
              <td>内容：<%= problem.content %></td>
-                <td><%= link_to "#{problem.user.name}のページ", user_path(problem.user.id),class:"btn btn-secondary btn-sm" %></td>
+             (<%= problem.liked_users.count %>)
+             <td><%= link_to "#{problem.user.name}のページ", user_path(problem.user.id),class:"btn btn-secondary btn-sm" %></td>
+
              <div class="mx-5" role="toolbar">
                <td><%= link_to '詳細を確認する', problem_path(problem.id),class:"btn btn-primary" %></td>
                <td><%= link_to '困りごとの編集', edit_problem_path(problem.id), class:"btn btn-success" %></td>

@@ -5,7 +5,8 @@ class User < ApplicationRecord
     # validates :prefecture, presence: true
   #   before_validation { email.downcase! }
     has_many :problems, dependent: :destroy
-  #   # has_many :favorites, dependent: :destroy
+    has_many :likes, dependent: :destroy
+    has_many :liked_problems, through: :likes, source: :problem
     mount_uploader :image, ImageUploader
 
     has_many :social_profiles, dependent: :destroy
@@ -42,7 +43,12 @@ class User < ApplicationRecord
         # Get current user from Thread.
         Thread.current[:current_user]
       end
+
+    def already_liked?(problem)
+      self.likes.exists?(problem_id: problem.id)
     end
+
+end
     # def User.new_token
     #  SecureRandom::urlsafe_base64
     # end

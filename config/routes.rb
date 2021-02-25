@@ -9,15 +9,11 @@ Rails.application.routes.draw do
       passwords: 'users/passwords',
       confirmations: "confirmations"
   }
-  resources :users, only: [:show]
 
   match '/users/:id/finish_signup' => 'users#finish_signup', via: [:get, :patch], as: :finish_signup
 
-  resources :problems do
-      collection do
-        post :confirm
-
-        resources :users, only: [:new, :create, :show]
-      end
-    end
+  resources :users, only: [:show, :index]
+  resources :problems, only: [:index, :show, :create, :new, :edit] do
+    resources :likes, only: [:create, :destroy]
+  end
 end

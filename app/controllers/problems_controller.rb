@@ -1,5 +1,5 @@
 class ProblemsController < ApplicationController
-  before_action :set_problem, only: [:show, :edit, :update, :destroy]
+  before_action :set_problem, only: [:show, :create, :edit, :update, :destroy]
 
   def index
     @problems = Problem.all
@@ -7,6 +7,7 @@ class ProblemsController < ApplicationController
 
   def show
     @problem = Problem.find(params[:id])
+    @like = Like.new
   end
 
   def new
@@ -24,15 +25,11 @@ class ProblemsController < ApplicationController
   def create
     @problem = Problem.new(problem_params)
     @problem.user_id = current_user.id
-    if params[:back]
-      render :new
-    else
       if @problem.save
-        redirect_to problems_path
+        redirect_back(fallback_location: root_path)
       else
-        render :new
+        redirect_back(fallback_location: root_path)
       end
-    end
   end
 
   def update
