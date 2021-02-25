@@ -1,6 +1,15 @@
 class Users::RegistrationsController < Devise::RegistrationsController
   layout 'login/application'
 
+  # def edit
+  #   @user = User.find(params[:id])
+  #   if @user == current_user
+  #     render "edit"
+  #   else
+  #     redirect_to problems_path
+  #   end
+  # end
+
   protected
     # # アカウント編集後、プロフィール画面に移動する
     # def after_update_path_for(resource)

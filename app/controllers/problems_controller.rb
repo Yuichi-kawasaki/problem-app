@@ -1,5 +1,7 @@
 class ProblemsController < ApplicationController
-  before_action :set_problem, only: [:show, :create, :edit, :update, :destroy]
+  # before_action :set_problem, only: [:show, :create, :edit, :update, :destroy]
+  before_action :authenticate_user!, only: [:show, :create, :edit, :index]
+  before_action :ensure_correct_user, only:[:edit]
 
   def index
     @problems = Problem.all
@@ -20,15 +22,21 @@ class ProblemsController < ApplicationController
 
   def edit
     @problem = Problem.find(params[:id])
+    @problem.user_id = current_user.id
+    # if @problem.user == current_user
+    #   render "edit"
+    # else
+    #   redirect_to problems_path
+    # end
   end
 
   def create
     @problem = Problem.new(problem_params)
     @problem.user_id = current_user.id
       if @problem.save
-        redirect_back(fallback_location: root_path)
+        redirect_to problems_path, notice: "投稿しました！"
       else
-        redirect_back(fallback_location: root_path)
+        render :new
       end
   end
 
@@ -46,10 +54,15 @@ class ProblemsController < ApplicationController
   end
 
   private
-  def set_problem
-    @problem = Problem.find(params[:id])
+  # def set_problem
+  #   @problem = current_user.problems.find(params[:id])
+  # end
+  def ensure_correct_user
+   @problem = Problem.find(params[:id])
+    unless @problem.user == current_user
+    redirect_to problems_path
   end
-
+ end
   def problem_params
     params.require(:problem).permit(:title, :content, :image, :image_cache)
   end

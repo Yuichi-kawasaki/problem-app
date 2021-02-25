@@ -29,11 +29,10 @@
 
              <div class="mx-5" role="toolbar">
                <td><%= link_to '詳細を確認する', problem_path(problem.id),class:"btn btn-primary" %></td>
-               <td><%= link_to '困りごとの編集', edit_problem_path(problem.id), class:"btn btn-success" %></td>
-               <td><%= link_to '困りごとの消去', problem_path(problem.id), method: :delete, data: { confirm: '本当に消去しますか?' },class:"btn btn-danger" %></td>
              </div>
           </tr>
-           <% end %>
+          <% end %>
           </div>
-          </tbody>
+        </tbody>
     </div>
+</div>

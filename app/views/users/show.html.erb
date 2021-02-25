@@ -38,6 +38,11 @@
     </tr>
   </table>
 </div>
+<% if @user.id == current_user.id %>
+   <%= link_to edit_user_registration_path(current_user.id) do %>
+       <div class= " edit btn btn-primary" ><span class="glyphicon glyphicon-wrench" aria-hidden="true">プロフィールを編集する</span></div>
+   <% end %>
+<% end %>
 
 <h2>投稿内容</h2>
 <% @user.problems.each do |problem| %>
@@ -51,7 +56,6 @@
 <% end %>
 
 <% if user_signed_in? %>
-  <%= link_to "編集する", edit_user_registration_path(current_user), class:'btn btn-success' %>
   <%= link_to "投稿一覧画面へ", problems_path, class:'btn btn-warning' %>
 <% else %>
   <%= link_to "ログインする", new_session_path %>
