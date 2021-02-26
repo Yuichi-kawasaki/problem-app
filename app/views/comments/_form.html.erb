@@ -1,0 +1,4 @@
+<%= form_with(model: [problem, comment], url: problem_comments_path(@problem) ) do |f| %>
+    <%= f.text_area :content, class: "input-mysize" %>
+    <%= f.submit "送信", class: "btn btn-outline-dark comment-submit2" %>
+<% end %>

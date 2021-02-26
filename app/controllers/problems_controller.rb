@@ -5,11 +5,16 @@ class ProblemsController < ApplicationController
 
   def index
     @problems = Problem.all
+    # @comment = Comment.new
+    # #新着順で表示
+    # @comments = @item.comments.order(created_at: :desc)
   end
 
   def show
     @problem = Problem.find(params[:id])
     @like = Like.new
+    @comment = Comment.new
+    @comments = @problem.comments.order(created_at: :desc)
   end
 
   def new

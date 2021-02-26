@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
 
-  get 'relationships/create'
-  get 'relationships/destroy'
   root  'problems#index'
 
     devise_for :users, controllers: {
@@ -17,6 +15,7 @@ Rails.application.routes.draw do
 
   resources :problems do
     resources :likes, only: [:create, :destroy]
+    resources :comments, only: [:create, :destroy]
       collection do
         post :confirm
 

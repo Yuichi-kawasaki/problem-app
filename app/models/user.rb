@@ -9,6 +9,7 @@ class User < ApplicationRecord
     has_many :passive_relationships, foreign_key: "followed_id", class_name: "Relationship", dependent: :destroy
     has_many :followers, through: :passive_relationships, source: :follower
     has_many :problems, dependent: :destroy
+    has_many :comments, dependent: :destroy
     has_many :likes, dependent: :destroy
     has_many :liked_problems, through: :likes, source: :problem
     mount_uploader :image, ImageUploader

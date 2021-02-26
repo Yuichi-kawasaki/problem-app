@@ -4,12 +4,9 @@
   <div class="clearfix profile_bar">
     <div class="profile_name"><%= @user.name %>のページ
 
-
       <% if @user.id != current_user.id %>
          <span class="glyphicon glyphicon-wrench" aria-hidden="true"><%= render 'follow_form' %></span>
       <% end %>
-
-
 
       <div class="profile_icon">
         <% if @user.image? %>

@@ -9,19 +9,33 @@
   <% end %>
 </p>
 
-<h3>『解決できるかも！』件数: <%= @problem.likes.count %></h3>
+<p>内容: <%= @problem.content %></p>
+
+<p>『解決できるかも！』件数: <%= @problem.likes.count %></p>
 <% if current_user.already_liked?(@problem) %>
   <%= button_to '解決できるかも！を取り消す', problem_like_path(@problem), method: :delete %>
 <% else %>
   <%= button_to '解決できるかも！', problem_likes_path(@problem) %>
 <% end %>
-<h2>『解決できるかも！』したユーザー</h2>
+<p>『解決できるかも！』したユーザー</p>
 <% @problem.liked_users.each do |user| %>
   <li><%= user.name %></li>
 <% end %>
 
 
-<p>内容: <%= @problem.content %></p>
+          <h3 class="text-left title">困り事：『<%=@problem.title%>』のコメント</h3>
+          <li id="comments_area">
+              <%= render partial: 'comments/index', locals: { comments: @comments } %>
+          </li>
+
+      <hr>
+      <% if user_signed_in? %>
+          <div class="comment-create">
+              <h3 class="text-left">コメントを投稿する</h3>
+              <%= render partial: 'comments/form', locals: { comment: @comment, problem: @problem } %>
+          </div>
+      <% end %>
+
 
    <% if @problem.user_id == current_user.id %>
        <td><%= link_to edit_problem_path(@problem.id) do %>
