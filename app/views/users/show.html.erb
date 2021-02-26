@@ -3,6 +3,14 @@
 <% end %>
   <div class="clearfix profile_bar">
     <div class="profile_name"><%= @user.name %>のページ
+
+
+      <% if @user.id != current_user.id %>
+         <span class="glyphicon glyphicon-wrench" aria-hidden="true"><%= render 'follow_form' %></span>
+      <% end %>
+
+
+
       <div class="profile_icon">
         <% if @user.image? %>
          <p><%= image_tag(@user.image.url, :size => "50x50") %></p>
@@ -46,7 +54,7 @@
 
 <h2>投稿内容</h2>
 <% @user.problems.each do |problem| %>
-  <a href="/problems/<%= problem.id %>"><%= problem.content %></a>
+  <a href="/problems/<%= problem.id %>"></a>
   <hr>
 <% end %>
 <h3>『解決できるかも！』している投稿</h3>

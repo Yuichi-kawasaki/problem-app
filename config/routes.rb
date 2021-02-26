@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'relationships/create'
+  get 'relationships/destroy'
   root  'problems#index'
 
     devise_for :users, controllers: {
@@ -21,4 +23,5 @@ Rails.application.routes.draw do
         resources :users, only: [:new, :create, :show]
       end
     end
+  resources :relationships, only: [:create, :destroy]
 end

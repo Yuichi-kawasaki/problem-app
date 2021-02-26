@@ -4,6 +4,10 @@ class User < ApplicationRecord
     # validates :city,  presence: true
     # validates :prefecture, presence: true
   #   before_validation { email.downcase! }
+    has_many :active_relationships, foreign_key: "follower_id", class_name: "Relationship", dependent: :destroy
+    has_many :followings, through: :active_relationships, source: :followed
+    has_many :passive_relationships, foreign_key: "followed_id", class_name: "Relationship", dependent: :destroy
+    has_many :followers, through: :passive_relationships, source: :follower
     has_many :problems, dependent: :destroy
     has_many :likes, dependent: :destroy
     has_many :liked_problems, through: :likes, source: :problem
@@ -44,10 +48,25 @@ class User < ApplicationRecord
         Thread.current[:current_user]
       end
 
-    def already_liked?(problem)
-      self.likes.exists?(problem_id: problem.id)
-    end
+      def already_liked?(problem)
+        self.likes.exists?(problem_id: problem.id)
+      end
 
+      def following?(other_user)
+        active_relationships.find_by(followed_id: other_user.id)
+      end
+
+      def follow!(other_user)
+        active_relationships.create!(followed_id: other_user.id)
+      end
+
+      def unfollow!(other_user)
+        active_relationships.find_by(followed_id: other_user.id).destroy
+      end
+
+      def matchers
+        followings & followers
+      end
 end
     # def User.new_token
     #  SecureRandom::urlsafe_base64
