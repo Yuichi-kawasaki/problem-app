@@ -24,7 +24,7 @@
                </div>
             </td>
              <td>内容：<%= problem.content %></td>
-             (<%= problem.liked_users.count %>)
+             <p>解決できるかも！(件数：<%= problem.liked_users.count %>)</p>
              <td><%= link_to "#{problem.user.name}のページ", user_path(problem.user.id),class:"btn btn-secondary btn-sm" %></td>
 
              <div class="mx-5" role="toolbar">
