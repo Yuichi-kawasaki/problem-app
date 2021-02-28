@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_30_021722) do
+ActiveRecord::Schema.define(version: 2021_02_30_021724) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,6 +33,22 @@ ActiveRecord::Schema.define(version: 2021_02_30_021722) do
     t.index ["recipient_id"], name: "index_conversations_on_recipient_id"
     t.index ["sender_id", "recipient_id"], name: "index_conversations_on_sender_id_and_recipient_id", unique: true
     t.index ["sender_id"], name: "index_conversations_on_sender_id"
+  end
+
+  create_table "labellings", force: :cascade do |t|
+    t.bigint "problem_id"
+    t.bigint "label_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["label_id"], name: "index_labellings_on_label_id"
+    t.index ["problem_id"], name: "index_labellings_on_problem_id"
+  end
+
+  create_table "labels", force: :cascade do |t|
+    t.bigint "problem_id"
+    t.string "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "likes", force: :cascade do |t|
@@ -125,6 +141,8 @@ ActiveRecord::Schema.define(version: 2021_02_30_021722) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token"
   end
 
+  add_foreign_key "labellings", "labels"
+  add_foreign_key "labellings", "problems"
   add_foreign_key "likes", "problems"
   add_foreign_key "likes", "users"
   add_foreign_key "messages", "conversations"

@@ -7,6 +7,18 @@
           <%= link_to "新しく困りごとを投稿する", new_problem_path %>
         </div>
         <h3>困り事一覧</h3>
+        <div>
+          <%= form_with(scope: :search,url:problems_path,local: true, method: :get) do |form| %>
+            <%= form.label :title,'タイトル検索' %>
+            <%= form.text_field :title, value: params[:title] %>
+            <%= form.submit 'Search' %>
+          <% end %>
+          <%= form_with(url:problems_path,local: true, method: :get) do |form| %>
+            <%= form.label :title,'ラベル検索' %>
+            <%= form.select("label_id", Label.pluck(:title, :id), { include_blank: "ラベルを選択する" }) %>
+            <%= form.submit 'Search' %>
+          <% end %>
+        </div>
     <div class="alert alert-warning">
        <tbody>
           <% @problems.each do |problem| %>

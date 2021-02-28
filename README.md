@@ -62,3 +62,6 @@ carrierwave
 /bootstrap
 /carrierwave
 /mini_magick
+/faker
+/seed-fu', '~> 2.3'
+/kaminari'

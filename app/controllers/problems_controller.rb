@@ -5,9 +5,13 @@ class ProblemsController < ApplicationController
 
   def index
     @problems = Problem.all
-    # @comment = Comment.new
-    # #新着順で表示
-    # @comments = @item.comments.order(created_at: :desc)
+
+    if params[:problem].present?
+      @problems = @problems.get_by_title(params[:problem][:title])
+    end
+    @problems.page(params[:page]).per(5)
+
+    @problems = @problems.joins(:labels).where(labels: { id: params[:label_id] }) if params[:label_id].present?
   end
 
   def show
@@ -69,6 +73,6 @@ class ProblemsController < ApplicationController
   end
  end
   def problem_params
-    params.require(:problem).permit(:title, :content, :image, :image_cache)
+    params.require(:problem).permit(:title, :content, :image, :image_cache, { label_ids: [] })
   end
 end

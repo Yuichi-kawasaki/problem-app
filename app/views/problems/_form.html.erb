@@ -21,6 +21,11 @@
   <%= form.file_field :image %>
 </div>
 
+<div class="field">
+  <%= form.label :title, "ラベル" %>
+  <%= form.collection_check_boxes(:label_ids, Label.all, :id, :title) %>
+</div>
+
 <div class="problem_content">
   <%= form.label :content %>
   <%= form.text_area :content, class:'form_control', rows: 10, placeholder: "コメントを書く"%>

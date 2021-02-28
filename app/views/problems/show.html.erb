@@ -8,7 +8,11 @@
     <%= image_tag("noimage.png", :size => "100x100") %>
   <% end %>
 </p>
-
+<p>ラベル:
+   <% @problem.labels.each do |label| %>
+     <li><%= label.title %></li>
+   <% end %>
+</p>
 <p>内容: <%= @problem.content %></p>
 
 <p>『解決できるかも！』件数: <%= @problem.likes.count %></p>

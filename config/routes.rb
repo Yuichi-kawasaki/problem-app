@@ -10,12 +10,13 @@ Rails.application.routes.draw do
       confirmations: "confirmations"
   }
   resources :users, only: [:show]
-
+  resources :labels
   match '/users/:id/finish_signup' => 'users#finish_signup', via: [:get, :patch], as: :finish_signup
 
   resources :problems do
     resources :likes, only: [:create, :destroy]
     resources :comments, only: [:create, :destroy]
+    get :search, on: :collection
       collection do
         post :confirm
 
