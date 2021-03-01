@@ -9,7 +9,7 @@ User.seed(
   { id: 7,  name: Faker::Games::Pokemon.name, email: Faker::Internet.email, password: 'password' },
   { id: 8,  name: Faker::Games::Pokemon.name, email: Faker::Internet.email, password: 'password' },
   { id: 9,  name: Faker::Games::Pokemon.name, email: Faker::Internet.email, password: 'password' },
-  id: 10, name: Faker::Games::Pokemon.name, email: Faker::Internet.email, password: 'password'
+  { id: 10, name: Faker::Games::Pokemon.name, email: Faker::Internet.email, password: 'password' }
 )
 
 Problem.seed(
@@ -29,7 +29,7 @@ Problem.seed(
   { id: 13, user_id: 10, title: Faker::Book.title, content: Faker::Markdown.random, image: Faker::Avatar.image('my-own-slug') },
   { id: 14, user_id: 2, title: Faker::Book.title, content: Faker::Markdown.random, image: Faker::Avatar.image('my-own-slug') },
   { id: 15, user_id: 2, title: Faker::Book.title, content: Faker::Markdown.random, image: Faker::Avatar.image('my-own-slug') },
-  id: 16, user_id: 1, title: Faker::Book.title, content: Faker::Markdown.random, image: Faker::Avatar.image('my-own-slug')
+  { id: 16, user_id: 1, title: Faker::Book.title, content: Faker::Markdown.random, image: Faker::Avatar.image('my-own-slug') }
 )
 
 
@@ -37,26 +37,14 @@ Problem.seed(
 #
 #
 #
-# Users.create!(
-#     [
-#       {
-#         image: File.open("./app/assets/images/default.png"),
-#         name: 'テスト',
-#         email: 'test@test.com',
-#         password: '11111111',
-#         gender: "1",
-#         prefecture: "北海道",
-#         city: "札幌",
-#         profession: "運輸業",
-#         occupation: "営業",
-#         profile: "登録してみました。"
-#       },
-#       {
-#         email: "admin@admin.com",
-#         name:  "管理者",
-#         password:  "00000000",
-#         admin: true
-#       },
+User.create(
+    [
+      {
+        email: "admin@admin.com",
+        name:  "管理者",
+        password:  "00000000",
+        admin: true
+      }
 #       {
 #         image: File.open("./app/assets/images/default.png"),
 #         name: 'テスト2',
@@ -81,9 +69,9 @@ Problem.seed(
 #         occupation: "エンジニア",
 #         profile: "趣味はサッカーです"
 #       }
-#     ]
-#   )
-#
+    ]
+  )
+
   Label.create(title:'新規' )
   Label.create(title:'リピート' )
   Label.create(title:'IT関連' )
