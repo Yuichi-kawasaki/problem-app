@@ -23,6 +23,7 @@ class User < ApplicationRecord
       # emailの登録状況を判定するカスタムvalidatorを使用するためのおまじない。
       validates :email, presence: true, email: true
 
+
       def social_profile(provider)
         social_profiles.select{ |sp| sp.provider == provider.to_s }.first
       end

@@ -14,23 +14,27 @@
   </head>
 
   <header>
-
-    <div class = "alert alert-warning">
-      <h2>ProblemApp</h2>
-        <% if user_signed_in? %>
-          <%= link_to "Profile", user_path(current_user.id), {class: "profile"} %>
-          <%= link_to "Logout", destroy_user_session_path, method: :delete%>
-        <% else %>
-          <%= link_to "Sign up", new_user_registration_path, {class: "signup"} %>
-          <%= link_to "Login", new_user_session_path, {class: "loginin"} %>
-        <% end %>
-    </div>
-     <!-- </div> -->
+      <div class="mx-auto" style="width: 80%;">
+        <div class = "alert alert-warning text-dark">
+        <h1>ProblemApp</h1>
+         <div class = "text-right">
+            <h6>
+            <% if user_signed_in? %>
+              <%= link_to "Profile", user_path(current_user.id), {class: "profile"} %>
+              <%= link_to "Logout", destroy_user_session_path, method: :delete%>
+            <% else %>
+              <%= link_to "Sign up", new_user_registration_path, {class: "signup"} %>
+              <%= link_to "Login", new_user_session_path, {class: "loginin"} %>
+            <% end %>
+            </h6>
+            </div>
+          </div>
+      </div>
   </header>
   <body>
-    <div class="wrapper">
+    <div class="mx-auto" style="width: 80%;">
       <% flash.each do |key, value| %>
-        <div class="alert <%= bootstrap_class_for(key) %>" ><%= value %></div>
+        <div class="alert <%= bootstrap_class_for(key) %>"><%= value %></div>
       <% end %>
 
         <div class="content">
@@ -43,12 +47,14 @@
 
        </div>
         <footer>
-          <div class ="footer_container">
-            <p>運営会社・・・・株式会社</p>
-            <p>© 2020 Copyright ・・・・ Corp.</p>
+          <div class = "text-dark">
+          <p class="text-body text-right" id="smooth-scroll">TOPへ"クリック"</p>
+            <div class ="alert alert-warning text-center text-dark">
+              <p>運営会社・・・・株式会社</p>
+              <p>© 2020 Copyright ・・・・ Corp.</p>
+            </div>
           </div>
         </footer>
     </div>
   </body>
-
 </html>

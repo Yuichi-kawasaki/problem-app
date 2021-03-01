@@ -37,11 +37,6 @@
     <%= f.password_field :password_confirmation, autocomplete: "off" %>
   </div>
 
-  <div class="field">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "off" %>
-  </div>
-
   <div class= "field">
     <%= f.label :gender, "性別", class:'gender_select', class: "control-label" %><br>
     <span><%= f.radio_button :gender, 1, class:"input-group-addon has-error" %></span>

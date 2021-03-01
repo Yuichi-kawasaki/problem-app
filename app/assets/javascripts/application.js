@@ -16,3 +16,8 @@
 //= require jquery/dist/jquery.js
 //= require bootstrap
 //= require_tree .
+$(function(){
+  $("#smooth-scroll").click(function() {
+    $("html,body").animate({scrollTop:0}, "300");
+  });
+});

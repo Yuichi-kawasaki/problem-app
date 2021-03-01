@@ -1,7 +1,7 @@
 <% content_for :h1 do %>
-  <h1>新規アカウントを作成</h1>
 <% end %>
-  <div class="clearfix profile_bar">
+<div class = "text-center bg-light">
+  <!-- <div class="clearfix profile_bar"> -->
     <div class="profile_name"><%= @user.name %>のページ
 
       <% if @user.id != current_user.id %>
@@ -20,53 +20,83 @@
          <p><%= image_tag("default.png", :size => "50x50") %></p>
         <% end %>
       </div>
-    </div>
+    <!-- </div> -->
   </div>
+  <div class="float-middle">
+    <table border="1" align="center">
+      <tr>
+        <th class ="align-right">メールアドレス:</th><td class ="align-right"><%= @user.email %></td>
+      </tr>
+      <tr>
+        <th>性別:</th><td><%= gender_view(@user.gender) %></td>
+      </tr>
+      <tr>
+        <th>住所<br>都道府県:</th><td><%= @user.prefecture %></td>
+      </tr>
+      <tr>
+        <th>市区町村:</th><td><%= @user.city %></td>
+      </tr>
+      <tr>
+        <th>職業:</th><td><%= @user.profession %></td>
+      </tr>
+      <tr>
+        <th>職種:</th><td><%= @user.occupation %></td>
+      </tr>
+      <tr>
+        <th>自己紹介文:</th><td><%= @user.profile %></td>
+      </tr>
+    </table>
+  </div>
+  <br>
+  <div class="text-center">
+  <% if @user.id == current_user.id %>
+     <%= link_to edit_user_registration_path(current_user.id) do %>
+         <div class= " edit btn btn-primary" ><span class="glyphicon glyphicon-wrench" aria-hidden="true">プロフィールを編集する</span></div>
+     <% end %>
+  <% end %><br>
+  <br>
+  <div class ="bg-light">
+  <h3>『解決できるかも！』している投稿</h3>
+  <% @user.liked_problems.each do |problem| %>
+    <li>
+      <%= link_to "投稿者#{problem.user.name}", user_path(problem.user.id),class:"btn btn-secondary" %>
+      投稿内容：<%= problem.content %>
+      <%= link_to '困り事詳細を確認する', problem_path(problem.id),class:"btn btn-primary" %>
+    </li>
+  <% end %>
+  <br>
+  <br>
+  <h2>投稿内容</h2>
+  <p>投稿件数：<%= @user.problems.count %>件</p>
+  <% @user.problems.each do |problem| %>
+  <div class="py-4 text-body">
+  <tr>
+     <td><strong>タイトル：<%= problem.title %></strong></td>
+     <div class = "text-right">
+       <td>解決できるかも！(件数：<%= problem.liked_users.count %>)</td>
+     </div>
+    <br>
+  <td>
+    <div class="problem_image">
+      <% if problem.image.present? %>
+        <%= image_tag problem.image.url, width: '30%', height: '30%' %>
+      <% else %>
+        <%= image_tag("noimage.png", :size => "50x50") %>
+      <% end %>
+    </div>
+ </td>
+  <td>内容：<%= problem.content %></td>
+  <div class="mx-8" role="toolbar">
+    <td><%= link_to '困り事詳細を確認する', problem_path(problem.id),class:"btn btn-primary" %></td>
+  </div>
+</tr>
+  <% end %>
+<br>
 
-<div class="profile_content">
-  <table>
-    <tr>
-      <th>メールアドレス:</th><td><%= @user.email %></td>
-    </tr>
-    <tr>
-      <th>性別:</th><td><%= gender_view(@user.gender) %></td>
-    </tr>
-    <tr>
-      <th>住所<br>都道府県:</th><td><%= @user.prefecture %></td>
-    </tr>
-    <tr>
-      <th>市区町村:</th><td><%= @user.city %></td>
-    </tr>
-    <tr>
-      <th>職業:</th><td><%= @user.profession %></td>
-    </tr>
-    <tr>
-      <th>職種:</th><td><%= @user.occupation %></td>
-    </tr>
-    <tr>
-      <th>自己紹介文:</th><td><%= @user.profile %></td>
-    </tr>
-  </table>
+  <% if user_signed_in? %>
+    <%= link_to "投稿一覧画面へ", problems_path, class:'btn btn-warning' %>
+  <% else %>
+    <%= link_to "ログインする", new_session_path %>
+  <% end %>
+  </div>
 </div>
-<% if @user.id == current_user.id %>
-   <%= link_to edit_user_registration_path(current_user.id) do %>
-       <div class= " edit btn btn-primary" ><span class="glyphicon glyphicon-wrench" aria-hidden="true">プロフィールを編集する</span></div>
-   <% end %>
-<% end %>
-
-<h2>投稿内容</h2>
-<% @user.problems.each do |problem| %>
-  <a href="/problems/<%= problem.id %>"></a>
-  <hr>
-<% end %>
-<h3>『解決できるかも！』している投稿</h3>
-<% @user.liked_problems.each do |problem| %>
-  <%= problem.user.email %>
-  <%= problem.content %>
-<% end %>
-
-<% if user_signed_in? %>
-  <%= link_to "投稿一覧画面へ", problems_path, class:'btn btn-warning' %>
-<% else %>
-  <%= link_to "ログインする", new_session_path %>
-<% end %>

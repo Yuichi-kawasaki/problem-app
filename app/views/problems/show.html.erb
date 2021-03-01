@@ -1,54 +1,56 @@
+<div class = "text-center bg-light">
+  <h1>困りごと詳細ページ</h1>
+  <p>タイトル: <%= @problem.title %></p>
+  <p>画像：
+    <% if @problem.image.present? %>
+        <%= image_tag @problem.image.url, width: '50%', height: '50%' %>
+    <% else %>
+      <%= image_tag("noimage.png", :size => "100x100") %>
+    <% end %>
+  </p>
+  <p>ラベル:
+     <% @problem.labels.each do |label| %>
+       <li><%= label.title %></li>
+     <% end %>
+  </p>
+  <p>内容: <%= @problem.content %></p>
 
-<h1>困りごと詳細ページ</h1>
-<p>タイトル: <%= @problem.title %></p>
-<p>画像：
-  <% if @problem.image.present? %>
-      <%= image_tag @problem.image.url, width: '50%', height: '50%' %>
+  <p>『解決できるかも！』件数: <%= @problem.likes.count %></p>
+  <% if current_user.already_liked?(@problem) %>
+    <%= button_to '解決できるかも！を取り消す', problem_like_path(@problem), method: :delete %>
   <% else %>
-    <%= image_tag("noimage.png", :size => "100x100") %>
+    <%= button_to '解決できるかも！', problem_likes_path(@problem) %>
   <% end %>
-</p>
-<p>ラベル:
-   <% @problem.labels.each do |label| %>
-     <li><%= label.title %></li>
-   <% end %>
-</p>
-<p>内容: <%= @problem.content %></p>
-
-<p>『解決できるかも！』件数: <%= @problem.likes.count %></p>
-<% if current_user.already_liked?(@problem) %>
-  <%= button_to '解決できるかも！を取り消す', problem_like_path(@problem), method: :delete %>
-<% else %>
-  <%= button_to '解決できるかも！', problem_likes_path(@problem) %>
-<% end %>
-<p>『解決できるかも！』したユーザー</p>
-<% @problem.liked_users.each do |user| %>
-  <li><%= user.name %></li>
-<% end %>
-
-
-          <h3 class="text-left title">困り事：『<%=@problem.title%>』のコメント</h3>
-          <li id="comments_area">
-              <%= render partial: 'comments/index', locals: { comments: @comments } %>
-          </li>
-
-      <hr>
-      <% if user_signed_in? %>
-          <div class="comment-create">
-              <h3 class="text-left">コメントを投稿する</h3>
-              <%= render partial: 'comments/form', locals: { comment: @comment, problem: @problem } %>
-          </div>
-      <% end %>
-
-
-   <% if @problem.user_id == current_user.id %>
-       <td><%= link_to edit_problem_path(@problem.id) do %>
-         <div class= " edit btn btn-success" ><span class="glyphicon glyphicon-wrench" aria-hidden="true">困りごとの編集</span></div>
-         <% end %>
-       </td>
-       <td><%= link_to problem_path(@problem.id), method: :delete, data: { confirm: '本当に消去しますか?' } do %>
-         <div class= " delete btn btn-danger"><span class="glyphicon glyphicon-wrench" aria-hidden="true">困りごとの消去</span></div>
-         <% end %>
-       </td>
+  <p>『解決できるかも！』したユーザー</p>
+  <% @problem.liked_users.each do |user| %>
+    <li><%= user.name %></li>
   <% end %>
-<%= link_to '投稿一覧画面に戻る', problems_path, class: "btn btn-primary" %>
+
+         <div class = "text-center bg-light mt-5">
+            <h5>困り事：『<%=@problem.title%>』のコメント</h5>
+            <li id="comments_area">
+                <%= render partial: 'comments/index', locals: { comments: @comments } %>
+            </li>
+         </div>
+        <hr>
+        <% if user_signed_in? %>
+            <div class="comment-create">
+                <h5>コメントを投稿する</h5>
+                <%= render partial: 'comments/form', locals: { comment: @comment, problem: @problem } %>
+            </div>
+        <% end %><br>
+
+
+     <% if @problem.user_id == current_user.id %>
+         <td><%= link_to edit_problem_path(@problem.id) do %>
+           <div class= " edit btn btn-success" ><span class="glyphicon glyphicon-wrench" aria-hidden="true">困りごとの編集</span></div>
+           <% end %>
+         </td>
+         <td><%= link_to problem_path(@problem.id), method: :delete, data: { confirm: '本当に消去しますか?' } do %>
+           <div class= " delete btn btn-danger"><span class="glyphicon glyphicon-wrench" aria-hidden="true">困りごとの消去</span></div>
+           <% end %>
+         </td>
+    <% end %>
+
+  <%= link_to '投稿一覧画面に戻る', problems_path, class: "btn btn-primary" %>
+</div>
