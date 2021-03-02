@@ -1,6 +1,6 @@
 class ProblemsController < ApplicationController
-  # before_action :set_problem, only: [:show, :create, :edit, :update, :destroy]
-  before_action :authenticate_user!, only: [:show, :create, :edit, :index]
+  before_action :set_problem, only: [:create, :edit, :update, :destroy]
+  before_action :authenticate_user!, only: [:show, :create, :edit, :index, :destroy]
   before_action :ensure_correct_user, only:[:edit]
 
   def index
@@ -63,9 +63,9 @@ class ProblemsController < ApplicationController
   end
 
   private
-  # def set_problem
-  #   @problem = current_user.problems.find(params[:id])
-  # end
+  def set_problem
+    @problem = current_user.problems.find(params[:id])
+  end
   def ensure_correct_user
    @problem = Problem.find(params[:id])
     unless @problem.user == current_user

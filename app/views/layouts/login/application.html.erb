@@ -2,7 +2,9 @@
 <html>
   <head>
     <title>ProblemApp</title>
-    <h1>ProblemApp</h1>
+    <div class="mx-auto text-center alert alert-warning text-dark" style="width: 80%;">
+      <h1>ProblemApp</h1>
+    </div>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= render "users/shared/links" %>
@@ -11,10 +13,9 @@
   </head>
 
   <body>
-    <div class="wrapper">
+    <div class="mx-auto">
+      <div class="wrapper">
 
-
-        <div class="content">
           <div class="title_parent">
             <div class="title_child">
               <%= yield %>
@@ -24,7 +25,7 @@
 
        </div>
         <footer>
-          <div class ="footer_container">
+          <div class ="mx-auto text-center alert alert-warning text-dark" style="width: 80%;">
             <p>運営会社・・・・株式会社</p>
             <p>© 2020 Copyright ・・・・ Corp.</p>
           </div>

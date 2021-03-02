@@ -6,7 +6,7 @@
 
       <% if @user.id != current_user.id %>
             <div class="item">
-              <%= link_to @user.name, @user %>
+              <%= @user.name %>
               <%= link_to 'へメッセージ', conversations_path(sender_id: current_user.id, recipient_id: @user.id), method: :post %>
             </div>
 
@@ -20,21 +20,22 @@
          <p><%= image_tag("default.png", :size => "50x50") %></p>
         <% end %>
       </div>
+      <p>(フォローされている件数：<%= current_user.follower_ids.count%>)</p>
     <!-- </div> -->
   </div>
   <div class="float-middle">
-    <table border="1" align="center">
+    <table border="1" align="center" style="width: 50%;">
       <tr>
-        <th class ="align-right">メールアドレス:</th><td class ="align-right"><%= @user.email %></td>
+        <th class ="align-right">メールアドレス:</th><td><%= @user.email %></td>
       </tr>
       <tr>
         <th>性別:</th><td><%= gender_view(@user.gender) %></td>
       </tr>
       <tr>
-        <th>住所<br>都道府県:</th><td><%= @user.prefecture %></td>
+        <th>住所：都道府県:</th><td><%= @user.prefecture %></td>
       </tr>
       <tr>
-        <th>市区町村:</th><td><%= @user.city %></td>
+        <th>住所：市区町村:</th><td><%= @user.city %></td>
       </tr>
       <tr>
         <th>職業:</th><td><%= @user.profession %></td>
@@ -53,50 +54,71 @@
      <%= link_to edit_user_registration_path(current_user.id) do %>
          <div class= " edit btn btn-primary" ><span class="glyphicon glyphicon-wrench" aria-hidden="true">プロフィールを編集する</span></div>
      <% end %>
-  <% end %><br>
+   <br>
+   <br>
+     フォローしている件数：
+     <strong id="following" class="stat">
+      <%= @user.followings.count %>
+    </strong>
+    <div class = "text-center">
+      <li id="followings_user_area">
+          <%= render partial: 'relationships/index' %>
+      </li>
+      <% end %>
+    </div>
+  <br>
   <br>
   <div class ="bg-light">
   <h3>『解決できるかも！』している投稿</h3>
-  <% @user.liked_problems.each do |problem| %>
-    <li>
-      <%= link_to "投稿者#{problem.user.name}", user_path(problem.user.id),class:"btn btn-secondary" %>
-      投稿内容：<%= problem.content %>
-      <%= link_to '困り事詳細を確認する', problem_path(problem.id),class:"btn btn-primary" %>
-    </li>
-  <% end %>
-  <br>
+   <div class ="text-center">
+  <div class="container border-top border-bottom">
+    <div class = "row">
+      <% if @user.liked_problems.present? %>
+        <% @user.liked_problems.each do |problem| %>
+            <div class = "col-md-4">
+            <%= link_to "投稿者#{problem.user.name}", user_path(problem.user.id),class:"btn btn-secondary" %>
+            投稿内容：
+            </div>
+            <div class = "col-md-5">
+              <%= problem.content %>
+            </div>
+            <div class = "col-md-3">
+            <%= link_to '困り事詳細を確認する', problem_path(problem.id),class:"btn btn-success btn-sm" %>
+            </div>
+          <br>
+        <% end %>
+    <%else%>
+        <p>『解決できるかも！』している投稿はありません</p>
+    <% end %>
+    </div>
+    </div>
+  </div>
   <br>
   <h2>投稿内容</h2>
   <p>投稿件数：<%= @user.problems.count %>件</p>
   <% @user.problems.each do |problem| %>
   <div class="py-4 text-body">
-  <tr>
-     <td><strong>タイトル：<%= problem.title %></strong></td>
-     <div class = "text-right">
-       <td>解決できるかも！(件数：<%= problem.liked_users.count %>)</td>
-     </div>
-    <br>
-  <td>
-    <div class="problem_image">
-      <% if problem.image.present? %>
-        <%= image_tag problem.image.url, width: '30%', height: '30%' %>
-      <% else %>
-        <%= image_tag("noimage.png", :size => "50x50") %>
-      <% end %>
-    </div>
- </td>
-  <td>内容：<%= problem.content %></td>
-  <div class="mx-8" role="toolbar">
-    <td><%= link_to '困り事詳細を確認する', problem_path(problem.id),class:"btn btn-primary" %></td>
-  </div>
-</tr>
+    <tr>
+       <td><strong>タイトル：<%= problem.title %></strong></td>
+       <div class = "text-right">
+         <td>解決できるかも！(件数：<%= problem.liked_users.count %>)</td>
+       </div>
+      <br>
+      <td>
+        <div class="problem_image">
+          <% if problem.image.present? %>
+            <%= image_tag problem.image.url, width: '30%', height: '30%' %>
+          <% else %>
+            <%= image_tag("noimage.png", :size => "50x50") %>
+          <% end %>
+        </div>
+     </td>
+     <td>内容：<%= problem.content %></td>
+        <div class="mx-8 " role="toolbar">
+          <td><%= link_to '困り事詳細を確認する', problem_path(problem.id),class:"btn btn-primary" %></td>
+        </div>
+   </tr>
   <% end %>
 <br>
-
-  <% if user_signed_in? %>
-    <%= link_to "投稿一覧画面へ", problems_path, class:'btn btn-warning' %>
-  <% else %>
-    <%= link_to "ログインする", new_session_path %>
-  <% end %>
   </div>
 </div>

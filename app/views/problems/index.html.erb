@@ -1,5 +1,4 @@
 <% flash.each do |key, value| %>
-  <div class="alert <%= bootstrap_class_for(key) %>" ><%= value %></div>
 <% end %>
 
     <div class="timeline">
@@ -16,7 +15,7 @@
             <%= form.submit 'Search' %>
           <% end %>
         </div>
-        <div class="alert alert-light">
+        <div class="alert alert-light border-top">
            <tbody>
               <% @problems.each do |problem| %>
 
@@ -29,9 +28,9 @@
                  <td>
                    <div class="problem_image">
                      <% if problem.image.present? %>
-                       <%= image_tag problem.image.url, width: '30%', height: '30%' %>
+                       <%= image_tag problem.image.url, size: '100x100' %>
                      <% else %>
-                       <%= image_tag("noimage.png", :size => "50x50") %>
+                       <%= image_tag("noimage.png", :size => "100x100") %>
                      <% end %>
                    </div>
                 </td>
