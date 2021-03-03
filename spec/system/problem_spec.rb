@@ -27,19 +27,6 @@ RSpec.describe 'Problem管理機能', type: :system do
       end
    end
 
-    describe '検索機能'do
-      context 'タイトルをあいまい検索した場合'do
-        it '入力値を含むタスクが表示される'do
-        visit problems_path
-        fill_in 'search[title]', with: 'problem1'
-        click_button 'Search'
-        # sleep 0.5
-        expect(page).to have_content 'problem1'
-        expect( Problem.count ).to eq 2
-        end
-      end
-   end
-
   describe '一覧表示機能' do
     context '一覧画面に遷移した場合' do
       it '作成済みの投稿一覧が表示される' do

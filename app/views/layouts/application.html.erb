@@ -12,31 +12,30 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-
   <header>
-      <div class="mx-auto" style="width: 80%;">
-        <div class = "alert alert-warning text-dark">
-        <h1 class ="text-center">ProblemApp</h1>
-         <div class = "text-right">
-            <h6>
+    <div class="mx-auto" style="width: 80%;">
+      <div class = "alert alert-warning text-dark">
+      <h1 class ="text-center">ProblemApp</h1>
+       <div class = "text-right">
             <% if user_signed_in? %>
               <%= link_to "Profile", user_path(current_user.id), {class: "profile"} %>
-              <%= link_to "Logout", destroy_user_session_path, method: :delete%>
+              <%= link_to "Logout", destroy_user_session_path, method: :delete %>
             <% else %>
-              <%= link_to "Sign up", new_user_registration_path, {class: "signup"} %>
-              <%= link_to "Login", new_user_session_path, {class: "loginin"} %>
+              <p>ゲストユーザー</p>
+              <%= link_to "新規登録", new_user_registration_path %>
+              <%= link_to "ログイン", new_user_session_path %>
             <% end %>
-            </h6>
-            </div>
-          </div>
       </div>
+     </div>
+    </div>
   </header>
+
   <body>
     <div class="mx-auto" style="width: 80%;" >
       <% flash.each do |key, value| %>
         <div class="alert <%= bootstrap_class_for(key) %>"><%= value %></div>
       <% end %>
-
+      <div class ="alert alert-light text-center">
         <div class="content">
           <div class="title_parent">
             <div class="title_child">
@@ -46,6 +45,7 @@
         <%= yield :error %>
 
        </div>
+      </div>
         <footer>
           <div class ="problems border-top text-left">
             <% if user_signed_in? %>

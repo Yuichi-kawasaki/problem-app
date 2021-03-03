@@ -32,44 +32,10 @@ Problem.seed(
   { id: 16, user_id: 1, title: Faker::Book.title, content: Faker::Markdown.random, image: Faker::Avatar.image('my-own-slug') }
 )
 
-
-
-#
-#
-#
-User.create(
-    [
-      {
-        email: "admin@admin.com",
-        name:  "管理者",
-        password:  "00000000",
-        admin: true
-      }
-#       {
-#         image: File.open("./app/assets/images/default.png"),
-#         name: 'テスト2',
-#         email: 'test2@test2.com',
-#         password: '22222222',
-#         gender: "2",
-#         prefecture: "大阪",
-#         city: "大阪",
-#         profession: "サービス業",
-#         occupation: "経理",
-#         profile: "がんばります"
-#       },
-#       {
-#         image: File.open("./app/assets/images/default.png"),
-#         name: 'テスト3',
-#         email: 'test3@test3.com',
-#         password: '33333333',
-#         gender: "1",
-#         prefecture: "神奈川",
-#         city: "横浜",
-#         profession: "IT",
-#         occupation: "エンジニア",
-#         profile: "趣味はサッカーです"
-#       }
-    ]
+Admin.create(
+        name:  '管理者',
+        email: 'admin@admin.com',
+        password:  '00000000',
   )
 
   Label.create(title:'新規' )
@@ -82,33 +48,3 @@ User.create(
   Label.create(title:'買い物トラブル' )
   Label.create(title:'コロナ関連' )
   Label.create(title:'趣味関連' )
-#
-#
-#   Problem.create!(
-#     [
-#       {
-#         title: 'ドライポンプ',
-#         image: File.open("./app/assets/images/noimage.png"),
-#         content: '壊れた',
-#         user_id: users[0].id
-#       },
-#       {
-#         title: 'ターボ分子ポンプ',
-#         image: File.open("./app/assets/images/noimage.png"),
-#         content: '壊れた',
-#         user_id: users[1].id
-#       },
-#       {
-#         title: '油回転真空ポンプ',
-#         image: File.open("./app/assets/images/noimage.png"),
-#         content: '壊れた',
-#         user_id: users[2].id
-#       },
-#       {
-#         title: 'メカニカルプースターポンプ',
-#         image: File.open("./app/assets/images/noimage.png"),
-#         content: '壊れた',
-#         user_id: users[3].id
-#       }
-#     ]
-#   )

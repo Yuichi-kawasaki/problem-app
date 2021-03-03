@@ -8,7 +8,8 @@ Rails.application.routes.draw do
       omniauth_callbacks: "users/omniauth_callbacks",
       passwords: 'users/passwords',
       confirmations: "confirmations"
-  }
+    }
+
   resources :users, only: [:show]
   resources :labels
   match '/users/:id/finish_signup' => 'users#finish_signup', via: [:get, :patch], as: :finish_signup

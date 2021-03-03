@@ -69,6 +69,17 @@ class User < ApplicationRecord
       def matchers
         followings & followers
       end
+
+      private
+
+      def admin_authorization
+      end
+
+      def admin_zero
+        if User.where(admin: true).length == 1 && self.admin?
+          throw(:abort)
+        end
+      end
 end
     # def User.new_token
     #  SecureRandom::urlsafe_base64
