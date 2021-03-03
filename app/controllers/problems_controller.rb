@@ -1,15 +1,11 @@
 class ProblemsController < ApplicationController
-  before_action :set_problem, only: [:create, :edit, :update, :destroy]
+  before_action :set_problem, only: [:edit, :update, :destroy]
   before_action :authenticate_user!, only: [:show, :create, :edit, :index, :destroy]
   before_action :ensure_correct_user, only:[:edit]
 
   def index
     @problems = Problem.all
-
-    if params[:problem].present?
-      @problems = @problems.get_by_title(params[:problem][:title])
-    end
-    @problems.page(params[:page]).per(5)
+    # .order(id: "DESC")
 
     @problems = @problems.joins(:labels).where(labels: { id: params[:label_id] }) if params[:label_id].present?
   end

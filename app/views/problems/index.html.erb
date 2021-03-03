@@ -7,10 +7,8 @@
         </div>
         <h3>困り事一覧</h3>
         <div>
-          <%= form_with(scope: :search,url:problems_path,local: true, method: :get) do |form| %>
-            <%= form.label :title,'タイトル検索' %>
-            <%= form.text_field :title, value: params[:title] %>
-            <%= form.label :title,'ラベル検索' %>
+          <%= form_with(url: problems_path, local: true, method: :get) do |form| %>
+            <%= form.label :title,'困り事種類別検索：' %>
             <%= form.select("label_id", Label.pluck(:title, :id), { include_blank: "ラベルを選択する" }) %>
             <%= form.submit 'Search' %>
           <% end %>
@@ -25,6 +23,13 @@
                  <div class = "text-right">
                    <td>解決できるかも！(件数：<%= problem.liked_users.count %>)</td>
                  </div>
+                 <td>
+                     <p>困り事種類:
+                      <% problem.labels.each do |label| %>
+                        <%= label.title %>
+                      <% end %>
+                     </p>
+                 </td>
                  <td>
                    <div class="problem_image">
                      <% if problem.image.present? %>

@@ -8,10 +8,10 @@ class Problem < ApplicationRecord
   has_many :labellings, dependent: :destroy
   has_many :labels, through: :labellings
 
-  scope :get_by_title, -> (title) {
-  where('title LIKE ?', "%#{ title }%")
-  }
-  scope :get_by_labels_id, -> (label){
-  where('id LIKE?', "%#{title}%")
+  # scope :title_like, -> (title) {
+  # where('title LIKE ?', "%#{params[:title]}%")
+  # }
+  scope :labels_id_like, -> (label_id){
+  where('label_id LIKE?', "%#{title}%")
   }
 end

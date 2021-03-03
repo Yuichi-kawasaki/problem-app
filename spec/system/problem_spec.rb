@@ -1,18 +1,16 @@
 require 'rails_helper'
 
 RSpec.describe 'Problem管理機能', type: :system do
-
+  describe do
     before do
       @user = FactoryBot.create(:user)
       @admin_user = FactoryBot.create(:admin_user)
       @problem1 = FactoryBot.create(:problem, title: 'problem1', user_id: @admin_user.id)
       @problem2 = FactoryBot.create(:second_problem, title: 'problem2', user_id: @admin_user.id)
-
-      # it "登録" do
-        visit new_user_session_path
-        fill_in 'user[email]',with: 'admin@admin.com'
-        fill_in 'user[password]',with: '00000000'
-        click_button 'ログイン'
+      visit new_user_session_path
+      fill_in 'user[email]',with: 'admin@admin.com'
+      fill_in 'user[password]',with: '00000000'
+      click_button 'ログイン'
     end
 
     describe '新規作成機能' do
@@ -63,4 +61,5 @@ RSpec.describe 'Problem管理機能', type: :system do
       end
     end
   end
+end
 end
