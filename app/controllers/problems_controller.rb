@@ -4,9 +4,16 @@ class ProblemsController < ApplicationController
   before_action :ensure_correct_user, only:[:edit]
 
   def index
-    @problems = Problem.all.order(id: "DESC")
+    @problems = Problem.all.page(params[:page]).per(10)
 
     @problems = @problems.joins(:labels).where(labels: { id: params[:label_id] }) if params[:label_id].present?
+
+    @problem = current_user.problems.build
+    # @problem.user_id = current_user.id
+    #   if @problem.save
+    #   else
+    #     render :new
+      # end
   end
 
   def show

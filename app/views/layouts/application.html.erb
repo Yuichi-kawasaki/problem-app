@@ -15,17 +15,16 @@
   <header>
     <div class="mx-auto" style="width: 80%;">
       <div class = "alert alert-warning text-dark">
-      <h1 class ="text-center">ProblemApp</h1>
+      <h1 class ="text-center text-dark">困り事アプリ</h1>
+      <p class ="text-center">~皆さんのお困りごとを解決します。困りごと・解決したいことを全国の皆さんに解決してもらいましょう！~</p>
        <div class = "text-right">
             <% if user_signed_in? %>
-              <%= link_to "Profile", user_path(current_user.id), {class: "profile"} %>
+              <%= link_to "Profile", user_path(current_user.id), {class: "profile pr-2"} %>
               <%= link_to "Logout", destroy_user_session_path, method: :delete %>
             <% else %>
               <p>ゲストユーザー</p>
-              <%= link_to "新規登録", new_user_registration_path %>
+              <%= link_to "新規登録", new_user_registration_path,{class: "pr-2"} %>
               <%= link_to "ログイン", new_user_session_path %>
-            <% end %>
-            <% if current_user.try(:admin?) %>
             <% end %>
       </div>
      </div>
@@ -37,9 +36,9 @@
       <% flash.each do |key, value| %>
         <div class="alert <%= bootstrap_class_for(key) %>"><%= value %></div>
       <% end %>
-      <div class ="alert alert-light text-center">
+      <div class ="alert alert-light">
         <div class="content">
-          <div class="title_parent">
+          <div class="title_parent pb-2">
             <div class="title_child">
               <%= yield %>
             </div>
@@ -49,7 +48,7 @@
        </div>
       </div>
         <footer>
-          <div class ="problems border-top text-left">
+          <div class ="pt-2 border-top text-left">
             <% if user_signed_in? %>
               <%= link_to "投稿一覧画面へ", problems_path %>
             <% else %>

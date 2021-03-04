@@ -1,57 +1,54 @@
 <% flash.each do |key, value| %>
 <% end %>
 
-    <div class="timeline">
-        <div class="link_to_new">
-          <%= link_to "新しく困りごとを投稿する", new_problem_path %>
+  <div class ="text-center bg-info float-middle text-white rounded">
+    <h3 class="py-1" >"新しく困りごとを投稿する"</h3>
+    <%= form_with model: [@problem], data: {remote: true} do |form| %>
+        <table border="0" align="center" width="80%">
+              <tr>
+                <th class="problem_title"><%= form.label :title,"タイトル" %></th>
+                <td><%= form.text_field :title , autofocus: true, id: "text" %></td>
+                <th class="problem_image"><%= form.label :image,"写真" %></th>
+                <td><%= form.file_field :image %></td>
+              </tr>
+        </table>
+
+        <table border="0" align="center" width="85%" height="80">
+          <tr>
+            <th><%= form.label :title, "困り事種類:" %></th>
+            <td><%= form.collection_check_boxes(:label_ids, Label.all, :id, :title) %></td>
+          </tr>
+       </table>
+
+        <table border="0" align="center" width="80%">
+              <tr>
+                <th><%= form.label :content, "内容" %></th>
+                <td><%= form.text_area :content, size: "80x3",class:'form_control',id:"content", rows: 50, placeholder: "コメントを書く"%></td>
+              </tr>
+        </table>
+
+        <div class="submit pb-2">
+          <%= form.submit "登録する", class:"button" %>
         </div>
-        <h3>困り事一覧</h3>
-        <div>
+</div>
+        <% end %>
+
+        <div class="py-4 text-body">
+        <h2>困り事一覧</h2>
           <%= form_with(url: problems_path, local: true, method: :get) do |form| %>
             <%= form.label :title,'困り事種類別検索：' %>
             <%= form.select("label_id", Label.pluck(:title, :id), { include_blank: "ラベルを選択する" }) %>
             <%= form.submit 'Search' %>
           <% end %>
+          <div class = "float-right">
+            <%= paginate @problems %>
+          </div>
         </div>
-        <div class="alert alert-light border-top">
-           <tbody>
-              <% @problems.each do |problem| %>
 
-              <div class="py-4 text-body">
-              <tr>
-                 <td><strong>タイトル：<%= problem.title %></strong></td>
-                 <div class = "text-right">
-                   <td>解決できるかも！(件数：<%= problem.liked_users.count %>)</td>
-                 </div>
-                 <td>
-                     <p>困り事種類:
-                      <% problem.labels.each do |label| %>
-                        <%= label.title %>
-                      <% end %>
-                     </p>
-                 </td>
-                 <td>
-                   <div class="problem_image">
-                     <% if problem.image.present? %>
-                       <%= image_tag problem.image.url, size: '100x100' %>
-                     <% else %>
-                       <%= image_tag("noimage.png", :size => "100x100") %>
-                     <% end %>
-                   </div>
-                </td>
-                 <td>内容：<%= problem.content %></td>
-                 <div class="mx-8" role="toolbar">
-                   <td><%= link_to "投稿者#{problem.user.name}のページ", user_path(problem.user.id),class:"btn btn-secondary" %></td>
-                   <td><%= link_to '困り事詳細を確認する', problem_path(problem.id),class:"btn btn-primary" %></td>
-                   <% if current_user.try(:admin?) %>
-                    <td><%= link_to problem_path(problem.id), method: :delete, data: { confirm: '本当に消去しますか?' } do %>
-                    <div class= " delete btn btn-danger"><span class="glyphicon glyphicon-wrench" aria-hidden="true">困りごとの消去</span></div>
-                        <% end %>
-                   <% end %>
-                 </div>
-              </tr>
-              <% end %>
-              </div>
-            </tbody>
+        <tbody class="bg-light" id="problem">
+            <%= render 'problems/new', problems: @problems %>
+        </tbody>
+        <div class = "float-right">
+          <%= paginate @problems %>
         </div>
-</div>
+        <br>

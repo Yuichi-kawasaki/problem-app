@@ -43,6 +43,7 @@ gem 'database_cleaner'
 gem 'rails_admin'
 gem 'rails_admin-i18n'
 gem 'cancancan'
+gem 'jquery-rails'
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 

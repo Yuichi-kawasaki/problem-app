@@ -1,0 +1,9 @@
+<% if page.current? %>
+  <li class='active pr-2'>
+    <%= content_tag :a, page, data: { remote: remote }, rel: page.rel %>
+  </li>
+<% else %>
+  <li class="pr-2">
+    <%= link_to page, url, remote: remote, rel: page.rel %>
+  </li>
+<% end %>
