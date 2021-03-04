@@ -4,12 +4,12 @@ RSpec.describe 'Problem管理機能', type: :system do
   describe do
     before do
       @user = FactoryBot.create(:user)
-      @admin_user = FactoryBot.create(:admin_user)
-      @problem1 = FactoryBot.create(:problem, title: 'problem1', user_id: @admin_user.id)
-      @problem2 = FactoryBot.create(:second_problem, title: 'problem2', user_id: @admin_user.id)
+      @second_user = FactoryBot.create(:second_user)
+      @problem1 = FactoryBot.create(:problem, title: 'problem1', user_id: @second_user.id)
+      @problem2 = FactoryBot.create(:second_problem, title: 'problem2', user_id: @second_user.id)
       visit new_user_session_path
-      fill_in 'user[email]',with: 'admin@admin.com'
-      fill_in 'user[password]',with: '00000000'
+      fill_in 'user[email]',with: 'test1@test.com'
+      fill_in 'user[password]',with: '22222222'
       click_button 'ログイン'
     end
 

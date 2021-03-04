@@ -43,6 +43,11 @@
                  <div class="mx-8" role="toolbar">
                    <td><%= link_to "投稿者#{problem.user.name}のページ", user_path(problem.user.id),class:"btn btn-secondary" %></td>
                    <td><%= link_to '困り事詳細を確認する', problem_path(problem.id),class:"btn btn-primary" %></td>
+                   <% if current_user.try(:admin?) %>
+                    <td><%= link_to problem_path(problem.id), method: :delete, data: { confirm: '本当に消去しますか?' } do %>
+                    <div class= " delete btn btn-danger"><span class="glyphicon glyphicon-wrench" aria-hidden="true">困りごとの消去</span></div>
+                        <% end %>
+                   <% end %>
                  </div>
               </tr>
               <% end %>

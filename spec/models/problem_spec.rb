@@ -5,10 +5,9 @@ RSpec.describe 'モデル機能', type: :model do
     # 必要に応じて、テストデータの内容を変更して構わない
     before do
       @user = FactoryBot.create(:user)
-      @admin_user = FactoryBot.create(:admin_user)
+      @second_user = FactoryBot.create(:second_user)
       @problem1 = FactoryBot.create(:problem, title: 'problem1', user_id: @user.id)
       @problem2 = FactoryBot.create(:second_problem, title: 'problem2', user_id: @user.id)
-      @problem3 = FactoryBot.create(:second_problem, title: 'problem3', user_id: @admin_user.id)
     end
 
     context 'scopeメソッドでタイトルのあいまい検索をした場合' do

@@ -7,13 +7,13 @@ RSpec.describe 'ラベル機能', type: :system do
         @label2 = FactoryBot.create(:label2)
         @label3 = FactoryBot.create(:label3)
         @user = FactoryBot.create(:user)
-        @admin_user = FactoryBot.create(:admin_user)
+        @second_user = FactoryBot.create(:second_user)
         @problem1 = FactoryBot.create(:problem, title: 'problem1', user_id: @user.id)
-        @problem2 = FactoryBot.create(:second_problem, title: 'problem2', user_id: @admin_user.id)
+        @problem2 = FactoryBot.create(:second_problem, title: 'problem2', user_id: @second_user.id)
         @labelling = FactoryBot.create(:labelling, problem: @problem1, label: @label)
         visit new_user_session_path
-        fill_in 'user[email]',with: 'admin@admin.com'
-        fill_in 'user[password]',with: '00000000'
+        fill_in 'user[email]',with: 'test1@test.com'
+        fill_in 'user[password]',with: '22222222'
         click_button 'ログイン'
       end
 

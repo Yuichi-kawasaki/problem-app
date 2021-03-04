@@ -1,0 +1,25 @@
+<tbody>
+  <h3>ユーザー一覧</h3>
+   <% @users.each do |user| %>
+   <div class="float-middle">
+     <table border="1" align="center" style="width: 50%;">
+       <tr>
+         <th class ="align-right">メールアドレス:</th><td><%= @user.email %></td>
+       </tr>
+       <tr>
+         <th>性別:</th><td><%= gender_view(@user.gender) %></td>
+       </tr>
+       <tr>
+         <th>住所：都道府県:</th><td><%= @user.prefecture %></td>
+       </tr>
+       <tr>
+         <th>職業:</th><td><%= @user.profession %></td>
+       </tr>
+       <tr>
+         <th>投稿件数：</th><td><%= @user.problems.count %>件</td>
+        </tr>
+     </table>
+   </div>
+     <td><%= link_to "#{problem.user.name}のページ", user_path(problem.user.id),class:"btn btn-secondary" %></td>
+   <% end %>
+ </tbody>

@@ -26,7 +26,23 @@ gem 'jbuilder', '~> 2.5'
 # gem 'redis', '~> 4.0'
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
-
+gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+gem 'bootstrap'
+gem 'rails-i18n', '~> 5.1'
+gem 'carrierwave'
+gem 'mini_magick'
+gem 'omniauth', '1.9.1'
+gem 'omniauth-twitter'
+gem 'omniauth-facebook'
+gem 'devise'
+gem 'devise-i18n'
+gem 'faker'
+gem 'seed-fu', '~> 2.3'
+gem 'kaminari'
+gem 'database_cleaner'
+gem 'rails_admin'
+gem 'rails_admin-i18n'
+gem 'cancancan'
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 
@@ -66,16 +82,3 @@ group :test do
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
-gem 'bootstrap'
-gem 'rails-i18n', '~> 5.1'
-gem 'carrierwave'
-gem 'mini_magick'
-gem 'omniauth', '1.9.1'
-gem 'omniauth-twitter'
-gem 'omniauth-facebook'
-gem 'devise'
-gem 'faker'
-gem 'seed-fu', '~> 2.3'
-gem 'kaminari'
-gem 'database_cleaner'
