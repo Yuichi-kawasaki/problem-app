@@ -1,6 +1,6 @@
 class User < ApplicationRecord
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable, :omniauthable, omniauth_providers: %i(facebook twitter)
+  devise :database_authenticatable, :registerable, :trackable, :confirmable,
+         :recoverable, :rememberable, :validatable, :omniauthable
     # validates :city,  presence: true
     # validates :prefecture, presence: true
   #   before_validation { email.downcase! }

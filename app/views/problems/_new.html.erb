@@ -5,6 +5,9 @@
       <div class="pt-5 pb-1 text-body">
       <tr>
          <td><strong>タイトル：<%= problem.title %></strong></td>
+         <div>
+           <td>投稿日時：<%= problem.created_at %></td>
+          </div>
          <div class = "text-right">
            <td>解決できるかも！(件数：<%= problem.liked_users.count %>)</td>
          </div>
@@ -17,7 +20,7 @@
          <td>
            <div class="problem_image">
              <% if problem.image.present? %>
-               <%= image_tag problem.image.url, size: '100x100' %>
+               <%= image_tag problem.image.url, size: '200x200' %>
              <% else %>
                <%= image_tag("noimage.png", :size => "100x100") %>
              <% end %>

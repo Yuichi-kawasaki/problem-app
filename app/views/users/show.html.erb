@@ -20,7 +20,7 @@
          <p><%= image_tag("default.png", :size => "50x50") %></p>
         <% end %>
       </div>
-      <p>(フォローされている件数：<%= current_user.follower_ids.count%>)</p>
+      <p id='follower-count_#{ user.id }'>(フォローされている件数：<%= @user.follower_ids.count%>)</p>
     <!-- </div> -->
   </div>
   <div class="float-middle">

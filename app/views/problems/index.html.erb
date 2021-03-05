@@ -6,10 +6,10 @@
     <%= form_with model: [@problem], data: {remote: true} do |form| %>
         <table border="0" align="center" width="80%">
               <tr>
-                <th class="problem_title"><%= form.label :title,"タイトル" %></th>
-                <td><%= form.text_field :title , autofocus: true, id: "text" %></td>
-                <th class="problem_image"><%= form.label :image,"写真" %></th>
-                <td><%= form.file_field :image %></td>
+                <th class="problem_title"><%= form.label :title,"タイトル" %>
+                <%= form.text_field :title , autofocus: true, id: "text" %></th>
+                <th class="problem_image"><%= form.label :image,"写真" %>
+                <%= form.file_field :image %></th>
               </tr>
         </table>
 
@@ -20,7 +20,7 @@
           </tr>
        </table>
 
-        <table border="0" align="center" width="80%">
+        <table border="0" align="center" width="70%">
               <tr>
                 <th><%= form.label :content, "内容" %></th>
                 <td><%= form.text_area :content, size: "80x3",class:'form_control',id:"content", rows: 50, placeholder: "コメントを書く"%></td>
@@ -35,11 +35,21 @@
 
         <div class="py-4 text-body">
         <h2>困り事一覧</h2>
-          <%= form_with(url: problems_path, local: true, method: :get) do |form| %>
-            <%= form.label :title,'困り事種類別検索：' %>
-            <%= form.select("label_id", Label.pluck(:title, :id), { include_blank: "ラベルを選択する" }) %>
-            <%= form.submit 'Search' %>
+          <%= form_with(scope: :search, url: problems_path, local: true, method: :get) do |form| %>
+            <%= form.label :title,'タイトル検索' %>
+            <%= form.text_field :title, value: @search_params[:title] %>
+            <%= form.submit 'Search'  %>
           <% end %>
+        <div class ="pt-2">
+          <%= form_with(url: problems_path, local: true, method: :get) do |form| %>
+            <%= form.label :title,'困り事種類別検索' %>
+            <%= form.select("label_id", Label.pluck(:title, :id),{ include_blank: "ラベルを選択する" }) %>
+            <%= form.submit 'Search1' ,class:"Search1" %>
+          <% end %>
+        </div>
+
+
+
           <div class = "float-right">
             <%= paginate @problems %>
           </div>

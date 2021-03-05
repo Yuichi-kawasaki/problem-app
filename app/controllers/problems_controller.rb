@@ -2,18 +2,19 @@ class ProblemsController < ApplicationController
   before_action :set_problem, only: [:edit, :update, :destroy]
   before_action :authenticate_user!, only: [:show, :create, :edit, :index, :destroy]
   before_action :ensure_correct_user, only:[:edit]
+  helper_method :sort_column, :sort_direction
 
   def index
-    @problems = Problem.all.page(params[:page]).per(10)
+    @problems = Problem.all.order(id: "DESC")
+    @problem = current_user.problems.build
+
+    @search_params = problem_search_params
+    @problems = Problem.search(@search_params)
+
 
     @problems = @problems.joins(:labels).where(labels: { id: params[:label_id] }) if params[:label_id].present?
 
-    @problem = current_user.problems.build
-    # @problem.user_id = current_user.id
-    #   if @problem.save
-    #   else
-    #     render :new
-      # end
+    @problems = @problems.page(params[:page]).per(5)
   end
 
   def show
@@ -64,6 +65,14 @@ class ProblemsController < ApplicationController
     redirect_to problems_path, notice: "消去しました"
   end
 
+  def sort_direction
+   %w[asc desc].include?(params[:direction]) ? params[:direction] : 'asc'
+  end
+
+  def sort_column
+   Problem.column_names.include?(params[:sort]) ? params[:sort] : 'title'
+  end
+
   private
   def set_problem
     @problem = current_user.problems.find(params[:id])
@@ -76,5 +85,8 @@ class ProblemsController < ApplicationController
  end
   def problem_params
     params.require(:problem).permit(:title, :content, :image, :image_cache, { label_ids: [] })
+  end
+  def problem_search_params
+   params.fetch(:search, {}).permit(:title,{ label_ids: [] })
   end
 end

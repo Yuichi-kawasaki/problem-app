@@ -28,7 +28,7 @@ RSpec.describe 'ラベル機能', type: :system do
       # select '新規',from: 'serch[label_id]'
       # click_button 'Search'
       # expect(page).to have_content '新規'
-      expect(page).to have_selector 'p', text:'新規'
+      expect(page).to have_content '新規'
     end
   end
 

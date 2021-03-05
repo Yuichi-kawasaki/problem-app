@@ -1,8 +1,6 @@
 class SocialProfile < ApplicationRecord
-  class SocialProfile < ApplicationRecord
     belongs_to :user
     store      :others
-
     validates_uniqueness_of :uid, scope: :provider
 
     def self.find_for_oauth(auth)
@@ -11,32 +9,42 @@ class SocialProfile < ApplicationRecord
       profile
     end
 
-    def save_oauth_data!(auth)
-      return unless valid_oauth?(auth)
+    def set_values(omniauth)
+        return if provider.to_s != omniauth['provider'].to_s || uid != omniauth['uid']
+        credentials = omniauth['credentials']
+        info = omniauth['info']
 
-      provider = auth["provider"]
-      policy   = policy(provider, auth)
+        self.access_token = credentials['token']
+        self.access_secret = credentials['secret']
+        self.credentials = credentials.to_json
+        self.email = info['email']
+        self.name = info['name']
+        self.nickname = info['nickname']
+        self.description = info['description'].try(:truncate, 255)
+        self.image_url = info['image']
+        case provider.to_s
 
-      self.update_attributes( uid:         policy.uid,
-                              name:        policy.name,
-                              nickname:    policy.nickname,
-                              email:       policy.email,
-                              url:         policy.url,
-                              image_url:   policy.image_url,
-                              description: policy.description,
-                              credentials: policy.credentials,
-                              raw_info:    policy.raw_info )
+        when 'facebook'
+          self.url = info['urls']['facebook']
+        when 'twitter'
+          self.url = info['urls']['Twitter']
+          self.other[:location] = info['location']
+          self.other[:website] = info['urls']['Website']
+        end
+
+        self.set_values_by_raw_info(omniauth['extra']['raw_info'])
+      end
+
+      def set_values_by_raw_info(raw_info)
+        case provider.to_s
+
+        when 'twitter'
+          self.other[:followers_count] = raw_info['followers_count']
+          self.other[:friends_count] = raw_info['friends_count']
+          self.other[:statuses_count] = raw_info['statuses_count']
+        end
+
+        self.raw_info = raw_info.to_json
+        self.save!
+      end
     end
-
-    private
-
-      def policy(provider, auth)
-        class_name = "#{provider}".classify
-        "OAuthPolicy::#{class_name}".constantize.new(auth)
-      end
-
-      def valid_oauth?(auth)
-        (self.provider.to_s == auth['provider'].to_s) && (self.uid == auth['uid'])
-      end
-  end
-end

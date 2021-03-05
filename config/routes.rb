@@ -8,17 +8,18 @@ Rails.application.routes.draw do
       registrations: "users/registrations",
       omniauth_callbacks: "users/omniauth_callbacks",
       passwords: 'users/passwords',
-      confirmations: "confirmations"
-    }
+      # confirmations: "confirmations"
 
+    }
+  match '/users/:id/finish_signup' => 'users#finish_signup', via: [:get, :patch], as: :finish_signup
   resources :users, only: [:show]
   resources :labels
-  match '/users/:id/finish_signup' => 'users#finish_signup', via: [:get, :patch], as: :finish_signup
+
 
   resources :problems do
     resources :likes, only: [:create, :destroy]
     resources :comments, only: [:create, :destroy]
-    get :search, on: :collection
+
       collection do
         post :confirm
 
