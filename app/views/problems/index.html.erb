@@ -13,10 +13,10 @@
               </tr>
         </table>
 
-        <table border="0" align="center" width="85%" height="80">
+        <table border="0" align="center" width="95%" height="80">
           <tr>
             <th><%= form.label :title, "困り事種類:" %></th>
-            <td><%= form.collection_check_boxes(:label_ids, Label.all, :id, :title) %></td>
+            <p><td><%= form.collection_check_boxes(:label_ids, Label.all, :id, :title) %></td></p>
           </tr>
        </table>
 

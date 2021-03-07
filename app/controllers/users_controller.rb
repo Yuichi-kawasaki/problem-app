@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   # before_action :set_user, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, except: :finish_signup
+  before_action :authenticate_user!
   def show
      @user = User.find(params[:id])
   end
@@ -21,14 +21,14 @@ class UsersController < ApplicationController
   #   end
   # end
 
-  def finish_signup
-    @user = User.find(params[:id])
-    if request.patch? && @user.update(user_params)
-      @user.send_confirmation_instructions unless @user.confirmed?
-      flash[:info] = 'We sent you a confirmation email. Please find a confirmation link.'
-      redirect_to root_url
-    end
-  end
+  # def finish_signup
+  #   @user = User.find(params[:id])
+  #   if request.patch? && @user.update(user_params)
+  #     @user.send_confirmation_instructions unless @user.confirmed?
+  #     flash[:info] = 'We sent you a confirmation email. Please find a confirmation link.'
+  #     redirect_to root_url
+  #   end
+  # end
 
   private
 
