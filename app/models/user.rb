@@ -24,9 +24,9 @@ class User < ApplicationRecord
       # validates :email, presence: true, email: true
 
 
-      # def social_profile(provider)
-      #   social_profiles.select{ |sp| sp.provider == provider.to_s }.first
-      # end
+      def social_profile(provider)
+        social_profiles.select{ |sp| sp.provider == provider.to_s }.first
+      end
       #
       # # 本物のemailがセットされているか確認。
       # def email_verified?

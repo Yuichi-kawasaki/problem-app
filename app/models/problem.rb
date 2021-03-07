@@ -8,6 +8,10 @@ class Problem < ApplicationRecord
   has_many :labellings, dependent: :destroy
   has_many :labels, through: :labellings
 
+  def self.latest(number)
+    order(created_at: :desc).limit(number)
+  end
+
   scope :search, -> (search_params) do
     return if search_params.blank?
       title_like(search_params[:title])

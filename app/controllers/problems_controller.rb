@@ -5,7 +5,7 @@ class ProblemsController < ApplicationController
   helper_method :sort_column, :sort_direction
 
   def index
-    @problems = Problem.all.order(id: "DESC")
+    @problems = Problem.latest(5)
     @problem = current_user.problems.build
 
     @search_params = problem_search_params
@@ -35,11 +35,6 @@ class ProblemsController < ApplicationController
   def edit
     @problem = Problem.find(params[:id])
     @problem.user_id = current_user.id
-    # if @problem.user == current_user
-    #   render "edit"
-    # else
-    #   redirect_to problems_path
-    # end
   end
 
   def create
@@ -87,6 +82,6 @@ class ProblemsController < ApplicationController
     params.require(:problem).permit(:title, :content, :image, :image_cache, { label_ids: [] })
   end
   def problem_search_params
-   params.fetch(:search, {}).permit(:title,{ label_ids: [] })
+    params.fetch(:search, {}).permit(:title,{ label_ids: [] })
   end
 end

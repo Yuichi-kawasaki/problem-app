@@ -71,24 +71,26 @@
   <div class ="bg-light">
   <h3>『解決できるかも！』している投稿</h3>
    <div class ="text-center">
-  <div class="container border-top border-bottom">
+  <div class="container text-center border-top border-bottom">
     <div class = "row">
       <% if @user.liked_problems.present? %>
-        <% @user.liked_problems.each do |problem| %>
-            <div class = "col-md-4">
+        <% @user.liked_problems.each do |t| %>
+        <div class ="col-md-4">
+            <!-- <div class = "col-6 bgre"> -->
             <%= link_to "投稿者#{problem.user.name}", user_path(problem.user.id),class:"btn btn-secondary" %>
             投稿内容：
-            </div>
-            <div class = "col-md-5">
+            <!-- </div>
+            <div class = "col-md-5"> -->
               <%= problem.content %>
-            </div>
-            <div class = "col-md-3">
+            <!-- </div>
+            <div class = "col-md-3"> -->
             <%= link_to '困り事詳細を確認する', problem_path(problem.id),class:"btn btn-success btn-sm" %>
-            </div>
+            <!-- </div> -->
+        </div>
           <br>
         <% end %>
     <%else%>
-        <p>『解決できるかも！』している投稿はありません</p>
+         <li>『解決できるかも！』している投稿はありません</li>
     <% end %>
     </div>
     </div>
@@ -100,7 +102,7 @@
   <div class="py-4 text-body">
     <tr>
        <td><strong>タイトル：<%= problem.title %></strong></td>
-       <div class = "text-right">
+       <div class = "text-center">
          <td>解決できるかも！(件数：<%= problem.liked_users.count %>)</td>
        </div>
       <br>

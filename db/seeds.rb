@@ -32,11 +32,11 @@ Problem.seed(
   { id: 16, user_id: 1, title: Faker::Book.title, content: Faker::Markdown.random, image: Faker::Avatar.image('my-own-slug') }
 )
 
-Admin.create(
-        name:  '管理者',
-        email: 'admin@admin.com',
-        password:  '00000000',
-  )
+# Admin.create(
+#         name:  '管理者',
+#         email: 'admin@admin.com',
+#         password:  '00000000',
+#   )
 
   Label.create(title:'新規' )
   Label.create(title:'リピート' )

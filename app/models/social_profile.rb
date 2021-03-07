@@ -3,17 +3,18 @@ class SocialProfile < ApplicationRecord
     store      :others
     validates_uniqueness_of :uid, scope: :provider
 
-    def self.find_for_oauth(auth)
-      profile = find_or_create_by(uid: auth.uid, provider: auth.provider)
-      profile.save_oauth_data!(auth)
-      profile
-    end
+    # def self.find_for_oauth(auth)
+    #   profile = find_or_create_by(uid: auth.uid, provider: auth.provider)
+    #   profile.save_oauth_data!(auth)
+    #   profile
+    # end
 
+    scope :search_with_providers, ->(provider) { where(provider: provider) }
     def set_values(omniauth)
         return if provider.to_s != omniauth['provider'].to_s || uid != omniauth['uid']
         credentials = omniauth['credentials']
         info = omniauth['info']
-
+# binding.irb
         self.access_token = credentials['token']
         self.access_secret = credentials['secret']
         self.credentials = credentials.to_json

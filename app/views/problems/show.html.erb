@@ -1,8 +1,8 @@
-<h4 class="text-center">困りごと詳細ページ</h4>
+<h4 class="text-center">困りごと詳細ページ</h4><br>
 <div class = "text-center bg-light">
   <div class ="border-bottom">
     <div class ="border-top">
-      <p>タイトル: <%= @problem.title %></p>
+      <h5 class="py-2">タイトル: <%= @problem.title %></h5>
       <p>画像：
         <% if @problem.image.present? %>
             <%= image_tag @problem.image.url, width: '50%', height: '50%' %>
@@ -15,15 +15,19 @@
            <%= label.title %>,
          <% end %>
       </p>
+      <%= link_to "投稿者#{@problem.user.name}のページ", user_path(@problem.user.id),class:"btn btn-secondary" %>
+
       <p>内容: <%= @problem.content %></p>
     </div>
   </div>
   <p>『解決できるかも！』件数: <%= @problem.likes.count %></p>
-  <% if current_user.already_liked?(@problem) %>
-    <%= button_to '解決できるかも！を取り消す', problem_like_path(@problem), method: :delete %>
-  <% else %>
-    <%= button_to '解決できるかも！', problem_likes_path(@problem) %>
-  <% end %>
+  <% if @problem.user_id =! current_user.id %>
+    <% if current_user.already_liked?(@problem) %>
+      <%= button_to '解決できるかも！を取り消す', problem_like_path(@problem), method: :delete %>
+    <% else %>
+      <%= button_to '解決できるかも！', problem_likes_path(@problem) %>
+    <% end %>
+  <% end %>     
   <p>『解決できるかも！』したユーザー</p>
   <% @problem.liked_users.each do |user| %>
     <li><%= user.name %></li>
