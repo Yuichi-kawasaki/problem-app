@@ -13,7 +13,7 @@ class User < ApplicationRecord
     has_many :likes, dependent: :destroy
     has_many :liked_problems, through: :likes, source: :problem
     mount_uploader :image, ImageUploader
-
+    VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
     has_many :social_profiles, dependent: :destroy
       #...
 
@@ -27,28 +27,6 @@ class User < ApplicationRecord
       def social_profile(provider)
         social_profiles.select{ |sp| sp.provider == provider.to_s }.first
       end
-      #
-      # # 本物のemailがセットされているか確認。
-      # def email_verified?
-      #   self.email && self.email !~ TEMP_EMAIL_REGEX
-      # end
-      #
-      # # email確認がされていない状態にする。
-      # def reset_confirmation!
-      #   self.update_column(:confirmed_at, nil)
-      # end
-
-      # Userモデル経由でcurrent_userを参照できるようにする。
-      # def self.current_user=(user)
-      #   # Set current user in Thread.
-      #   Thread.current[:current_user] = user
-      # end
-      #
-      # # Userモデル経由でcurrent_userを参照する。
-      # def self.current_user
-      #   # Get current user from Thread.
-      #   Thread.current[:current_user]
-      # end
 
       def already_liked?(problem)
         self.likes.exists?(problem_id: problem.id)

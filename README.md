@@ -69,3 +69,8 @@ carrierwave
 /faker
 /seed-fu', '~> 2.3'
 /kaminari'
+/database_cleaner
+/rails_admin
+/rails_admin-i18n
+/cancancan
+/jquery-rails

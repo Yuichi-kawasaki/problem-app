@@ -10,6 +10,9 @@ class CreateSocialProfiles < ActiveRecord::Migration[5.2]
       t.string :url
       t.string :image_url
       t.string :description
+      t.string :access_token
+      t.string :access_secret
+      t.string :set_values
       t.text :others
       t.text :credentials
       t.text :raw_info

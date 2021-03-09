@@ -8,9 +8,7 @@ class Problem < ApplicationRecord
   has_many :labellings, dependent: :destroy
   has_many :labels, through: :labellings
 
-  def self.latest(number)
-    order(created_at: :desc).limit(number)
-  end
+  default_scope -> { order(created_at: :desc) }
 
   scope :search, -> (search_params) do
     return if search_params.blank?

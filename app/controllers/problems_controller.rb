@@ -5,7 +5,7 @@ class ProblemsController < ApplicationController
   helper_method :sort_column, :sort_direction
 
   def index
-    @problems = Problem.latest(5)
+    @problems = Problem.order(id: :DESC)
     @problem = current_user.problems.build
 
     @search_params = problem_search_params
