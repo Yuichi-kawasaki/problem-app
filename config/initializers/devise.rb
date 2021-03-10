@@ -17,6 +17,8 @@ Devise.setup do |config|
   config.secret_key = Rails.application.secrets.secret_key_base
   config.omniauth :facebook, ENV['FACEBOOK_ID'], ENV['FACEBOOK_SECRET_KEY'], name: :facebook
   config.omniauth :google_oauth2, ENV['GOOGLE_APP_ID'], ENV['GOOGLE_APP_SECRET'], name: :google
+  # 
+  # OmniAuth.config.test_mode = true
   # ==> Controller configuration
   # Configure the parent class to the devise controllers.
   # config.parent_controller = 'DeviseController'

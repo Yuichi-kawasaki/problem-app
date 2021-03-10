@@ -4,25 +4,26 @@ describe "Auth認証" do
 
   describe "facebook連携でサインアップする" do
     before do
-      Rails.application.env_config["devise.mapping"] = Devise.mappings[:user] # Deviseを使っている人はこれもやる
-      # Facebookのモックをomniauth.authに設定
-      Rails.application.env_config["omniauth.auth"] = OmniAuth.config.mock_auth[:facebook]
+          OmniAuth.config.mock_auth[:facebook] = nil
+          Rails.application.env_config['omniauth.auth'] = facebook_mock
+          visit new_user_session_path
+          click_on "ログイン"
+        end
+
+        it "サインアップするとユーザーが増える" do
+          expect{
+            click_link "Sign in with Facebook"
+          }.to change(User, :count).by(1)
+        end
+
+        it "すでに連携されたユーザーがサインアップしようとするとユーザーは増えない" do
+          click_link "Sign in with Facebook"
+          click_link "Logout"
+          click_on "ログイン"
+          expect{
+            click_link "Sign in with Facebook"
+          }.not_to change(User, :count)
+        end
+
+      end
     end
-
-    it "ログインができる" do
-      visit new_user_session_path
-      click_on "Sign in with Facebook"
-      expect(page).to have_content 'ログインしました'
-    end
-
-    it "すでに連携されたユーザーがサインアップしようとするとユーザーは増えない" do
-      visit new_user_session_path
-      click_on "Sign in with Facebook"
-      click_link "Logout"
-      click_button "ログイン"
-
-      expect(current_path).to eq new_user_session_path
-    end
-
-  end
-end

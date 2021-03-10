@@ -15,13 +15,6 @@ class User < ApplicationRecord
     mount_uploader :image, ImageUploader
     VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
     has_many :social_profiles, dependent: :destroy
-      #...
-
-      # TEMP_EMAIL_PREFIX = 'change@me'
-      # TEMP_EMAIL_REGEX = /\Achange@me/
-
-      # emailの登録状況を判定するカスタムvalidatorを使用するためのおまじない。
-      # validates :email, presence: true, email: true
 
 
       def social_profile(provider)

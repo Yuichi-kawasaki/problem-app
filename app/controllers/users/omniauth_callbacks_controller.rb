@@ -1,5 +1,5 @@
 class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
-   # attr_accessor :access_token, :access_secret, :credentials, :name
+   attr_accessor :access_token, :access_secret, :credentials, :name
 
   def facebook; basic_action; end
   def google; basic_action; end
@@ -15,12 +15,11 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
           @profile.save!
         end
         if current_user
-          flash[:notice] = "外部アプリケーションとの連携が完了しました" if current_user == profile.user
-          flash[:alert] = "このアカウントは他のユーザーによって連携されています" if current_user != profile.user
+          flash[:notice] = "外部アプリケーションとの連携が完了しました" if current_user == @profile.user
+          flash[:alert] = "このアカウントは他のユーザーによって連携されています" if current_user != @profile.user
         else
           sign_in(:user, @profile.user)
         end
-        # binding.irb
           @profile.set_values(@omniauth)
       end
         flash[:success] = "ログインしました。"
