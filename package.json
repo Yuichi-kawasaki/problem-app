@@ -19,6 +19,9 @@
   "scripts": {
     "postinstall": "yarn && yarn run webpack --config ./webpack.config.js --mode production"
   },
+  "engines": {
+    "node": "4.2.3"
+},
   "browserslist": [
     "defaults"
   ]
