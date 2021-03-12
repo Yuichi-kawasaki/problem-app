@@ -8,6 +8,7 @@
     "popper.js": "^1.16.1"
   },
   "devDependencies": {
+    "firebase": "^8.3.0",
     "webpack": "^5.24.4",
     "webpack-cli": "^4.5.0"
   },
@@ -19,9 +20,6 @@
   "scripts": {
     "postinstall": "yarn && yarn run webpack --config ./webpack.config.js --mode production"
   },
-  "engines": {
-    "node": "4.2.3"
-},
   "browserslist": [
     "defaults"
   ]
