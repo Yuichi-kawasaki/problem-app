@@ -45,6 +45,8 @@ gem 'rails_admin-i18n'
 gem 'cancancan'
 gem 'webpacker', '~> 3.5'
 gem 'jquery-rails'
+gem 'fog-aws'
+gem 'dotenv-rails' 
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 
