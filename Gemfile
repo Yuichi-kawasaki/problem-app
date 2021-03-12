@@ -46,7 +46,9 @@ gem 'cancancan'
 gem 'webpacker', '~> 3.5'
 gem 'jquery-rails'
 gem 'fog-aws'
-gem 'dotenv-rails' 
+gem 'dotenv-rails'
+gem 'unicorn' # アプリケーションサーバのunicorn
+gem 'mini_racer', platforms: :ruby
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 
@@ -63,6 +65,11 @@ group :development, :test do
   gem 'spring-commands-rspec'
   gem 'factory_bot_rails'
   gem 'launchy'
+  gem 'capistrano', '3.6.0' # capistranoのツール一式
+  gem 'capistrano-bundler'
+  gem 'capistrano-rails'
+  gem 'capistrano-rbenv'
+  gem 'capistrano3-unicorn'
 end
 
 
