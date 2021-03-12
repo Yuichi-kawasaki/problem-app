@@ -51,7 +51,8 @@ gem 'unicorn' # アプリケーションサーバのunicorn
 gem 'mini_racer', platforms: :ruby
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
-
+gem  'ed25519', '>= 1.2', '< 2.0'
+gem  'bcrypt_pbkdf', '>= 1.0', '< 2.0'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
