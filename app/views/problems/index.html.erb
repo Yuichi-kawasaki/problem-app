@@ -2,8 +2,7 @@
 <% end %>
 <h5 class="py-2 bg-secondary text-white text-center", width="40%">"新しく困りごとを投稿する"</h5>
   <div class ="text-center bg-info float-middle text-white rounded" >
-
-    <%= form_with model: [@problem], data: {remote: true} do |form| %>
+    <%= form_with model: [@problem], url: problems_path, data: {remote: true, "turbolinks" => false} do |form| %>
    <div class="pt-2">
         <table border="0" align="center" width="80%">
               <tr>
@@ -29,10 +28,11 @@
         </table>
 
         <div class="submit pb-2">
-          <%= form.submit "登録する", class:"button" %>
+          <%= form.submit "投稿する", class:"button" %>
         </div>
-</div>
-        <% end %>
+ </div>
+ <%= link_to "投稿する", problems_path, data: {"turbolinks" => false} %>
+  <% end %>
 
         <div class="py-4 text-body">
         <h2>困り事一覧</h2>

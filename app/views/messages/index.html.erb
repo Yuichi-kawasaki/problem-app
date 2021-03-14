@@ -23,7 +23,7 @@
 </div>
 <br>
 
-<%= form_with(model: [@conversation, @message]) do |f| %>
+<%= form_with(model: [@conversation, @message],data: {"turbolinks" => false}) do |f| %>
   <div class="field">
     <%= f.label :body, "新規メッセージ" %>
     <%= f.text_area :body, class: "form-control" %>

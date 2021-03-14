@@ -27,7 +27,7 @@
     <% else %>
       <%= button_to '解決できるかも！', problem_likes_path(@problem) %>
     <% end %>
-  <% end %>     
+  <% end %>
   <p>『解決できるかも！』したユーザー</p>
   <% @problem.liked_users.each do |user| %>
     <li><%= user.name %></li>

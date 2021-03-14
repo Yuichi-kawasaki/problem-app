@@ -1,6 +1,6 @@
 <table border="0" align="center">
   <%= form_with(model: [problem, comment], url: problem_comments_path(@problem) ) do |f| %>
       <%= f.text_area :content, class: "form-control", id:"exampleFormControlTextarea1", rows:"3" %><br>
-      <%= f.submit "送信", class: "btn btn-outline-dark", data: {"turbolinks" => false} %>
+      <%= f.submit "送信", class: "btn btn-outline-dark" %>
   <% end %>
 </table>
