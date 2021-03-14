@@ -133,7 +133,6 @@ module Rails
          database_gemfile_entry,
          webserver_gemfile_entry,
          assets_gemfile_entry,
-         webpacker_gemfile_entry,
          javascript_gemfile_entry,
          jbuilder_gemfile_entry,
          psych_gemfile_entry,
@@ -341,13 +340,6 @@ module Rails
         gems
       end
 
-      def webpacker_gemfile_entry
-        return [] unless options[:webpack]
-
-        comment = "Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker"
-        GemfileEntry.new "webpacker", nil, comment
-      end
-
       def jbuilder_gemfile_entry
         comment = "Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder"
         GemfileEntry.new "jbuilder", "~> 2.5", comment, {}, options[:api]
@@ -452,13 +444,6 @@ module Rails
 
       def run_bundle
         bundle_command("install") if bundle_install?
-      end
-
-      def run_webpack
-        if !(webpack = options[:webpack]).nil?
-          rails_command "webpacker:install"
-          rails_command "webpacker:install:#{webpack}" unless webpack == "webpack"
-        end
       end
 
       def generate_spring_binstubs

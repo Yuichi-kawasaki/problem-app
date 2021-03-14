@@ -12,14 +12,6 @@
     "webpack": "^5.24.4",
     "webpack-cli": "^4.5.0"
   },
-  "babel": {
-    "presets": [
-      "./node_modules/@rails/webpacker/package/babel/preset.js"
-    ]
-  },
-  "scripts": {
-    "postinstall": "yarn && yarn run webpack --config ./webpack.config.js --mode production"
-  },
   "browserslist": [
     "defaults"
   ]
