@@ -8,9 +8,7 @@
     "popper.js": "^1.16.1"
   },
   "devDependencies": {
-    "firebase": "^8.3.0",
-    "webpack": "^5.24.4",
-    "webpack-cli": "^4.5.0"
+    "firebase": "^8.3.0"
   },
   "browserslist": [
     "defaults"
