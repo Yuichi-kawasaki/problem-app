@@ -1,5 +1,4 @@
-<%= form_with(model: @problem, local: true, url:choose_new_or_edit) do |form| %>
-
+<%= form_with(model: @problem, local: true, url: choose_new_or_edit) do |form| %>
 <% if @problem.errors.any? %>
   <div id="error_explanation">
     <h2><%= @problem.errors.count %>件のエラーがあります。</h2>
@@ -10,33 +9,31 @@
     </ul>
   </div>
 <% end %>
-
-<div class="problem_title">
-  <%= form.label :title,"タイトル" %>
-  <%= form.text_field :title %>
+<div class="pt-2">
+    <table border="0" align="center" width="80%">
+          <tr>
+            <th class="problem_title"><%= form.label :title,"タイトル" %>
+            <%= form.text_field :title , autofocus: true, id: "text" %></th>
+            <th class="problem_image"><%= form.label :image,"写真" %>
+            <%= form.file_field :image %></th>
+          </tr>
+    </table>
 </div>
+    <table border="0" align="center" width="95%" height="80">
+      <tr>
+        <th><%= form.label :title, "困り事種類:" %></th>
+        <p><td><%= form.collection_check_boxes(:label_ids, Label.all, :id, :title) %></td></p>
+      </tr>
+   </table>
 
-<div class="problem_image">
-  <%= form.label :image,"写真" %>
-  <%= form.file_field :image %>
-</div>
+    <table border="0" align="center" width="70%">
+          <tr>
+            <th><%= form.label :content, "内容" %></th>
+            <td><%= form.text_area :content, size: "80x3",class:'form_control',id:"content", rows: 50, placeholder: "コメントを書く"%></td>
+          </tr>
+    </table>
 
-<div class="field">
-  <%= form.label :title, "困り事種類:" %>
-  <%= form.collection_check_boxes(:label_ids, Label.all, :id, :title) %>
-</div>
-
-<div class="problem_content">
-  <%= form.label :content, "内容" %>
-  <%= form.text_area :content, class:'form_control', rows: 10, placeholder: "コメントを書く"%>
-</div>
-
-<div class="submit">
-  <%= form.submit "登録する", class:"button" %>
-</div>
-
+    <div class="submit pb-2">
+      <%= form.submit "投稿する", class:"button" %>
+    </div>
 <% end %>
-
-<div class="navbar">
-  <%= link_to "一覧画面にもどる", problems_path %>
-</div>

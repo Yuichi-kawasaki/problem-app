@@ -1,7 +1,6 @@
 class ProblemsController < ApplicationController
-  before_action :set_problem, only: [:edit, :update, :destroy]
   before_action :authenticate_user!, only: [:show, :create, :edit, :index, :destroy]
-  before_action :ensure_correct_user, only:[:edit]
+  before_action :ensure_correct_user, only:[:edit, :destroy]
   helper_method :sort_column, :sort_direction
 
   def index
@@ -33,8 +32,12 @@ class ProblemsController < ApplicationController
   end
 
   def edit
-    @problem = Problem.find(params[:id])
-    @problem.user_id = current_user.id
+    #@problem = Problem.find(params[:id])
+    if @problem.user_id == current_user.id
+      render 'edit'
+    else
+      redirect_to problems_path
+    end
   end
 
   def create
@@ -43,15 +46,16 @@ class ProblemsController < ApplicationController
       if @problem.save
         redirect_to problems_path, notice: "投稿しました！"
       else
-        render :new
+        render :index
       end
   end
 
   def update
+    @problem = current_user.problems.find(params[:id])
     if @problem.update(problem_params)
       redirect_to problems_path, notice: "更新しました"
     else
-      render :edit
+      redirect_to problems_path
     end
   end
 
@@ -69,13 +73,13 @@ class ProblemsController < ApplicationController
   end
 
   private
-  def set_problem
-    @problem = current_user.problems.find(params[:id])
-  end
+  # def set_problem
+  #   @problem = current_user.problems.find(params[:id])
+  # end
   def ensure_correct_user
    @problem = Problem.find(params[:id])
     unless @problem.user == current_user
-    redirect_to problems_path
+    redirect_to problems_path, notice: "投稿ユーザー以外、編集・消去はできません"
   end
  end
   def problem_params

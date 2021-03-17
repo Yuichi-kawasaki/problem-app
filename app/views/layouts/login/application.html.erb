@@ -11,23 +11,18 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-
   <body>
-
     <div class="mx-auto">
     <div class ="text-center text-danger">
       <p class="notice"><%= notice %></p>
       <p class="alert"><%= alert %></p>
     </div>
       <div class="wrapper">
-
           <div class="title_parent">
             <div class="title_child">
               <%= yield %>
             </div>
           </div>
-        <%= yield :error %>
-
        </div>
         <footer>
           <div class ="mx-auto text-center alert alert-warning text-dark" style="width: 80%;">
