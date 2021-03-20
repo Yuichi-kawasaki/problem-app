@@ -2,7 +2,7 @@
 <% end %>
 <h5 class="py-2 bg-secondary text-white text-center", width="40%">"新しく困りごとを投稿する"</h5>
   <div class ="text-center bg-info float-middle text-white rounded" >
-    <%= form_with model: [@problem], url: problems_path, data: {remote: true, "turbolinks" => false} do |form| %>
+  <%= form_with model: [@problem], url: problems_path, data: {remote: true, "turbolinks" => false} do |form| %>
    <div class="pt-2">
         <table border="0" align="center" width="80%">
               <tr>
@@ -31,7 +31,7 @@
           <%= form.submit "投稿する", class:"button" %>
         </div>
  </div>
-  <% end %>
+ <% end %>
 
         <div class="py-4 text-body">
         <h2>困り事一覧</h2>
@@ -40,23 +40,20 @@
             <%= form.text_field :title, value: @search_params[:title] %>
             <%= form.submit 'Search'  %>
           <% end %>
-        <div class ="pt-2">
-          <%= form_with(url: problems_path, local: true, method: :get) do |form| %>
-            <%= form.label :title,'困り事種類別検索' %>
-            <%= form.select("label_id", Label.pluck(:title, :id),{ include_blank: "ラベルを選択する" }) %>
-            <%= form.submit 'Search1' ,class:"Search1" %>
-          <% end %>
-        </div>
-
-
-
+          <div class ="pt-2">
+            <%= form_with(url: problems_path, local: true, method: :get) do |form| %>
+              <%= form.label :title,'困り事種類別検索' %>
+              <%= form.select("label_id", Label.pluck(:title, :id),{ include_blank: "ラベルを選択する" }) %>
+              <%= form.submit 'Search1' ,class:"Search1" %>
+            <% end %>
+          </div>
           <div class = "float-right">
             <%= paginate (@problems) %>
           </div>
         </div>
 
         <tbody class="bg-light" id="problem">
-            <%= render 'problems/new', problems: @problems %>
+          <%= render 'problems/new', problems: @problems %>
         </tbody>
         <div class = "float-right">
           <%= paginate (@problems) %>
