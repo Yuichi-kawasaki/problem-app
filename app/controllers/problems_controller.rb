@@ -32,7 +32,6 @@ class ProblemsController < ApplicationController
   end
 
   def edit
-    #@problem = Problem.find(params[:id])
     if @problem.user_id == current_user.id
       render 'edit'
     else

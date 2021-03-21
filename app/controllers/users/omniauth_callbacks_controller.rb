@@ -11,7 +11,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
         @profile = SocialProfile.where(provider: @omniauth['provider'], uid: @omniauth['uid']).first
         unless @profile
           @profile = SocialProfile.where(provider: @omniauth['provider'], uid: @omniauth['uid']).new
-          @profile.user = current_user || User.create!(name: @omniauth['name'], email: dammy_mail, password: dammy_password)
+          @profile.user = current_user || User.create!(name: dammy_name, email: dammy_mail, password: dammy_password)
           @profile.save!
         end
         if current_user
@@ -22,8 +22,13 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
         end
           @profile.set_values(@omniauth)
       end
-        flash[:success] = "ログインしました。"
-        redirect_to root_path
+        flash[:success] = "ログインしました。プロフィールを登録してください"
+        redirect_to edit_user_registration_path
+    end
+
+    def dammy_name
+      dammy_name = "ゲストユーザー"
+      return dammy_name
     end
 
     def dammy_mail

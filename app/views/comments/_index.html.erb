@@ -4,15 +4,13 @@
 <% comments.first(2).each do |comment| %>
   <% unless comment.id.nil? %>
     <div class="comment-container">
-        <div class="comment-box">
+        <div class="comment-box border">
             <div>
                 <p><%= link_to "@#{comment.user.name}", user_path(comment.user.id) %></p>
                 <div class="comment-entry">
                     <%= comment.content %>
                     <% if comment.user == current_user %>
-                        <%= link_to problem_comment_path(comment.problem_id, comment.id), method: :delete, remote: true, class: "comment_destroy" do %>
-                            <i class="fas fa-trash" style="color: black;"></i>
-                        <% end %>
+                        <%= link_to "消去", problem_comment_path(comment.problem_id, comment.id), method: :delete, remote: true, class: "comment_destroy" %>
                     <% end %>
                 </div>
                 <span class="comment-date pull-right">
@@ -30,15 +28,13 @@
             <% comments.offset(2).each do |comment| %>
               <% unless comment.id.nil? %>
                 <div class="comment-container">
-                    <div class="comment-box">
+                    <div class="comment-box border">
                         <div class="comment-text">
                             <p><%= link_to "@#{comment.user.name}", user_path(comment.user.id) %></p>
                             <div class="comment-entry">
                                 <%= comment.content %>
                                 <% if comment.user == current_user %>
-                                    <%= link_to problem_comment_path(comment.problem_id, comment.id), method: :delete, remote: true, class: "comment_destroy" do %>
-                                        <i class="fas fa-trash" style="color: black;"></i>
-                                    <% end %>
+                                    <%= link_to "消去", problem_comment_path(comment.problem_id, comment.id), method: :delete, remote: true, class: "comment_destroy" %>
                                 <% end %>
                             </div>
                             <span class="comment-date pull-right">

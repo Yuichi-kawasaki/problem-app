@@ -9,7 +9,7 @@
                 <th class="problem_title"><%= form.label :title,"タイトル" %>
                 <%= form.text_field :title , autofocus: true, id: "text" %></th>
                 <th class="problem_image"><%= form.label :image,"写真" %>
-                <%= form.file_field :image %></th>
+                <%= form.file_field :image, id: "image"  %></th>
               </tr>
         </table>
    </div>
@@ -44,7 +44,7 @@
             <%= form_with(url: problems_path, local: true, method: :get) do |form| %>
               <%= form.label :title,'困り事種類別検索' %>
               <%= form.select("label_id", Label.pluck(:title, :id),{ include_blank: "ラベルを選択する" }) %>
-              <%= form.submit 'Search1' ,class:"Search1" %>
+              <%= form.submit 'Search', class:"Search1" %>
             <% end %>
           </div>
           <div class = "float-right">

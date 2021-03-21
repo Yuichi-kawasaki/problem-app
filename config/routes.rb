@@ -11,7 +11,7 @@ Rails.application.routes.draw do
     # confirmations: "confirmations"
   }
   match '/users/:id/finish_signup' => 'users#finish_signup', via: [:get, :patch], as: :finish_signup
-  resources :users, only: [:show]
+  resources :users, only: [:show ,:edit]
   resources :labels
 
 

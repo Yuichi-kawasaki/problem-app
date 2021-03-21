@@ -1,6 +1,4 @@
 class Users::RegistrationsController < Devise::RegistrationsController
-  layout 'login/application'
-
 
   protected
 
