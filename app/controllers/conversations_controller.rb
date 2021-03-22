@@ -11,7 +11,7 @@ class ConversationsController < ApplicationController
       end
       redirect_to conversation_messages_path(@conversation)
     else
-      redirect_to root_path
+      redirect_to _problems_path
     end
   end
 
