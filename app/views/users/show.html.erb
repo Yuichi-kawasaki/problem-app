@@ -1,15 +1,12 @@
 <% content_for :h1 do %>
 <% end %>
 <div class = "text-center bg-light">
-  <!-- <div class="clearfix profile_bar"> -->
     <div class="profile_name"><%= @user.name %>のページ
-
       <% if @user.id != current_user.id %>
             <div class="item">
               <%= @user.name %>
               <%= link_to 'メッセージを送る', conversations_path(sender_id: current_user.id, recipient_id: @user.id), method: :post %>
             </div>
-
          <span class="glyphicon glyphicon-wrench" aria-hidden="true"><%= render 'follow_form' %></span>
       <% end %>
 
@@ -76,10 +73,10 @@
       <% if @user.liked_problems.present? %>
         <% @user.liked_problems.each do |t| %>
           <div class ="col-md-12">
-            <%= link_to "投稿者#{@problem.user.name}", user_path(@problem.user.id), class:"btn btn-secondary btn-sm" %>
+            <%= link_to "投稿者#{problem.user.name}", user_path(problem.user.id), class:"btn btn-secondary btn-sm" %>
             投稿内容：
-            <%= @problem.content %>
-            <%= link_to '困り事詳細を確認する', problem_path(@problem.id), class:"btn btn-success btn-sm" %>
+            <%= problem.content %>
+            <%= link_to '困り事詳細を確認する', problem_path(problem.id), class:"btn btn-success btn-sm" %>
           </div>
           <br>
         <% end %>
