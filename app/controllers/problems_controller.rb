@@ -42,7 +42,7 @@ class ProblemsController < ApplicationController
   def create
     @problem = Problem.new(problem_params)
     @problem.user_id = current_user.id
-      if @problem.save
+      if @problem.save!
         redirect_to problems_path, notice: "投稿しました！"
       else
         render :index
@@ -76,10 +76,10 @@ class ProblemsController < ApplicationController
   #   @problem = current_user.problems.find(params[:id])
   # end
   def ensure_correct_user
-   @problem = Problem.find(params[:id])
+    @problem = Problem.find(params[:id])
     unless @problem.user == current_user
-    redirect_to problems_path, notice: "投稿ユーザー以外、編集・消去はできません"
-  end
+      redirect_to problems_path, notice: "投稿ユーザー以外、編集・消去はできません"
+    end
  end
   def problem_params
     params.require(:problem).permit(:title, :content, :image, :image_cache, { label_ids: [] })

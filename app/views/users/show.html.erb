@@ -7,7 +7,7 @@
       <% if @user.id != current_user.id %>
             <div class="item">
               <%= @user.name %>
-              <%= link_to 'へメッセージ', conversations_path(sender_id: current_user.id, recipient_id: @user.id), method: :post %>
+              <%= link_to 'メッセージを送る', conversations_path(sender_id: current_user.id, recipient_id: @user.id), method: :post %>
             </div>
 
          <span class="glyphicon glyphicon-wrench" aria-hidden="true"><%= render 'follow_form' %></span>
@@ -75,25 +75,19 @@
     <div class = "row">
       <% if @user.liked_problems.present? %>
         <% @user.liked_problems.each do |t| %>
-        <div class ="col-md-4">
-            <!-- <div class = "col-6 bgre"> -->
-            <%= link_to "投稿者#{problem.user.name}", user_path(problem.user.id),class:"btn btn-secondary" %>
+          <div class ="col-md-12">
+            <%= link_to "投稿者#{@problem.user.name}", user_path(@problem.user.id), class:"btn btn-secondary btn-sm" %>
             投稿内容：
-            <!-- </div>
-            <div class = "col-md-5"> -->
-              <%= problem.content %>
-            <!-- </div>
-            <div class = "col-md-3"> -->
-            <%= link_to '困り事詳細を確認する', problem_path(problem.id),class:"btn btn-success btn-sm" %>
-            <!-- </div> -->
-        </div>
+            <%= @problem.content %>
+            <%= link_to '困り事詳細を確認する', problem_path(@problem.id), class:"btn btn-success btn-sm" %>
+          </div>
           <br>
         <% end %>
-    <%else%>
+      <% else %>
          <li>『解決できるかも！』している投稿はありません</li>
-    <% end %>
+      <% end %>
     </div>
-    </div>
+  </div>
   </div>
   <br>
   <h2>投稿内容</h2>

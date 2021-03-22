@@ -15,16 +15,16 @@
            <%= label.title %>,
          <% end %>
       </p>
-      <%= link_to "投稿者#{@problem.user.name}のページ", user_path(@problem.user.id),class:"btn btn-secondary btn-sm" %>
+      <%= link_to "投稿者#{@problem.user.name}のページ", user_path(@problem.user.id), class:"btn btn-secondary btn-sm" %>
 
       <p>内容: <%= @problem.content %></p>
     </div>
   </div>
   <p>『解決できるかも！』件数: <%= @problem.likes.count %></p>
     <% if current_user.already_liked?(@problem) %>
-      <%= button_to '解決できるかも！を取り消す', problem_like_path(@problem), method: :delete %>
+      <%= button_to '解決できるかも！を取り消す', problem_like_path(@problem),class:"btn btn-warning btn-sm", method: :delete %>
     <% else %>
-      <%= button_to '解決できるかも！', problem_likes_path(@problem) %>
+      <%= button_to '解決できるかも！', problem_likes_path(@problem),class:"btn btn-warning btn-sm" %>
     <% end %>
   <p>『解決できるかも！』したユーザー</p>
   <% @problem.liked_users.each do |user| %>
@@ -34,9 +34,9 @@
            <br>
            <h5>困り事：『<%=@problem.title%>』のコメント</h5>
            <br>
-          <td id="comments_area">
+          <li id="comments_area">
             <%= render partial: 'comments/index', locals: { comments: @comments } %>
-          </td>
+          </li>
       </div>
       <br>
         <% if user_signed_in? %>
@@ -47,7 +47,11 @@
         <% end %><br>
     </div>
   <div class = "text-center">
-    <%= link_to '困りごとの編集', edit_problem_path(@problem.id), class: "btn btn-success" %>
-    <%= link_to '困りごとの消去', problem_path(@problem.id), method: :delete, data: { confirm: '本当に消去しますか?' }, class: "btn btn-danger" %>
-    <%= link_to '投稿一覧画面に戻る', problems_path, class: "btn btn-primary" %>
+    <% if @problem.user == current_user %>
+      <%= link_to '困りごとの編集', edit_problem_path(@problem.id), class: "btn btn-success" %>
+      <%= link_to '困りごとの消去', problem_path(@problem.id), method: :delete, data: { confirm: '本当に消去しますか?' }, class: "btn btn-danger" %>
+      <%= link_to '投稿一覧画面に戻る', problems_path, class: "btn btn-primary" %>
+    <% else %>
+      <%= link_to '投稿一覧画面に戻る', problems_path, class: "btn btn-primary" %>
+    <% end %>
   </div>

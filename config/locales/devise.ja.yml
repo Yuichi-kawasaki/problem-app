@@ -45,7 +45,7 @@ ja:
       locked: "アカウントは凍結されています。"
       not_found_in_database: "%{authentication_keys}またはパスワードが違います。"
       timeout: "セッションがタイムアウトしました。もう一度ログインしてください。"
-      unauthenticated: "アカウント登録もしくはログインしてください。"
+      unauthenticated: "詳細を閲覧・編集するには、アカウント登録もしくはログインしてください。"
       unconfirmed: "メールアドレスの本人確認が必要です。"
     mailer:
       confirmation_instructions:
@@ -142,7 +142,7 @@ ja:
       not_saved:
         one: "エラーが発生したため %{resource} は保存されませんでした。"
         other: "%{count} 件のエラーが発生したため %{resource} は保存されませんでした。"
-        
+
 admin_user:
   attributes:
             email:

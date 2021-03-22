@@ -23,7 +23,7 @@
               <%= link_to "Profile", user_path(current_user.id), {class: "profile pr-2"} %>
               <%= link_to "Logout", destroy_user_session_path, method: :delete %>
             <% else %>
-              <p>ゲストユーザー</p>
+              <p>ゲストユーザーとして閲覧中</p>
               <%= link_to "新規登録", new_user_registration_path,{class: "pr-2"} %>
               <%= link_to "ログイン", new_user_session_path %>
             <% end %>

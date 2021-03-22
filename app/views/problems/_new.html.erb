@@ -28,8 +28,13 @@
         </td>
          <td>内容：<%= problem.content %></td>
          <div class="mx-8" role="toolbar">
-           <td><%= link_to "投稿者#{problem.user.name}のページ", user_path(problem.user.id),class:"btn btn-secondary" %></td>
-           <td><%= link_to '困り事詳細を確認する', problem_path(problem.id),class:"btn btn-primary" %></td>
+           <% if problem.user != current_user %>
+             <%= link_to "投稿者#{problem.user.name}", user_path(problem.user.id),class:"btn btn-secondary btn-sm" %>
+             <%= link_to '困り事詳細を確認する', problem_path(problem.id),class:"btn btn-success btn-sm" %>
+           <% else %>
+             <p><strong>自分の投稿</strong><br><%= link_to '困り事詳細を確認する', problem_path(problem.id),class:"btn btn-success btn-sm" %></p>
+            <% end %>
+
            <% if current_user.try(:admin?) %>
             <td><%= link_to problem_path(problem.id), method: :delete, data: { confirm: '本当に消去しますか?' } do %>
             <div class= " delete btn btn-danger"><span class="glyphicon glyphicon-wrench" aria-hidden="true">困りごとの消去</span></div>
@@ -39,6 +44,5 @@
       </tr>
       <% end %>
       </div>
-        <%= link_to '困りごとnew', new_problem_path, class: "btn btn-success" %>
     </tbody>
 </div>
