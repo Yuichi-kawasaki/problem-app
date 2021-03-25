@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_03_045546) do
+ActiveRecord::Schema.define(version: 2021_03_25_003120) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,6 +28,15 @@ ActiveRecord::Schema.define(version: 2021_03_03_045546) do
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
   end
 
+  create_table "chats", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "room_id"
+    t.string "message"
+    t.boolean "read", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "comments", force: :cascade do |t|
     t.text "content"
     t.string "image"
@@ -35,17 +44,6 @@ ActiveRecord::Schema.define(version: 2021_03_03_045546) do
     t.integer "problem_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "conversations", force: :cascade do |t|
-    t.string "image"
-    t.integer "sender_id"
-    t.integer "recipient_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["recipient_id"], name: "index_conversations_on_recipient_id"
-    t.index ["sender_id", "recipient_id"], name: "index_conversations_on_sender_id_and_recipient_id", unique: true
-    t.index ["sender_id"], name: "index_conversations_on_sender_id"
   end
 
   create_table "labellings", force: :cascade do |t|
@@ -73,18 +71,6 @@ ActiveRecord::Schema.define(version: 2021_03_03_045546) do
     t.index ["user_id"], name: "index_likes_on_user_id"
   end
 
-  create_table "messages", force: :cascade do |t|
-    t.text "body"
-    t.string "image"
-    t.bigint "conversation_id"
-    t.bigint "user_id"
-    t.boolean "read", default: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["conversation_id"], name: "index_messages_on_conversation_id"
-    t.index ["user_id"], name: "index_messages_on_user_id"
-  end
-
   create_table "problems", force: :cascade do |t|
     t.string "title"
     t.text "content"
@@ -103,6 +89,11 @@ ActiveRecord::Schema.define(version: 2021_03_03_045546) do
     t.index ["followed_id"], name: "index_relationships_on_followed_id"
     t.index ["follower_id", "followed_id"], name: "index_relationships_on_follower_id_and_followed_id", unique: true
     t.index ["follower_id"], name: "index_relationships_on_follower_id"
+  end
+
+  create_table "rooms", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "social_profiles", force: :cascade do |t|
@@ -125,6 +116,13 @@ ActiveRecord::Schema.define(version: 2021_03_03_045546) do
     t.datetime "updated_at", null: false
     t.index ["provider", "uid"], name: "index_social_profiles_on_provider_and_uid", unique: true
     t.index ["user_id"], name: "index_social_profiles_on_user_id"
+  end
+
+  create_table "user_rooms", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "room_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -162,8 +160,6 @@ ActiveRecord::Schema.define(version: 2021_03_03_045546) do
   add_foreign_key "labellings", "problems"
   add_foreign_key "likes", "problems"
   add_foreign_key "likes", "users"
-  add_foreign_key "messages", "conversations"
-  add_foreign_key "messages", "users"
   add_foreign_key "problems", "users"
   add_foreign_key "social_profiles", "users"
 end

@@ -9,8 +9,8 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <meta name="viewport" content="width=device-width">
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <%= javascript_include_tag 'application' %>
   </head>
   <header>
     <div class="mx-auto" style="width: 80%;">
@@ -51,6 +51,7 @@
         <footer>
           <div class ="pt-2 border-top text-left">
             <% if user_signed_in? %>
+              <%= link_to '新規投稿する', new_problem_path %><br>
               <%= link_to "投稿一覧画面へ", problems_path %>
             <% else %>
               <%= link_to "ログインする", new_user_session_path %>

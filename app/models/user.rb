@@ -15,7 +15,9 @@ class User < ApplicationRecord
     mount_uploader :image, ImageUploader
     VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
     has_many :social_profiles, dependent: :destroy
-
+    has_many :user_rooms
+    has_many :chats
+    has_many :rooms, through: :user_rooms
 
       def social_profile(provider)
         social_profiles.select{ |sp| sp.provider == provider.to_s }.first
