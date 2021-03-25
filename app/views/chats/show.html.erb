@@ -46,7 +46,7 @@
             </table>
 
             <%= form_with model: @chat,remote:true do |f| %>
-              <%= f.text_field :message, size: "50x3", rows: 5, placeholder: 'メッセージを入力してください' %><br>
+              <%= f.text_field :message, size: "50x3", rows: 5, placeholder: 'メッセージを入力後、ENTERを押してください' %><br>
               <%= f.hidden_field :room_id %>
             <% end %>
         </div>

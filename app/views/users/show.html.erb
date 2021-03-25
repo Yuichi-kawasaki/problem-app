@@ -89,29 +89,29 @@
   <br>
   <h2>投稿内容</h2>
   <p>投稿件数：<%= @user.problems.count %>件</p>
-  <% @user.problems.each do |problem| %>
-  <div class="py-4 text-body">
-    <tr>
-       <td><strong>タイトル：<%= problem.title %></strong></td>
-       <div class = "text-center">
-         <td>解決できるかも！(件数：<%= problem.liked_users.count %>)</td>
-       </div>
-      <br>
-      <td>
-        <div class="problem_image">
-          <% if problem.image.present? %>
-            <%= image_tag problem.image.url, width: '30%', height: '30%' %>
-          <% else %>
-            <%= image_tag("noimage.png", :size => "50x50") %>
-          <% end %>
-        </div>
-     </td>
-     <td>内容：<%= problem.content %></td>
-        <div class="mx-8 " role="toolbar">
-          <td><%= link_to '困り事詳細を確認する', problem_path(problem.id),class:"btn btn-primary" %></td>
-        </div>
-   </tr>
-  <% end %>
+    <% @user.problems.each do |problem| %>
+    <div class="py-4 text-body">
+      <tr>
+         <td><strong>タイトル：<%= problem.title %></strong></td>
+         <div class = "text-center">
+           <td>解決できるかも！(件数：<%= problem.liked_users.count %>)</td>
+         </div>
+        <br>
+        <td>
+          <div class="problem_image">
+            <% if problem.image.present? %>
+              <%= image_tag problem.image.url, width: '30%', height: '30%' %>
+            <% else %>
+              <%= image_tag("noimage.png", :size => "50x50") %>
+            <% end %>
+          </div>
+       </td>
+       <td>内容：<%= problem.content %></td>
+          <div class="mx-8 " role="toolbar">
+            <td><%= link_to '困り事詳細を確認する', problem_path(problem.id),class:"btn btn-primary" %></td>
+          </div>
+     </tr>
+    <% end %>
 <br>
   </div>
 </div>
