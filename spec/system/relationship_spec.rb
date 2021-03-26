@@ -15,8 +15,8 @@ describe 'フォロー機能' do
 
   context 'フォロー時' do
     it 'フォロワー一覧に名前がある' do
-
-      click_on  '投稿者テストのページ'
+      visit problems_path
+      click_on  '投稿者テスト'
       click_button "フォロー"
       expect(page).to have_content @user.name
     end

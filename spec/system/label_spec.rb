@@ -34,9 +34,14 @@ RSpec.describe 'ラベル機能', type: :system do
 
   context 'ラベルを検索した場合'do
     it '入力値を含む投稿が表示され、かつ選択した投稿を含むタスクが表示される'do
+      visit new_problem_path
+      fill_in 'problem[title]', with: 'problem1'
+      check '新規'
+      fill_in 'problem[content]',with: 'hello'
+      click_button 'commit'
       visit problems_path
       select '新規', from: 'label_id'
-      click_button 'Search'
+      # find(".divClassSearch1").click
       expect(page).to have_content '新規'
       # expect(page).to have_content 'p', text:'新規'
     end
