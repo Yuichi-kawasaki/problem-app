@@ -89,6 +89,7 @@
   <br>
   <h2>投稿内容</h2>
   <p>投稿件数：<%= @user.problems.count %>件</p>
+  <% if @user.problems.present? %>
     <% @user.problems.each do |problem| %>
     <div class="py-4 text-body">
       <tr>
@@ -112,6 +113,9 @@
           </div>
      </tr>
     <% end %>
+  <% else %>
+    <li><%= @user.name %>の投稿はありません</li>
+  <% end %>
 <br>
   </div>
 </div>

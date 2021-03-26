@@ -80,7 +80,7 @@ class ProblemsController < ApplicationController
     unless @problem.user == current_user
       redirect_to problems_path, notice: "投稿ユーザー以外、編集・消去はできません"
     end
- end
+  end
   def problem_params
     params.require(:problem).permit(:title, :content, :image, :image_cache, { label_ids: [] })
   end

@@ -3,9 +3,11 @@ class UsersController < ApplicationController
 
   def show
      @user = User.find(params[:id])
-     if @user.problems.present?
-       @problem = Problem.find(params[:id])
-     end
+     # if params[:back]
+     #   @problem = Problem.new(problem_params)
+     # else
+     #   @problem = Problem.new
+     # end
   end
 
   private

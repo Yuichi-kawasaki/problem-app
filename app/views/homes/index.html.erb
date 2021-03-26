@@ -21,7 +21,7 @@
     </div>
 
     <tbody class="bg-light" id="problem">
-      <%= render 'problems/new', problems: @problems %>
+      <%= render 'problems/index', problems: @problems %>
     </tbody>
     <div class = "float-right">
       <%= paginate (@problems) %>
