@@ -1,6 +1,6 @@
 <!-- コメント内容(２件) ------------------------------------------------------------------>
 <%= comments.count %>件コメント
-<a class="btn btn-primary btn-sm" data-toggle="collapse" data-target="#collapseExample" role="button" aria-expand="false" aria-controls="collapseExample">もっと見る....</a>
+<a class="btn btn-primary btn-sm" data-toggle="collapse" data-target="#collapseExample" role="button" aria-expand="false" aria-controls="collapseExample">3件目以降も見る....</a>
 <% comments.first(2).each do |comment| %>
   <% unless comment.id.nil? %>
     <div class="comment-container">
