@@ -12,18 +12,17 @@ class SocialProfile < ApplicationRecord
         info = omniauth['info']
 
         self.access_token = credentials['token']
-
+        self.access_secret = credentials['secret']
         self.credentials = credentials.to_json
         self.email = info['email']
         self.name = info['name']
         self.nickname = info['nickname']
         self.description = info['description'].try(:truncate, 255)
-
         self.image_url = info['image']
         case provider.to_s
 
         when 'google'
-              self.nickname ||= info['email'].sub(/(.+)@gmail.com/, '\1')
+          self.nickname ||= info['email'].sub(/(.+)@gmail.com/, '\1')
         when 'facebook'
           self.url = info['facebook']
         end
