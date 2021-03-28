@@ -1,4 +1,4 @@
-<%= form_with model: @problem, url: problems_path, data: {remote: true} do |form| %>
+<%= form_with(model: @problem, local: true, url: problems_path) do |form| %>
  <div class="pt-2">
     <table border="0" align="center" width="80%">
         <tr>

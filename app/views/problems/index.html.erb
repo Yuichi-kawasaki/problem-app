@@ -1,11 +1,7 @@
 <% flash.each do |key, value| %>
 <% end %>
-<h5 class="py-2 bg-secondary text-white text-center", width="40%">"新しく困りごとを投稿する"</h5>
-  <div class ="text-center bg-info text-white rounded" >
-    <div class ="new投稿" >
-       <%= render 'problems/new', problems: @problems %>
-    </div>
-  </div>
+
+<%= link_to '新しく困りごとを投稿する', new_problem_path, class:"btn btn-primary" %>
 
         <div class="py-4 text-body">
         <h2>困り事一覧</h2>

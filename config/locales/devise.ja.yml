@@ -160,3 +160,4 @@ admin_user:
             current_password:
               blank: "入力してください。"
               invalid: "違います。"
+              

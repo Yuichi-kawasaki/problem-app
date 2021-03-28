@@ -3,9 +3,9 @@
   <div id="error_explanation">
     <h2><%= @problem.errors.count %>件のエラーがあります。</h2>
     <ul>
-    <% @problem.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
-    <% end %>
+      <% @problem.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
     </ul>
   </div>
 <% end %>

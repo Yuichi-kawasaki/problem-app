@@ -42,10 +42,10 @@ class ProblemsController < ApplicationController
   def create
     @problem = Problem.new(problem_params)
     @problem.user_id = current_user.id
-      if @problem.save!
+      if @problem.save
         redirect_to problems_path, notice: "投稿しました！"
       else
-        render :index
+        render :new, notice: "内容を入力してください"
       end
   end
 

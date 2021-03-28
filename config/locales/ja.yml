@@ -139,6 +139,7 @@ ja:
       header:
         one: "%{model}にエラーが発生しました"
         other: "%{model}に%{count}個のエラーが発生しました"
+        content: "内容"
   helpers:
     select:
       prompt: 選択してください
@@ -206,3 +207,9 @@ ja:
       long: "%Y/%m/%d %H:%M"
       short: "%m/%d %H:%M"
     pm: 午後
+
+  activerecord:
+    attributes:
+      problem:
+        title: タイトル
+        content: 困りごと本文
