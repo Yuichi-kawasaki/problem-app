@@ -25,10 +25,10 @@ class SocialProfile < ApplicationRecord
         when 'google'
               self.nickname ||= info['email'].sub(/(.+)@gmail.com/, '\1')
         when 'facebook'
-          # self.url = info['url']['facebook']
+          self.url = info['facebook']
         end
 
-        # self.set_values_by_raw_info(omniauth['extra']['raw_info'])
+        self.set_values_by_raw_info(omniauth['extra']['raw_info'])
     end
 
       def set_values_by_raw_info(raw_info)

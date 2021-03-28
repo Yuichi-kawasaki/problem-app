@@ -32,10 +32,10 @@
      </div>
     </div>
   </header>
-
   <body>
     <div class="mx-auto" style="width: 80%;" >
       <% flash.each do |key, value| %>
+      <div class="alert <%= bootstrap_class_for(key) %>" ><%= value %></div>
       <% end %>
           <%= yield %>
         <%= yield :error %>
