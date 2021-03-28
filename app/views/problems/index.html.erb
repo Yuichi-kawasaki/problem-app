@@ -22,12 +22,11 @@
           </div>
         </div>
 
-        <tbody class="bg-light" id="problem">
-          <div class="alert alert-light border-top">
-             <tbody>
+        <tbody class="bg bg-light border-top" id="problem">
+          <div class="mx-auto border-top">
                 <% @problems.each do |problem| %>
 
-                <div class="pt-5 pb-1 text-body">
+                <div class="pt-4">
                 <tr>
                    <td><strong>タイトル：<%= problem.title %></strong></td>
                    <div>
@@ -54,7 +53,7 @@
                    <td>内容：<%= problem.content %></td>
                    <div class="mx-8" role="toolbar">
                      <% if problem.user != current_user %>
-                       <%= link_to "投稿者#{problem.user.name}", user_path(problem.user.id),class:"btn btn-secondary btn-sm" %>
+                       <%= link_to "投稿者:#{problem.user.name}", user_path(problem.user.id),class:"btn btn-secondary btn-sm" %>
                        <%= link_to '困り事詳細を確認する', problem_path(problem.id),class:"btn btn-success btn-sm" %>
                      <% else %>
                        <p><strong>自分の投稿</strong><br><%= link_to '困り事詳細を確認する', problem_path(problem.id),class:"btn btn-success btn-sm" %></p>
@@ -69,7 +68,6 @@
                 </tr>
                 <% end %>
                 </div>
-              </tbody>
           </div>
         </tbody>
         <div class = "float-right">

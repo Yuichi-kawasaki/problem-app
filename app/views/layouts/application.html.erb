@@ -19,6 +19,7 @@
       <p class ="text-center">~皆さんのお困りごとを解決できるアプリです。困りごと・解決したいことを全国の皆さんに解決してもらいましょう！~</p>
        <div class = "text-right">
             <% if user_signed_in? %>
+            <strong><p><%= current_user.name %>としてログイン中</p></strong>
               <%= link_to "Home", problems_path, {class: "home pr-2"} %>
               <%= link_to "Profile", user_path(current_user.id), {class: "profile pr-2"} %>
               <%= link_to "Logout", destroy_user_session_path, method: :delete %>
@@ -35,39 +36,29 @@
   <body>
     <div class="mx-auto" style="width: 80%;" >
       <% flash.each do |key, value| %>
-        <div class="alert <%= bootstrap_class_for(key) %>"><%= value %></div>
       <% end %>
-      <div class ="alert alert-light">
-        <div class="content">
-          <div class="title_parent pb-2">
-            <div class="title_child">
-              <%= yield %>
-            </div>
-          </div>
+          <%= yield %>
         <%= yield :error %>
-
-       </div>
-      </div>
-        <footer>
-          <div class ="pt-2 border-top text-left">
-            <% if user_signed_in? %>
-              <%= link_to '新規投稿する', new_problem_path %><br>
-              <%= link_to "投稿一覧画面へ", problems_path %>
-            <% else %>
-              <%= link_to "ログインする", new_user_session_path %>
-            <% end %>
-          </div>
-          <div class="link_to_new text-left">
-            <%= link_to "Back", :back %>
-          </div>
-          <div class = "text-dark">
-          <p class="text-body text-right" id="smooth-scroll">TOPへ"クリック"</p>
-            <div class ="alert alert-warning text-center text-dark">
-              <p>運営会社・・・・株式会社</p>
-              <p>© 2020 Copyright ・・・・ Corp.</p>
-            </div>
-          </div>
-        </footer>
     </div>
   </body>
+  <footer>
+    <div class ="bg bg-white pt-2 border-top text-left">
+      <% if user_signed_in? %>
+        <%= link_to '新規投稿する', new_problem_path %><br>
+        <%= link_to "投稿一覧画面へ", problems_path %>
+      <% else %>
+        <%= link_to "ログインする", new_user_session_path %>
+      <% end %>
+    </div>
+    <div class="bg bg-white link_to_new text-left">
+      <%= link_to "Back", :back %>
+    </div>
+    <div class = "bg bg-white text-dark">
+    <p class="text-body text-right" id="smooth-scroll">TOPへ"クリック"</p>
+      <div class ="alert alert-warning text-center text-dark">
+        <p>運営会社・・・・株式会社</p>
+        <p>© 2020 Copyright ・・・・ Corp.</p>
+      </div>
+    </div>
+  </footer>
 </html>
