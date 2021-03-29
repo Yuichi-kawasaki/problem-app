@@ -12,36 +12,42 @@
 
       <div class="profile_icon">
         <% if @user.image? %>
-         <p><%= image_tag(@user.image.url, :size => "50x50") %></p>
+         <p><%= image_tag(@user.image.url, size: "50x50") %></p>
         <% else %>
-         <p><%= image_tag("default.png", :size => "50x50") %></p>
+         <p><%= image_tag("default.png", size: "50x50") %></p>
         <% end %>
       </div>
       <p id='follower-count_#{ user.id }'>(フォローされている件数：<%= @user.follower_ids.count%>)</p>
     <!-- </div> -->
   </div>
   <div class="float-middle">
-    <table border="1" align="center" style="width: 50%;">
+    <table border="1" align="center" style="width: 80%;",style="table-layout: fixed;">
       <tr>
         <th class ="align-right">メールアドレス:</th><td><%= @user.email %></td>
       </tr>
       <tr>
-        <th>性別:</th><td><%= gender_view(@user.gender) %></td>
+        <th>性別:</th>
+        <td><%= gender_view(@user.gender) %></td>
       </tr>
       <tr>
-        <th>住所：都道府県:</th><td><%= @user.prefecture %></td>
+        <th>住所：都道府県:</th>
+        <td><%= @user.prefecture %></td>
       </tr>
       <tr>
-        <th>住所：市区町村:</th><td><%= @user.city %></td>
+        <th>住所：市区町村:</th>
+        <td><%= @user.city %></td>
       </tr>
       <tr>
-        <th>職業:</th><td><%= @user.profession %></td>
+        <th>職業:</th>
+        <td><%= @user.profession %></td>
       </tr>
       <tr>
-        <th>職種:</th><td><%= @user.occupation %></td>
+        <th>職種:</th>
+        <td><%= @user.occupation %></td>
       </tr>
       <tr>
-        <th>自己紹介文:</th><td><%= @user.profile %></td>
+        <th class="nowrap">自己紹介文:</th>
+        <td style="overflow-wrap: break-word;"><%= @user.profile %></td>
       </tr>
     </table>
   </div>
@@ -71,12 +77,12 @@
   <div class="container text-center border-top border-bottom">
     <div class = "row">
       <% if @user.liked_problems.present? %>
-        <% @user.liked_problems.each do |t| %>
+        <% @user.liked_problems.each do |problem| %>
           <div class ="col-md-12">
-            <%= link_to "投稿者#{@problem.user.name}", user_path(@problem.user.id), class: "btn btn-secondary btn-sm" %>
+            <%= link_to "投稿者#{problem.user.name}", user_path(problem.user.id), class: "btn btn-secondary btn-sm" %>
             投稿内容：
-            <%= @problem.content %>
-            <%= link_to '困り事詳細を確認する', problem_path(@problem.id), class: "btn btn-success btn-sm" %>
+            <%= problem.content %>
+            <%= link_to '困り事詳細を確認する', problem_path(problem.id), class: "btn btn-success btn-sm" %>
           </div>
           <br>
         <% end %>

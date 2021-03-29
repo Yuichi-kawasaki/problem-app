@@ -28,6 +28,9 @@ ja:
         city: "住所 市区町村"
         prefecture: "住所 都道府県"
         inimum_password_length: "最低6文字"
+        name: "名前"
+        profession: "職業"
+        occupation: "職種"
     models:
       user: "ユーザ"
   devise:
@@ -160,4 +163,3 @@ admin_user:
             current_password:
               blank: "入力してください。"
               invalid: "違います。"
-              
