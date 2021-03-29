@@ -22,22 +22,21 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
         end
           @profile.set_values(@omniauth)
       end
-        flash[:success] = "ログインしました。プロフィールを登録してください"
-        redirect_to edit_user_registration_path
-    end
+      flash[:success] = "ログインしました。プロフィールを編集・登録してください"
+      redirect_to edit_user_registration_path
+  end
 
     def dammy_name
-      dammy_name = "ゲストユーザー"
-      return dammy_name
+      info = @omniauth['info']
+      dammy_name = info['name']
     end
 
     def dammy_mail
-      dammy_mail = "hoge@example.com"
-      return dammy_mail
+      info = @omniauth['info']
+      dammy_mail = info['email']
     end
 
     def dammy_password
       dammy_password = "000000"
-      return dammy_password
     end
 end

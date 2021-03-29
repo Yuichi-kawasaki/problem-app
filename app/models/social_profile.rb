@@ -14,8 +14,8 @@ class SocialProfile < ApplicationRecord
         self.access_token = credentials['token']
         self.access_secret = credentials['secret']
         self.credentials = credentials.to_json
-        self.email = info['email']
         self.name = info['name']
+        self.email = info['email']
         self.nickname = info['nickname']
         self.description = info['description'].try(:truncate, 255)
         self.image_url = info['image']
