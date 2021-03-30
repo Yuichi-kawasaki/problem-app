@@ -19,7 +19,7 @@ class ChatsController < ApplicationController
        @room = user_rooms.room
      end
      #if文の中で定義した@roomに紐づくchatsテーブルのレコードを代入
-     @chats = @room.chats
+     @chats = @room.chats.order(id: :DESC)
      #@room.idを代入したChat.newを用意しておく(message送信時のform用)←筆者の表現が合っているか分かりません、、
      @chat = Chat.new(room_id: @room.id)
    end
@@ -27,11 +27,25 @@ class ChatsController < ApplicationController
    def create
      # binding.irb
      @chat = current_user.chats.build(chat_params)
-     @chat.save!
+     if @chat.save
+       respond_to do |format|
+          # format.html { redirect_to  chats_urL(@chat)}
+          format.js { render "create"}
+       end
+     else
+       respond_to do |format|
+          # format.html { redirect_to  chats_urL(@chat)}
+          format.js { render "failed"}
+       end
+     end
    end
 
    private
    def chat_params
      params.require(:chat).permit(:message, :room_id)
    end
+   def setup_users
+    @to_user = User.find(params[:id])
+    @ids = [@to_user.id,current_user.id]
+  end
 end

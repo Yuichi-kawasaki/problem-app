@@ -1,0 +1,33 @@
+<% @chats.each do |chat| %>
+    <% if chat.user_id == current_user.id %>
+    <tbody>
+      <tr>
+        <th>
+          <p style="text-align: left;">
+            <div class= "pr-2">
+              <%= chat.message %>
+            </div>
+            <%= chat.message_time %>
+          </p>
+            <i class="right triangle icon"></i>
+        </th>
+        <th></th>
+      </tr>
+    </tbody>
+    <% else %>
+    <tbody>
+      <tr>
+        <th></th>
+        <th>
+          <p style="text-align: right;">
+            <div class= "pr-2">
+              <%= chat.message %>
+            </div>
+            <%= chat.message_time %>
+         </p>
+          <i class="right triangle icon"></i>
+        </th>
+      </tr>
+    </tbody>
+    <% end %>
+  <% end %>

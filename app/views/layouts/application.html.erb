@@ -12,8 +12,9 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-  <header>
-    <div class="mx-auto" style="width: 80%;">
+  <div class="mx-auto" style="width: 80%;">
+   <header>
+
       <div class = "alert alert-warning text-dark">
       <h1 class ="text-center text-dark">困り事アプリ</h1>
       <p class ="text-center">~皆さんのお困りごとを解決できるアプリです。困りごと・解決したいことを全国の皆さんに解決してもらいましょう！~</p>
@@ -30,18 +31,18 @@
             <% end %>
       </div>
      </div>
-    </div>
-  </header>
-  <body>
-    <div class="mx-auto" style="width: 80%;" >
+
+   </header>
+   <body>
+
       <% flash.each do |key, value| %>
       <div class="alert <%= bootstrap_class_for(key) %>" ><%= value %></div>
       <% end %>
           <%= yield %>
         <%= yield :error %>
-    </div>
-  </body>
-  <footer>
+    </body>
+    <footer>
+
     <div class ="bg bg-white pt-2 border-top text-left">
       <% if user_signed_in? %>
         <%= link_to '新規投稿する', new_problem_path %><br>
@@ -60,5 +61,6 @@
         <p>© 2020 Copyright ・・・・ Corp.</p>
       </div>
     </div>
-  </footer>
+    </footer>
+  </div>
 </html>

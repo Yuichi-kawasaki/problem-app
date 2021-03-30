@@ -7,7 +7,7 @@ class User < ApplicationRecord
     validates :city, length: {maximum: 20}
     validates :profession, length: {maximum: 20}
     validates :occupation, length: {maximum: 20}
-    validates :profile, length: {maximum: 200}
+    validates :profile, length: {maximum: 100}
 
     has_many :active_relationships, foreign_key: "follower_id", class_name: "Relationship", dependent: :destroy
     has_many :followings, through: :active_relationships, source: :followed

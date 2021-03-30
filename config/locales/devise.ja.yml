@@ -31,6 +31,7 @@ ja:
         name: "名前"
         profession: "職業"
         occupation: "職種"
+        profile: "自己紹介文"
     models:
       user: "ユーザ"
   devise:

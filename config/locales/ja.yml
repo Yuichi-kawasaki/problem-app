@@ -207,9 +207,12 @@ ja:
       long: "%Y/%m/%d %H:%M"
       short: "%m/%d %H:%M"
     pm: 午後
-
   activerecord:
     attributes:
       problem:
         title: タイトル
         content: 困りごと本文
+  activerecord:
+    attributes:
+      chat:
+        message: メッセージ

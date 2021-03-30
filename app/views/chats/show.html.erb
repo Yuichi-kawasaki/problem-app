@@ -1,54 +1,22 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <h2 id="room", data-room="<%= @room.id %>", data-user="<%= current_user.id %>"><%= @user.name %> さんとのチャット</h2>
-
-            <table class="message table">
-              <thead>
-                <tr>
-                  <th style="text-align: left; font-size: 40px;"><%= current_user.name %></th>
-                  <th style="text-align: right; font-size: 40px;"><%= @user.name %></th>
-                </tr>
-              </thead>
-              <% @chats.each do |chat| %>
-                <% if chat.user_id == current_user.id %>
-                <tbody>
-                  <tr>
-                    <th>
-                      <p style="text-align: left;">
-                        <div class= "pr-2">
-                          <%= chat.message %>
-                        </div>
-                        <%= chat.message_time %>
-                      </p>
-                        <i class="right triangle icon"></i>
-                    </th>
-                    <th></th>
-                  </tr>
-                </tbody>
-                <% else %>
-                <tbody>
-                  <tr>
-                    <th></th>
-                    <th>
-                      <p style="text-align: right;">
-                        <div class= "pr-2">
-                          <%= chat.message %>
-                        </div>
-                        <%= chat.message_time %>
-                     </p>
-                      <i class="right triangle icon"></i>
-                    </th>
-                  </tr>
-                </tbody>
-                <% end %>
-              <% end %>
+            <h2 id="room", data-room="<%= @room.id %>", data-user="<%= current_user.id %>"><%= @user.name %> さんとのメッセージ</h2>
+            <%= render "chats/message_form" %>
+             <table class="message table">
+               <thead>
+                 <tr>
+                   <th style="text-align: left; font-size: 40px;"><%= current_user.name %></th>
+                   <th style="text-align: right; font-size: 40px;"><%= @user.name %></th>
+                 </tr>
+               </thead>
+               <ol id="messages">
+                  <%= render "chats/message" %>
+               </ol>
             </table>
-
-            <%= form_with model: @chat,remote:true do |f| %>
-              <%= f.text_field :message, size: "50x3", rows: 5, placeholder: 'メッセージを入力後、ENTERを押してください' %><br>
-              <%= f.hidden_field :room_id %>
-            <% end %>
+            <div id="error_messages">
+                <%= render "shared/error_messages", object:@chat %>
+            </div>
         </div>
     </div>
 </div>
