@@ -25,8 +25,8 @@
         <tbody class="bg bg-light border-top" id="problem">
           <div class="border-top">
                 <% @problems.each do |problem| %>
-
-                <div class="pt-4">
+            <div class="content" >
+            <div class="pt-4" >
                 <tr>
                    <td><strong>タイトル：<%= problem.title %></strong></td>
                    <div>
@@ -67,7 +67,8 @@
                    </div>
                 </tr>
                 <% end %>
-                </div>
+            </div>
+          </div>
           </div>
         </tbody>
         <div class = "float-right">

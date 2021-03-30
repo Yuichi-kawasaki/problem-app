@@ -1,7 +1,7 @@
 class Problem < ApplicationRecord
   mount_uploader :image, ImageUploader
   validates :title, presence: true, length: {maximum: 30}
-  validates :content, presence: true, length: {maximum: 100}
+  validates :content, presence: true, length: {maximum: 300}
   belongs_to :user
   has_many :likes
   has_many :liked_users, through: :likes, source: :user
