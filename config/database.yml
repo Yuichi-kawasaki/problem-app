@@ -21,7 +21,7 @@ default: &default
   # http://guides.rubyonrails.org/configuring.html#database-pooling
   database: postgres
   username: postgres
-  password: ENV['POSTGRESQL_PASSWORD']
+  password: postgres
   host: database-1.cr7qwregvg8f.ap-northeast-1.rds.amazonaws.com
   # For details on connection pooling, see Rails configuration guide
   # http://guides.rubyonrails.org/configuring.html#database-pooling
