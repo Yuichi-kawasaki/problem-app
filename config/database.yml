@@ -27,7 +27,7 @@ default: &default
   # http://guides.rubyonrails.org/configuring.html#database-pooling
   port: 5432
 
-  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  pool: 5
   # username: <%= ENV.fetch('POSTGRESQL_USER') { 'root' } %>
   # password: <%= ENV.fetch('POSTGRESQL_PASSWORD') { 'root' } %>
   # host: db
@@ -90,6 +90,7 @@ test:
 #
 production:
   <<: *default
+  pool: 5
   database: postgres
   username: postgres
   password: kawyu697
