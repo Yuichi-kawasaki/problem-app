@@ -21,8 +21,8 @@ default: &default
   # http://guides.rubyonrails.org/configuring.html#database-pooling
   database: problem-app-production
   username: postgres
-  password: <%= Rails.application.credentials.db[:password] %>
-  host: <%= Rails.application.credentials.db[:hostname] %>
+  password: ENV['POSTGRESQL_PASSWORD']
+  host: database-1.cr7qwregvg8f.ap-northeast-1.rds.amazonaws.com
   # For details on connection pooling, see Rails configuration guide
   # http://guides.rubyonrails.org/configuring.html#database-pooling
   port: 5432
@@ -95,5 +95,5 @@ production:
   pool: 5
   database: problem-app-production
   username: postgres
-  password: <%= Rails.application.credentials.db[:password] %>
-  host: <%= Rails.application.credentials.db[:hostname] %>
+  password: ENV['POSTGRESQL_PASSWORD']
+  host: database-1.cr7qwregvg8f.ap-northeast-1.rds.amazonaws.com
