@@ -16,13 +16,13 @@
 #
 default: &default
   adapter: postgresql
-  encoding: unicode
+  encoding: utf8
   # For details on connection pooling, see Rails configuration guide
   # http://guides.rubyonrails.org/configuring.html#database-pooling
-  database: postgres
+  database: problem-app-production
   username: postgres
-  password: ENV['POSTGRESQL_PASSWORD']
-  host: database-1.cr7qwregvg8f.ap-northeast-1.rds.amazonaws.com
+  password: <%= Rails.application.credentials.db[:password] %>
+  host: <%= Rails.application.credentials.db[:hostname] %>
   # For details on connection pooling, see Rails configuration guide
   # http://guides.rubyonrails.org/configuring.html#database-pooling
   port: 5432
@@ -89,9 +89,10 @@ test:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
 production:
-  <<: *default
+  adapter: postgresql
+  encoding: utf8
   pool: 5
-  database: postgres
+  database: problem-app-production
   username: postgres
-  password: ENV['POSTGRESQL_PASSWORD']
-  host: database-1.cr7qwregvg8f.ap-northeast-1.rds.amazonaws.com
+  password: <%= Rails.application.credentials.db[:password] %>
+  host: <%= Rails.application.credentials.db[:hostname] %>
