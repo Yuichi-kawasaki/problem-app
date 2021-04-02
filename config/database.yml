@@ -89,7 +89,7 @@ test:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
 production:
-  adapter: pg
+  <<: *default
   encoding: utf8
   database: postgres
   # username: problem-app
@@ -97,4 +97,3 @@ production:
   username: postgres
   password: <%= ENV['POSTGRESQL_PASSWORD'] %>
   host: database-1.cr7qwregvg8f.ap-northeast-1.rds.amazonaws.com
-  port: 5432
