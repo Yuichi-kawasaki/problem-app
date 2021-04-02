@@ -95,5 +95,5 @@ production:
   # username: problem-app
   # password: password
   username: postgres
-  password: <%= ENV['POSTGRESQL_PASSWORD'] %>
-  host: database-1.cr7qwregvg8f.ap-northeast-1.rds.amazonaws.com
+  # password: <%= ENV['POSTGRESQL_PASSWORD'] %>
+  # host: database-1.cr7qwregvg8f.ap-northeast-1.rds.amazonaws.com
