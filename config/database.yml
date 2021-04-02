@@ -94,6 +94,8 @@ production:
   encoding: utf8
   pool: 5
   database: problem-app-production
-  username: postgres
-  password: ENV['POSTGRESQL_PASSWORD']
-  host: database-1.cr7qwregvg8f.ap-northeast-1.rds.amazonaws.com
+  username: problem-app
+  password: password
+  # username: postgres
+  # password: ENV['POSTGRESQL_PASSWORD']
+  # host: database-1.cr7qwregvg8f.ap-northeast-1.rds.amazonaws.com
