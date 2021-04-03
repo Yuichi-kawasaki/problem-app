@@ -13,8 +13,6 @@ CarrierWave.configure do |config|
   }
   config.fog_public     = true
   config.fog_attributes = {'Cache-Control' => 'public, max-age=86400'}
-
-      config.fog_directory = 'problem-app'
-      config.asset_host = 'https://s3-ap-northeast-1.amazonaws.com/problem-app-production'
-
+  config.fog_directory = 'problem-app-production'
+  config.asset_host = 'https://s3-ap-northeast-1.amazonaws.com/problem-app-production'
 end
