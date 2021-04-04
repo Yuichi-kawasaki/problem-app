@@ -22,6 +22,7 @@ class ChatsController < ApplicationController
      @chats = @room.chats.order(id: :DESC)
      #@room.idを代入したChat.newを用意しておく(message送信時のform用)←筆者の表現が合っているか分かりません、、
      @chat = Chat.new(room_id: @room.id)
+     #binding.irb
    end
 
    def create
