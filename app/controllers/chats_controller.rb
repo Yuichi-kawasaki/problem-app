@@ -19,7 +19,7 @@ class ChatsController < ApplicationController
        @room = user_rooms.room
      end
      #if文の中で定義した@roomに紐づくchatsテーブルのレコードを代入
-     @chats = @room.chats.order(id: :DESC)
+     @chats = @room.chats.order(id: :ASC)
      #@room.idを代入したChat.newを用意しておく(message送信時のform用)←筆者の表現が合っているか分かりません、、
      @chat = Chat.new(room_id: @room.id)
      #binding.irb
