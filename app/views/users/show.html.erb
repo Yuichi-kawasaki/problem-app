@@ -1,24 +1,26 @@
 <% content_for :h1 do %>
 <% end %>
 <div class = "text-center bg-light">
-    <div class="profile_name"><%= @user.name %>のページ
-      <% if @user.id != current_user.id %>
-            <div class="item">
-              <%= @user.name %>
-              <%= link_to 'メッセージをする', chat_path(@user.id) %>
-            </div>
-         <span class="glyphicon glyphicon-wrench" aria-hidden="true"><%= render 'follow_form' %></span>
-      <% end %>
-
-      <div class="profile_icon">
-        <% if @user.image? %>
-         <p><%= image_tag(@user.image.url, size: "50x50") %></p>
-        <% else %>
-         <p><%= image_tag("default.png", size: "50x50") %></p>
-        <% end %>
+  <div class="profile_name">
+    <br>
+    <h5><%= @user.name %>のページ</h5>
+    <% if @user.id != current_user.id %>
+      <div class="item">
+        <%= link_to "#{@user.name}へメッセージをする", chat_path(@user.id), class:"btn btn-outline-primary btn-sm" %>
       </div>
-      <p id='follower-count_#{ user.id }'>(フォローされている件数：<%= @user.follower_ids.count%>)</p>
-    <!-- </div> -->
+    <% end %>
+    <br>
+    <div class="profile_icon">
+      <% if @user.image? %>
+        <p><%= image_tag(@user.image.url, size: "50x50") %></p>
+      <% else %>
+        <p><%= image_tag("default.png", size: "50x50") %></p>
+      <% end %>
+    </div>
+    <% if @user.id != current_user.id %>
+      <span class="glyphicon glyphicon-wrench" aria-hidden="true"><%= render 'follow_form' %></span>
+    <% end %>
+    <p id='follower-count_#{ user.id }'>(フォローされている件数：<%= @user.follower_ids.count%>)</p>
   </div>
   <div class="float-middle">
     <table border="1" align="center"style="width: 80%;" style="table-layout: fixed;">
@@ -53,75 +55,77 @@
   </div>
   <br>
   <div class="text-center">
-  <% if @user.id == current_user.id %>
-     <%= link_to edit_user_registration_path(current_user.id) do %>
-         <div class= " edit btn btn-primary" ><span class="glyphicon glyphicon-wrench" aria-hidden="true">プロフィールを編集する</span></div>
-     <% end %>
-   <br>
-   <br>
-     フォローしている件数：
-     <strong id="following" class="stat">
-      <%= @user.followings.count %>
-    </strong>
-    <div class = "text-center">
-      <li id="followings_user_area">
+    <% if @user.id == current_user.id %>
+      <%= link_to edit_user_registration_path(current_user.id) do %>
+        <div class= " edit btn btn-primary" ><span class="glyphicon glyphicon-wrench" aria-hidden="true">プロフィールを編集する</span></div>
+      <% end %>
+      <br>
+      <br>
+      フォローしている件数：
+      <strong id="following" class="stat">
+        <%= @user.followings.count %>
+      </strong>
+      <div class = "text-center">
+        <li id="followings_user_area">
           <%= render partial: 'relationships/index' %>
-      </li>
-      <% end %>
-    </div>
-  <br>
-  <br>
-  <div class ="bg-light">
-  <h3>『解決できるかも！』している投稿</h3>
-   <div class ="text-center">
-  <div class="container text-center border-top border-bottom">
-    <div class = "row">
-      <% if @user.liked_problems.present? %>
-        <% @user.liked_problems.each do |problem| %>
-          <div class ="col-md-12">
-            <%= link_to "投稿者#{problem.user.name}", user_path(problem.user.id), class: "btn btn-secondary btn-sm" %>
-            投稿内容：
-            <%= problem.content %>
-            <%= link_to '困り事詳細を確認する', problem_path(problem.id), class: "btn btn-success btn-sm" %>
-          </div>
-          <br>
-        <% end %>
-      <% else %>
-         <li>『解決できるかも！』している投稿はありません</li>
-      <% end %>
-    </div>
-  </div>
-  </div>
-  <br>
-  <h2>投稿内容</h2>
-  <p>投稿件数：<%= @user.problems.count %>件</p>
-  <% if @user.problems.present? %>
-    <% @user.problems.each do |problem| %>
-    <div class="py-4 text-body">
-      <tr>
-         <td><strong>タイトル：<%= problem.title %></strong></td>
-         <div class = "text-center">
-           <td>解決できるかも！(件数：<%= problem.liked_users.count %>)</td>
-         </div>
-        <br>
-        <td>
-          <div class="problem_image">
-            <% if problem.image.present? %>
-              <%= image_tag problem.image.url, width: '30%', height: '30%' %>
+        </li>
+      </div>
+    <% end %>
+    <br>
+    <br>
+    <div class ="bg-light">
+      <h3>『解決できるかも！』している投稿</h3>
+      <div class ="text-center">
+        <div class="container text-center border-top border-bottom">
+          <div class = "row">
+            <% if @user.liked_problems.present? %>
+              <% @user.liked_problems.each do |problem| %>
+                <div class ="col-md-12">
+                  <%= link_to "投稿者#{problem.user.name}", user_path(problem.user.id), class: "btn btn-secondary btn-sm" %>
+                  投稿内容：
+                  <%= problem.content %>
+                  <%= link_to '困り事詳細を確認する', problem_path(problem.id), class: "btn btn-success btn-sm" %>
+                </div>
+                <br>
+              <% end %>
             <% else %>
-              <%= image_tag("noimage.png", :size => "50x50") %>
+               <li>『解決できるかも！』している投稿はありません</li>
             <% end %>
           </div>
-       </td>
-       <td>内容：<%= problem.content %></td>
-          <div class="mx-8 " role="toolbar">
-            <td><%= link_to '困り事詳細を確認する', problem_path(problem.id),class:"btn btn-primary" %></td>
+        </div>
+      </div>
+      <br>
+      <h2>投稿内容</h2>
+      <p>投稿件数：<%= @user.problems.count %>件</p>
+      <% if @user.problems.present? %>
+        <% @user.problems.each do |problem| %>
+           <div class="py-4 text-body">
+             <tr>
+               <td><strong>タイトル：<%= problem.title %></strong></td>
+               <div class = "text-center">
+                 <td>解決できるかも！(件数：<%= problem.liked_users.count %>)</td>
+               </div>
+              <br>
+              <td>
+                <div class="problem_image">
+                  <% if problem.image.present? %>
+                    <%= image_tag problem.image.url, width: '30%', height: '30%' %>
+                  <% else %>
+                    <%= image_tag("noimage.png", :size => "50x50") %>
+                  <% end %>
+                </div>
+             </td>
+             <td>内容：<%= problem.content %></td>
+                <div class="mx-8 " role="toolbar">
+                  <td><%= link_to '困り事詳細を確認する', problem_path(problem.id),class:"btn btn-primary" %></td>
+                </div>
+            </tr>
           </div>
-     </tr>
-    <% end %>
-  <% else %>
-    <li><%= @user.name %>の投稿はありません</li>
-  <% end %>
-<br>
+       <% end %>
+     <% else %>
+       <li><%= @user.name %>の投稿はありません</li>
+     <% end %>
+    <br>
+    </div>
   </div>
 </div>
