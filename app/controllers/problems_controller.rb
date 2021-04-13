@@ -42,11 +42,11 @@ class ProblemsController < ApplicationController
   def create
     @problem = Problem.new(problem_params)
     @problem.user_id = current_user.id
-      if @problem.save
-        redirect_to problems_path, notice: "投稿しました！"
-      else
-        render :new, notice: "内容を入力してください"
-      end
+    if @problem.save
+      redirect_to problems_path, notice: "投稿しました！"
+    else
+      render :new, notice: "内容を入力してください"
+    end
   end
 
   def update
@@ -64,11 +64,11 @@ class ProblemsController < ApplicationController
   end
 
   def sort_direction
-   %w[asc desc].include?(params[:direction]) ? params[:direction] : 'asc'
+    %w[asc desc].include?(params[:direction]) ? params[:direction] : 'asc'
   end
 
   def sort_column
-   Problem.column_names.include?(params[:sort]) ? params[:sort] : 'title'
+    Problem.column_names.include?(params[:sort]) ? params[:sort] : 'title'
   end
 
   private

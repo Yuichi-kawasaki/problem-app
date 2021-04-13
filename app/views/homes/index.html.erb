@@ -1,29 +1,29 @@
 <% flash.each do |key, value| %>
 <% end %>
 
-    <div class="py-4 text-body">
-      <h2>困り事一覧</h2>
-          <%= form_with(scope: :search, url: problems_path, local: true, method: :get) do |form| %>
-            <%= form.label :title,'タイトル検索' %>
-            <%= form.text_field :title, value: @search_params[:title] %>
-            <%= form.submit 'Search'  %>
-          <% end %>
-          <div class ="pt-2">
-            <%= form_with(url: problems_path, local: true, method: :get) do |form| %>
-              <%= form.label :title,'困り事種類別検索' %>
-              <%= form.select("label_id", Label.pluck(:title, :id),{ include_blank: "ラベルを選択する" }) %>
-              <%= form.submit 'Search', class:"Search1" %>
-            <% end %>
-          </div>
-          <div class = "float-right">
-            <%= paginate (@problems) %>
-          </div>
-    </div>
+<div class="py-4 text-body">
+  <h2>困り事一覧</h2>
+  <%= form_with(scope: :search, url: problems_path, local: true, method: :get) do |form| %>
+    <%= form.label :title,'タイトル検索' %>
+    <%= form.text_field :title, value: @search_params[:title] %>
+    <%= form.submit 'Search'  %>
+  <% end %>
+  <div class ="pt-2">
+    <%= form_with(url: problems_path, local: true, method: :get) do |form| %>
+      <%= form.label :title,'困り事種類別検索' %>
+      <%= form.select("label_id", Label.pluck(:title, :id),{ include_blank: "ラベルを選択する" }) %>
+      <%= form.submit 'Search', class:"Search1" %>
+    <% end %>
+  </div>
+  <div class = "float-right">
+    <%= paginate (@problems) %>
+  </div>
+</div>
 
-    <tbody class="bg-light" id="problem">
-      <%= render 'problems/index', problems: @problems %>
-    </tbody>
-    <div class = "float-right">
-      <%= paginate (@problems) %>
-    </div>
-    <br>
+<tbody class="bg-light" id="problem">
+  <%= render 'problems/index', problems: @problems %>
+</tbody>
+<div class = "float-right">
+  <%= paginate (@problems) %>
+</div>
+<br>

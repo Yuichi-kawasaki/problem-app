@@ -8,9 +8,8 @@ class SocialProfilesController < ApplicationController
   end
 
   private
-
-    def correct_user!
-      @profile = SocialProfile.find(params[:id])
-      redirect_to root_url and return unless @profile.user_id == current_user.id
-    end
+  def correct_user!
+    @profile = SocialProfile.find(params[:id])
+    redirect_to root_url and return unless @profile.user_id == current_user.id
+  end
 end

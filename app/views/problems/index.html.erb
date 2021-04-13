@@ -3,75 +3,75 @@
 
 <%= link_to '新しく困りごとを投稿する', new_problem_path, class:"btn btn-primary" %>
 
-        <div class="py-4 text-body">
-        <h2>困り事一覧</h2>
-          <%= form_with(scope: :search, url: problems_path, local: true, method: :get) do |form| %>
-            <%= form.label :title,'タイトル検索' %>
-            <%= form.text_field :title, value: @search_params[:title] %>
-            <%= form.submit 'Search'  %>
-          <% end %>
-          <div class ="pt-2">
-            <%= form_with(url: problems_path, local: true, method: :get) do |form| %>
-              <%= form.label :title,'困り事種類別検索' %>
-              <%= form.select("label_id", Label.pluck(:title, :id),{ include_blank: "ラベルを選択する" }) %>
-              <%= form.submit 'Search', class:"Search1" %>
+<div class="py-4 text-body">
+  <h2>困り事一覧</h2>
+  <%= form_with(scope: :search, url: problems_path, local: true, method: :get) do |form| %>
+    <%= form.label :title,'タイトル検索' %>
+    <%= form.text_field :title, value: @search_params[:title] %>
+    <%= form.submit 'Search'  %>
+  <% end %>
+  <div class ="pt-2">
+    <%= form_with(url: problems_path, local: true, method: :get) do |form| %>
+      <%= form.label :title,'困り事種類別検索' %>
+      <%= form.select("label_id", Label.pluck(:title, :id),{ include_blank: "ラベルを選択する" }) %>
+      <%= form.submit 'Search', class:"Search1" %>
+    <% end %>
+  </div>
+  <div class = "float-right">
+    <%= paginate (@problems) %>
+  </div>
+</div>
+
+<tbody class="bg bg-light border-top" id="problem">
+  <div class="border-top">
+        <% @problems.each do |problem| %>
+    <div class="content" >
+      <div class="pt-4" >
+        <tr>
+          <td><strong>タイトル：<%= problem.title %></strong></td>
+          <div>
+            <td>投稿日時：<%= problem.created_at %></td>
+          </div>
+          <div class = "text-right">
+            <td>解決できるかも！(件数：<%= problem.liked_users.count %>)</td>
+          </div>
+          <td>
+            <p>困り事種類:</p>
+            <% problem.labels.each do |label| %>
+              <li><%= label.title %></li>
+            <% end %>
+          </td>
+          <td>
+            <div class="problem_image">
+              <% if problem.image.present? %>
+                <%= image_tag problem.image.url, size: '200x200' %>
+              <% else %>
+                <%= image_tag("noimage.png", :size => "100x100") %>
+              <% end %>
+            </div>
+          </td>
+          <td>内容：<%= problem.content %></td>
+          <div class="mx-8" role="toolbar">
+            <% if problem.user != current_user %>
+              <%= link_to "投稿者:#{problem.user.name}", user_path(problem.user.id),class:"btn btn-secondary btn-sm" %>
+              <%= link_to '困り事詳細を確認する', problem_path(problem.id),class:"btn btn-success btn-sm" %>
+            <% else %>
+              <p><strong>自分の投稿</strong><br><%= link_to '困り事詳細を確認する', problem_path(problem.id),class:"btn btn-success btn-sm" %></p>
+            <% end %>
+
+            <% if current_user.try(:admin?) %>
+              <%= link_to problem_path(problem.id), method: :delete, data: { confirm: '本当に消去しますか?' } do %>
+                <div class= " delete btn btn-danger"><span class="glyphicon glyphicon-wrench" aria-hidden="true">困りごとの消去</span></div>
+              <% end %>
             <% end %>
           </div>
-          <div class = "float-right">
-            <%= paginate (@problems) %>
-          </div>
-        </div>
-
-        <tbody class="bg bg-light border-top" id="problem">
-          <div class="border-top">
-                <% @problems.each do |problem| %>
-            <div class="content" >
-            <div class="pt-4" >
-                <tr>
-                   <td><strong>タイトル：<%= problem.title %></strong></td>
-                   <div>
-                     <td>投稿日時：<%= problem.created_at %></td>
-                    </div>
-                   <div class = "text-right">
-                     <td>解決できるかも！(件数：<%= problem.liked_users.count %>)</td>
-                   </div>
-                   <td>
-                       <p>困り事種類:</p>
-                      <% problem.labels.each do |label| %>
-                          <li><%= label.title %></li>
-                      <% end %>
-                   </td>
-                   <td>
-                     <div class="problem_image">
-                       <% if problem.image.present? %>
-                         <%= image_tag problem.image.url, size: '200x200' %>
-                       <% else %>
-                         <%= image_tag("noimage.png", :size => "100x100") %>
-                       <% end %>
-                     </div>
-                  </td>
-                   <td>内容：<%= problem.content %></td>
-                   <div class="mx-8" role="toolbar">
-                     <% if problem.user != current_user %>
-                       <%= link_to "投稿者:#{problem.user.name}", user_path(problem.user.id),class:"btn btn-secondary btn-sm" %>
-                       <%= link_to '困り事詳細を確認する', problem_path(problem.id),class:"btn btn-success btn-sm" %>
-                     <% else %>
-                       <p><strong>自分の投稿</strong><br><%= link_to '困り事詳細を確認する', problem_path(problem.id),class:"btn btn-success btn-sm" %></p>
-                      <% end %>
-
-                     <% if current_user.try(:admin?) %>
-                      <td><%= link_to problem_path(problem.id), method: :delete, data: { confirm: '本当に消去しますか?' } do %>
-                      <div class= " delete btn btn-danger"><span class="glyphicon glyphicon-wrench" aria-hidden="true">困りごとの消去</span></div>
-                          <% end %>
-                     <% end %>
-                   </div>
-                </tr>
-                <% end %>
-            </div>
-          </div>
-          </div>
-        </tbody>
-        <div class = "float-right">
-          <%= paginate (@problems) %>
-        </div>
-        <br>
+        </tr>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</tbody>
+<div class = "float-right">
+  <%= paginate (@problems) %>
+</div>
+<br>

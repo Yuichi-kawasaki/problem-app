@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   before_action :authenticate_user!
 
   def show
-     @user = User.find(params[:id])
+    @user = User.find(params[:id])
      # if params[:back]
      #   @problem = Problem.new(problem_params)
      # else

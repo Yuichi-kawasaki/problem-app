@@ -1,6 +1,6 @@
 <!-- コメント内容(２件) ------------------------------------------------------------------>
 <a class="btn btn-info btn-sm" data-toggle="collapse" href="#collapseExample" role="button" aria-expand="false" aria-controls="collapseExample">もっと見る....</a>
-  <table border="1" align="center" style="width: 50%;">
+<table border="1" align="center" style="width: 50%;">
   <% @user.followings.first(2).each do |user| %>
     <tr>
       <th>フォローしているユーザー：</th>
@@ -8,16 +8,16 @@
       <td><%= link_to '詳細', user_path(user) %></td>
     </tr>
   <% end %>
-  </table>
+</table>
 <!-- コメント内容(3件目以降) ------------------------------------------------------------------>
-    <div class="collapse" id="collapseExample">
-      <table border="1" align="center" style="width: 50%;">
-      <% @user.followings.offset(2).each do |user| %>
-            <tr>
-              <th>フォローしているユーザー：</th>
-              <th>  <%= user.name %> </th>
-              <td><%= link_to '詳細', user_path(user) %></td>
-            </tr>
-      <% end %>
-      </table>
-    </div>
+<div class="collapse" id="collapseExample">
+  <table border="1" align="center" style="width: 50%;">
+    <% @user.followings.offset(2).each do |user| %>
+      <tr>
+        <th>フォローしているユーザー：</th>
+        <th>  <%= user.name %> </th>
+        <td><%= link_to '詳細', user_path(user) %></td>
+      </tr>
+    <% end %>
+  </table>
+</div>

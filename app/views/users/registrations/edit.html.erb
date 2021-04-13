@@ -1,84 +1,84 @@
 <div class="mx-auto text-center">
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+  <h2>Edit <%= resource_name.to_s.humanize %></h2>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= render "users/shared/error_messages", resource: resource %>
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+    <%= render "users/shared/error_messages", resource: resource %>
 
-  <div class= "field">
-    <% if @user.image.present? %>
-     <p><%= image_tag(@user.image.url, :size => "50x50") %></p>
-    <% else %>
-     <p><%= image_tag("default.png", :size => "50x50") %></p>
-    <% end %>
-    <%= f.file_field :image, class:"image_upload" %>
-    <%= f.hidden_field :image_cache %>
-  </div>
-  <br>
-  <table border="2" align="center" style="width: 50%;">
-    <tr class= "field">
-      <th><%= f.label :name, "お名前", class: "control-label" %></th>
-      <td style="width: 60%;"><%= f.text_field :name, style:"width: 100%;", placeholder: 'お名前' %></td>
-    </tr>
+    <div class= "field">
+      <% if @user.image.present? %>
+      <p><%= image_tag(@user.image.url, :size => "50x50") %></p>
+      <% else %>
+      <p><%= image_tag("default.png", :size => "50x50") %></p>
+      <% end %>
+      <%= f.file_field :image, class:"image_upload" %>
+      <%= f.hidden_field :image_cache %>
+    </div>
+    <br>
+    <table border="2" align="center" style="width: 50%;">
+      <tr class= "field">
+        <th><%= f.label :name, "お名前", class: "control-label" %></th>
+        <td style="width: 60%;"><%= f.text_field :name, style:"width: 100%;", placeholder: 'お名前' %></td>
+      </tr>
 
-    <tr class="field">
-      <th><%= f.label :email %></th>
-      <td><%= f.email_field :email, style:"width: 100%;"%></td>
-    </tr>
+      <tr class="field">
+        <th><%= f.label :email %></th>
+        <td><%= f.email_field :email, style:"width: 100%;"%></td>
+      </tr>
 
-    <tr class="field">
-      <th><%= f.label :password %></th>
-      <td><%= f.password_field :password, style:"width: 100%;", placeholder: '６文字以上で入力してください' %></td>
-    </tr>
+      <tr class="field">
+        <th><%= f.label :password %></th>
+        <td><%= f.password_field :password, style:"width: 100%;", placeholder: '６文字以上で入力してください' %></td>
+      </tr>
 
+      <tr class="field">
+        <th><%= f.label :password_confirmation %></th>
+        <td><%= f.password_field :password_confirmation, style:"width: 100%;"%></td>
+      </tr>
 
-    <tr class="field">
-      <th><%= f.label :password_confirmation %></th>
-      <td><%= f.password_field :password_confirmation, style:"width: 100%;"%></td>
-    </tr>
+      <tr class= "field" style="width: 100%;">
+        <th><%= f.label :gender, "性別", class:'gender_select', class: "control-label" %></th>
+        <td><span><%= f.radio_button :gender, 1, class:"input-group-addon has-error" %></span>
+        <span><%= f.label :gender, "男", class:"input-group-addon has-error" %></span>
+        <span><%= f.radio_button :gender, 2, class:"input-group-addon has-error" %></span>
+        <span><%= f.label :gender, "女", class:"input-group-addon has-error" %></span>
+        <span><%= f.radio_button :gender, 3, class:"input-group-addon has-error" %></span>
+        <span><%= f.label :gender, "カスタム", class:"input-group-addon has-error" %></span></td>
+      </tr>
 
-    <tr class= "field" style="width: 100%;">
-      <th><%= f.label :gender, "性別", class:'gender_select', class: "control-label" %></th>
-      <td><span><%= f.radio_button :gender, 1, class:"input-group-addon has-error" %></span>
-      <span><%= f.label :gender, "男", class:"input-group-addon has-error" %></span>
-      <span><%= f.radio_button :gender, 2, class:"input-group-addon has-error" %></span>
-      <span><%= f.label :gender, "女", class:"input-group-addon has-error" %></span>
-      <span><%= f.radio_button :gender, 3, class:"input-group-addon has-error" %></span>
-      <span><%= f.label :gender, "カスタム", class:"input-group-addon has-error" %></span></td>
-    </tr>
+      <tr class= "field">
+        <th><%= f.label :prefecture,  "住所：都道府県", style:"width: 100%;",class:'pref_text' %></th>
+        <td><span><%= f.text_field :prefecture, style:"width: 100%;", placeholder: 'お住まいの都道府県', class: "form-address has-error" %></span></td>
+      </tr>
+      
+      <tr class= "field">
+        <th><%= f.label :city, "住所：市区町村", class:'city_text' %></th>
+        <td><span><%= f.text_field :city, style:"width: 100%;", placeholder: 'お住まいの市区町村', class: "form-address has-error" %></span></td>
+      </tr>
 
-    <tr class= "field">
-      <th><%= f.label :prefecture,  "住所：都道府県", style:"width: 100%;",class:'pref_text' %></th>
-      <td><span><%= f.text_field :prefecture, style:"width: 100%;", placeholder: 'お住まいの都道府県', class: "form-address has-error" %></span></td>
-    </tr>
-    <tr class= "field">
-      <th><%= f.label :city, "住所：市区町村", class:'city_text' %></th>
-      <td><span><%= f.text_field :city, style:"width: 100%;", placeholder: 'お住まいの市区町村', class: "form-address has-error" %></span></td>
-    </tr>
+      <tr class= "field">
+        <th><%= f.label :profession, "職業", class:'occu_text' %></th>
+        <td><%= f.text_field :profession, style:"width: 100%;", placeholder: '職業', class: "form-occu has-error" %></td>
+      </tr>
 
-    <tr class= "field">
-      <th><%= f.label :profession, "職業", class:'occu_text' %></th>
-      <td><%= f.text_field :profession, style:"width: 100%;", placeholder: '職業', class: "form-occu has-error" %></td>
-    </tr>
+      <tr class= "field">
+        <th><%= f.label :occupation, "職種", class:'occu_text' %></th>
+        <td><%= f.text_field :occupation, style:"width: 100%;", placeholder: '職種', class: "form-occu has-error" %></td>
+      </tr>
 
-    <tr class= "field">
-      <th><%= f.label :occupation, "職種", class:'occu_text' %></th>
-      <td><%= f.text_field :occupation, style:"width: 100%;", placeholder: '職種', class: "form-occu has-error" %></td>
-    </tr>
-
-    <tr class= "field">
-      <th><%= f.label :profile, "自己紹介文", class:'prof_text' %></th>
-      <td><%= f.text_area :profile, style:"width: 100%;", placeholder: '自己紹介文を100文字以内で入力してください', rows: 5, class: "form-prof has-error" %></td>
-    </tr>
-  </table>
-<br>
+      <tr class= "field">
+        <th><%= f.label :profile, "自己紹介文", class:'prof_text' %></th>
+        <td><%= f.text_area :profile, style:"width: 100%;", placeholder: '自己紹介文を100文字以内で入力してください', rows: 5, class: "form-prof has-error" %></td>
+      </tr>
+    </table>
+    <br>
     <%= f.submit "更新する", class:'button w-25' %>
-<% end %>
-<br>
-<br>
+  <% end %>
+  <br>
+  <br>
 
-<h5>アカウント消去はこちら</h5>
+  <h5>アカウント消去はこちら</h5>
 
-<p><%= button_to "アカウント消去", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
+  <p><%= button_to "アカウント消去", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
 
-<%= link_to '投稿一覧画面に戻る', problems_path, class: "btn btn-primary" %>
+  <%= link_to '投稿一覧画面に戻る', problems_path, class: "btn btn-primary" %>
 </div>
