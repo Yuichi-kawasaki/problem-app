@@ -1,9 +1,9 @@
-server '54.95.163.134', user: 'app', roles: %w{app db web}
+server '13.113.193.68', user: 'app', roles: %w{app db web}
 set :ssh_options, keys: '/Users/yuichikawasaki/.ssh/id_rsa'
 # set :stage, :production
 # set :branch, ENV['BRANCH'] || 'master'
 # set :ssh_options, {
-#   user: 'hogehoge',
+#   user: 'app',
 #   keys: %w(~/.ssh/id_rsa)
 # }
 # set :rails_env, :production
