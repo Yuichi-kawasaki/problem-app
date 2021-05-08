@@ -1,11 +1,11 @@
 class ProblemsController < ApplicationController
-  before_action :authenticate_user!, only: [:show, :create, :edit, :index, :destroy]
+  before_action :authenticate_user!, only: [:create, :edit,  :destroy]
   before_action :ensure_correct_user, only:[:edit, :destroy]
   helper_method :sort_column, :sort_direction
 
   def index
     @problems = Problem.order(id: :DESC)
-    @problem = current_user.problems.build
+    # @problem = current_user.problems.build
 
     @search_params = problem_search_params
     @problems = Problem.search(@search_params)

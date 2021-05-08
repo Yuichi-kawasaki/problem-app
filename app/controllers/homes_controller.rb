@@ -1,5 +1,4 @@
 class HomesController < ApplicationController
-  before_action :ensure_correct_user, only:[:edit, :destroy]
   helper_method :sort_column, :sort_direction
 
   def index
@@ -21,13 +20,6 @@ class HomesController < ApplicationController
   end
 
   private
-  def ensure_correct_user
-   @problem = Problem.find(params[:id])
-    unless @problem.user == current_user
-    　redirect_to problems_path, notice: "投稿ユーザー以外、編集・消去はできません"
-  　end
-  end
-
   def problem_params
     params.require(:problem).permit(:title, :content, :image, :image_cache, { label_ids: [] })
   end

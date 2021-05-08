@@ -42,25 +42,24 @@
         <%= yield :error %>
     </body>
     <footer>
-
-    <div class ="bg bg-white pt-2 border-top text-left">
-      <% if user_signed_in? %>
-        <%= link_to '新規投稿する', new_problem_path %><br>
-        <%= link_to "投稿一覧画面へ", problems_path %>
-      <% else %>
-        <%= link_to "ログインする", new_user_session_path %>
-      <% end %>
-    </div>
-    <div class="bg bg-white link_to_new text-left">
-      <%= link_to "Back", :back %>
-    </div>
-    <div class = "bg bg-white text-dark">
-    <p class="text-body text-right" id="smooth-scroll">TOPへ"クリック"</p>
-      <div class ="alert alert-warning text-center text-dark">
-        <p>運営会社・・・・株式会社</p>
-        <p>© 2020 Copyright ・・・・ Corp.</p>
+      <div class ="bg bg-white pt-2 border-top text-left">
+        <% if user_signed_in? %>
+          <%= link_to '新規投稿する', new_problem_path %><br>
+          <%= link_to "投稿一覧画面へ", problems_path %>
+        <% else %>
+          <%= link_to "ログインする", new_user_session_path %>
+        <% end %>
       </div>
-    </div>
+      <div class="bg bg-white link_to_new text-left">
+        <%= link_to "Back", :back %>
+      </div>
+      <div class = "bg bg-white text-dark">
+      <p class="text-body text-right" id="smooth-scroll">TOPへ"クリック"</p>
+        <div class ="alert alert-warning text-center text-dark">
+          <p>運営会社・・・・株式会社</p>
+          <p>© 2020 Copyright ・・・・ Corp.</p>
+        </div>
+      </div>
     </footer>
   </div>
 </html>

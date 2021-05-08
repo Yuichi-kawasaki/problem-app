@@ -1,15 +1,32 @@
 <% content_for :h1 do %>
 <% end %>
 <div class = "text-center bg-light">
-  <div class="profile_name">
-    <br>
-    <h5><%= @user.name %>のページ</h5>
-    <% if @user.id != current_user.id %>
-      <div class="item">
-        <%= link_to "#{@user.name}へメッセージをする", chat_path(@user.id), class:"btn btn-outline-primary btn-sm" %>
+  <% if user_signed_in? %>
+    <div class="profile_name">
+      <br>
+      <h5><%= @user.name %>のページ</h5>
+      <% if @user.id != current_user.id %>
+        <div class="item">
+          <%= link_to "#{@user.name}へメッセージをする", chat_path(@user.id), class:"btn btn-outline-primary btn-sm" %>
+        </div>
+      <% end %>
+      <br>
+      <div class="profile_icon">
+        <% if @user.image? %>
+          <p><%= image_tag(@user.image.url, size: "50x50") %></p>
+        <% else %>
+          <p><%= image_tag("default.png", size: "50x50") %></p>
+        <% end %>
       </div>
-    <% end %>
-    <br>
+      <% if @user.id != current_user.id %>
+        <span class="glyphicon glyphicon-wrench" aria-hidden="true"><%= render 'follow_form' %></span>
+      <% end %>
+      <p id='follower-count_#{ user.id }'>(フォローされている件数：<%= @user.follower_ids.count%>)</p>
+    </div>
+  <% else %>
+    <div class="item">
+      <%= link_to "#{@user.name}へメッセージをする", chat_path(@user.id), class:"btn btn-outline-primary btn-sm" %>
+    </div>
     <div class="profile_icon">
       <% if @user.image? %>
         <p><%= image_tag(@user.image.url, size: "50x50") %></p>
@@ -17,11 +34,9 @@
         <p><%= image_tag("default.png", size: "50x50") %></p>
       <% end %>
     </div>
-    <% if @user.id != current_user.id %>
-      <span class="glyphicon glyphicon-wrench" aria-hidden="true"><%= render 'follow_form' %></span>
-    <% end %>
     <p id='follower-count_#{ user.id }'>(フォローされている件数：<%= @user.follower_ids.count%>)</p>
-  </div>
+  <% end %>
+   
   <div class="float-middle">
     <table border="1" align="center"style="width: 80%;" style="table-layout: fixed;">
       <tr>
@@ -55,12 +70,24 @@
   </div>
   <br>
   <div class="text-center">
-    <% if @user.id == current_user.id %>
-      <%= link_to edit_user_registration_path(current_user.id) do %>
-        <div class= " edit btn btn-primary" ><span class="glyphicon glyphicon-wrench" aria-hidden="true">プロフィールを編集する</span></div>
+    <% if user_signed_in? %>
+      <% if @user.id == current_user.id %>
+        <%= link_to edit_user_registration_path(current_user.id) do %>
+          <div class= " edit btn btn-primary" ><span class="glyphicon glyphicon-wrench" aria-hidden="true">プロフィールを編集する</span></div>
+        <% end %>
+        <br>
+        <br>
+        フォローしている件数：
+        <strong id="following" class="stat">
+          <%= @user.followings.count %>
+        </strong>
+        <div class = "text-center">
+          <li id="followings_user_area">
+            <%= render partial: 'relationships/index' %>
+          </li>
+        </div>
       <% end %>
-      <br>
-      <br>
+    <% else %>
       フォローしている件数：
       <strong id="following" class="stat">
         <%= @user.followings.count %>
