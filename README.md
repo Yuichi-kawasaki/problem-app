@@ -2,6 +2,9 @@
 困りごとを持つ人々・解決できる人々をマッチングするアプリです。
 困りごと・解決したいことを全国の皆さんに解決してもらいましょう！
 
+# 構成図
+![Untitled](https://user-images.githubusercontent.com/63999565/118431793-18e6b800-b712-11eb-98bb-f6ef0d408877.png)
+
 # URL
 https://www.problem-app.com/
 
@@ -36,10 +39,10 @@ Ruby 2.6.5 /Rails 5.2.4.5 /Postgresql 13.1
 5,コメント機能
 - 他ユーザーの困りごと投稿に対してのコメント機能
 
-5,facebookやtwitterでのログイン認証
+6,facebookやtwitterでのログイン認証
 - facebookやtwitterのログイン情報でログインができる機能
 
-6,ラベル機能
+7,ラベル機能
 - 困りごと投稿時にラベル（タグ）を選ぶことができる機能
 
 # カタログ設計/機能一覧/テーブル定義書/ER図/画面遷移図
