@@ -4,7 +4,7 @@
 <%= link_to '新しく困りごとを投稿する', new_problem_path, class:"btn btn-primary" %>
 
 <div class="py-4 text-body">
-  <h2>困り事一覧</h2>
+  <h2>困りごと一覧</h2>
   <%= form_with(scope: :search, url: problems_path, local: true, method: :get) do |form| %>
     <%= form.label :title,'タイトル検索' %>
     <%= form.text_field :title, value: @search_params[:title] %>
