@@ -22,8 +22,8 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
         end
           @profile.set_values(@omniauth)
       end
-      flash[:success] = "ログインしました。プロフィールを編集・登録してください"
-      redirect_to edit_user_registration_path
+      flash[:success] = "ログインしました。"
+      redirect_to problems_path
   end
 
     def dammy_name
