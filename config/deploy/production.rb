@@ -1,4 +1,4 @@
-server '13.113.193.68', user: 'app', roles: %w{app db web}
+server '52.194.254.170', user: 'app', roles: %w{app db web}
 set :ssh_options, keys: '/Users/yuichikawasaki/.ssh/id_rsa'
 # set :stage, :production
 # set :branch, ENV['BRANCH'] || 'master'
