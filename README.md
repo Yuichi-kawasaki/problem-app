@@ -45,28 +45,25 @@ Ruby 2.6.5 /Rails 5.2.4.5 /Postgresql 13.1
 7,ラベル機能
 - 困りごと投稿時にラベル（タグ）を選ぶことができる機能
 
-# カタログ設計/機能一覧/テーブル定義書/ER図/画面遷移図
-https://docs.google.com/spreadsheets/d/1gJmec3Ryt621tyKXP9LdVCzR1xiO8dUcIfa_ivIs00c/edit#gid=1556774610
-
 # ワイヤーフレーム
 https://drive.google.com/drive/folders/1_VrbTtQltm5SSAot3PMPScKVvD4rJGGs?usp=sharing
 
-# 使用予定Gem
+# 使用Gem
 carrierwave
-/mini_magick
-/devise
-/rails-i18n
-/omniauth
-/omniauth-twitter
-/omniauth-facebook
-/bootstrap
-/carrierwave
-/mini_magick
-/faker
-/seed-fu', '~> 2.3'
-/kaminari'
-/database_cleaner
-/rails_admin
-/rails_admin-i18n
-/cancancan
-/jquery-rails
+/ mini_magick
+/ devise
+/ rails-i18n
+/ omniauth
+/ omniauth-twitter
+/ omniauth-facebook
+/ bootstrap
+/ carrierwave
+/ mini_magick
+/ faker
+/ seed-fu', '~> 2.3'
+/ kaminari'
+/ database_cleaner
+/ rails_admin
+/ rails_admin-i18n
+/ cancancan
+/ jquery-rails
