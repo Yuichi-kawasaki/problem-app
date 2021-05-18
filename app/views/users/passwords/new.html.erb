@@ -1,5 +1,5 @@
 <div class ="text-center">
-  <h2>Forgot your password?</h2>
+  <p>パスワードを忘れた場合は、下記にメールアドレスを記入し、ボタンを押して下さい</p>
 
   <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
     <%= render "users/shared/error_messages", resource: resource %>
@@ -10,7 +10,7 @@
     </div>
 <br>
     <div class="actions">
-      <%= f.submit "Send me reset password instructions" %>
+      <%= f.submit "メールアドレス宛にパスワードのリセット案内を希望する" %>
     </div>
   <% end %>
 <br>
