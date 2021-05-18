@@ -1,4 +1,4 @@
-# 製品名：Problem-app
+# 製品名：困りごとアプリ Problem-app
 困りごとを持つ人々・解決できる人々をマッチングするアプリです。
 困りごと・解決したいことを全国の皆さんに解決してもらいましょう！
 
@@ -6,7 +6,7 @@
 ![Untitled](https://user-images.githubusercontent.com/63999565/118431793-18e6b800-b712-11eb-98bb-f6ef0d408877.png)
 
 # URL
-https://www.problem-app.com/
+https://www.problem-app.com
 
 
 # 諸条件
