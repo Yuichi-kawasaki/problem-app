@@ -56,7 +56,6 @@ https://drive.google.com/drive/folders/1_VrbTtQltm5SSAot3PMPScKVvD4rJGGs?usp=sha
 
 # 使用Gem
 carrierwave
-/ mini_magick
 / devise
 / rails-i18n
 / omniauth
