@@ -48,7 +48,10 @@ Ruby 2.6.5 /Rails 5.2.4.5 /Postgresql 13.1
 8. ラベル機能
 - 困りごと投稿時にラベル（タグ）を選ぶことができる機能
 
-# ワイヤーフレーム
+# 画面偏移図 / テーブル定義
+https://docs.google.com/spreadsheets/d/1gJmec3Ryt621tyKXP9LdVCzR1xiO8dUcIfa_ivIs00c/edit#gid=341823813
+
+# ワイヤーフレーム / ER図
 https://drive.google.com/drive/folders/1_VrbTtQltm5SSAot3PMPScKVvD4rJGGs?usp=sharing
 
 # 使用Gem
