@@ -33,7 +33,9 @@
               <td>投稿日時：<%= problem.created_at %></td>
             </div>
             <div class = "text-right">
-              <td>解決できるかも！(件数：<%= problem.liked_users.count %>)</td>
+              <div class ="fa fa-handshake-o">
+                <td>解決できるかも！(件数：<%= problem.liked_users.count %>)</td>
+              </div>
             </div>
             <td>
               <p>困り事種類:</p>
