@@ -45,7 +45,7 @@
         <%= link_to '新規投稿する', new_problem_path, class:"fa fa-pencil"  %><br>
         <%= link_to "投稿一覧画面へ", problems_path, class: "fa fa-home" %>
       <% else %>
-        <%= link_to "ログインする", new_user_session_path %>
+        <%= link_to "ログインする", new_user_session_path, {class:"fa fa-sign-in"} %>
       <% end %>
       <p class="text-body text-right" id="smooth-scroll">TOPへ"クリック"</p>
     </div>

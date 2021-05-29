@@ -7,10 +7,12 @@
     ユーザー登録・ログインをすると困りごとの投稿ができます。
   </p>
   <br>
-  <p>~ユーザー登録の方はこちら~<p><%= link_to "新規登録", new_user_registration_path,{class: "pr-2"} %>
+  <p>~ユーザー登録の方はこちら~<p>
+  <%= link_to "新規登録", new_user_registration_path, class: "fa fa-user-plus pr-2" %>
   <br>
   <br>
-  <p>~登録済みユーザー、もしくは、Facebook、Googleアカウントでログインする場合はこちら~</p><%= link_to "ログイン", new_user_session_path %>
+  <p>~登録済みユーザー、もしくは、Facebook、Googleアカウントでログインする場合はこちら~</p>
+  <%= link_to "ログイン", new_user_session_path, {class:"fa fa-sign-in"} %>
 </div>
 <div class="py-4 text-body">
   <h2><strong>困りごと一覧</strong></h2>
