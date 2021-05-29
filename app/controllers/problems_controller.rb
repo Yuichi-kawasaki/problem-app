@@ -10,7 +10,6 @@ class ProblemsController < ApplicationController
     @search_params = problem_search_params
     @problems = Problem.search(@search_params)
 
-
     @problems = @problems.joins(:labels).where(labels: { id: params[:label_id] }) if params[:label_id].present?
 
     @problems = @problems.page(params[:page]).per(5)
@@ -72,9 +71,6 @@ class ProblemsController < ApplicationController
   end
 
   private
-  # def set_problem
-  #   @problem = current_user.problems.find(params[:id])
-  # end
   def ensure_correct_user
     @problem = Problem.find(params[:id])
     unless @problem.user == current_user

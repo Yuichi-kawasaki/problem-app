@@ -1,27 +1,27 @@
-<div class="mx-auto text-center">
-  <p class="login-box-msg">Sign in to start your session</p>
-  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-    <div class="field">
-      <%= f.email_field :email, placeholder: 'メールアドレス' %>
-      <%= f.password_field :password, placeholder: 'パスワード' %><br>
+<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+  <div class="mx-auto text-center">
+    <p class="login-box-msg">Sign in to start your session</p>
+      <div class="field">
+        <%= f.email_field :email, placeholder: 'メールアドレス' %>
+        <%= f.password_field :password, placeholder: 'パスワード' %><br>
+      </div>
+  </div>
+  <div class ="text-center">
+    <div class="checkbox icheck">
+      <label>
+        <%= f.check_box :remember_me %>
+        <%= f.label :remember_me %>
+      </label>
     </div>
-</div>
-<div class ="text-center">
-  <div class="checkbox icheck">
-    <label>
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
-    </label>
-  </div>
-  <div class="col-md-offset-5">
-    <%= f.submit "ログイン", class: 'btn btn-primary btn-flat' %>
-  </div>
+    <div class="col-md-offset-5">
+      <%= f.submit "ログイン", class: 'btn btn-primary btn-flat' %>
+    </div>
     <br>
     <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
       <%= link_to "パスワードを忘れた", new_password_path(resource_name) %><br />
     <% end %>
-  <% end %>
-  <br>
-  <%= link_to "ホーム画面へ戻る", root_path %>
-</div>
+    <br>
+    <%= link_to "ホーム画面へ戻る", root_path %>
+  </div>
+<% end %>
 <br>

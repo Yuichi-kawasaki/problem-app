@@ -22,5 +22,4 @@ class Problem < ApplicationRecord
   scope :labels_id_like, -> (label_id){
   where('label_id LIKE?', "%#{title}%")
   }
-
 end

@@ -1,8 +1,8 @@
 <tbody class="bg-light" id="problem">
   <div class="alert alert-light border-top">
-     <tbody>
-        <% @problems.each do |problem| %>
-          <div class="pt-5 pb-1 text-body">
+    <tbody>
+      <% @problems.each do |problem| %>
+        <div class="pt-5 pb-1 text-body">
           <tr>
             <td><strong>タイトル：<%= problem.title %></strong></td>
             <div>
@@ -12,10 +12,10 @@
               <td>解決できるかも！(件数：<%= problem.liked_users.count %>)</td>
             </div>
             <td>
-                <p>困り事種類:</p>
-                <% problem.labels.each do |label| %>
-                    <li><%= label.title %></li>
-                <% end %>
+              <p>困り事種類:</p>
+              <% problem.labels.each do |label| %>
+                  <li><%= label.title %></li>
+              <% end %>
             </td>
             <td>
               <div class="problem_image">
@@ -32,19 +32,22 @@
                 <%= link_to "投稿者：#{problem.user.name}", user_path(problem.user.id),class:"btn btn-secondary btn-sm" %>
                 <%= link_to '困り事詳細を確認する', problem_path(problem.id),class:"btn btn-success btn-sm" %>
               <% else %>
-                <p><strong>自分の投稿</strong><br><%= link_to '困り事詳細を確認する', problem_path(problem.id),class:"btn btn-success btn-sm" %></p>
-                <% end %>
-
+                <p>
+                  <strong>自分の投稿</strong><br>
+                  <%= link_to '困り事詳細を確認する', problem_path(problem.id),class:"btn btn-success btn-sm" %>
+                </p>
+              <% end %>
               <% if current_user.try(:admin?) %>
-                <td><%= link_to problem_path(problem.id), method: :delete, data: { confirm: '本当に消去しますか?' } do %>
-                <div class= " delete btn btn-danger"><span class="glyphicon glyphicon-wrench" aria-hidden="true">困りごとの消去</span></div>
-                    <% end %>
+                <td>
+                  <%= link_to problem_path(problem.id), method: :delete, data: { confirm: '本当に消去しますか?' } do %>
+                    <div class= " delete btn btn-danger"><span class="glyphicon glyphicon-wrench" aria-hidden="true">困りごとの消去</span></div>
+                  <% end %>
+                </td>
               <% end %>
             </div>
           </tr>
-          <% end %>
-
         </div>
-      </tbody>
+      <% end %>
+    </tbody>
   </div>
 </tbody>

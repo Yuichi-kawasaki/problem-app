@@ -3,10 +3,10 @@
         <div class="col-md-12">
             <h2 id="room", data-room="<%= @room.id %>", data-user="<%= current_user.id %>"><%= @user.name %> さんとのメッセージ</h2>
             <%= render "chats/message_form" %>
-             <table class="message table">
-               <ol id="messages">
-                  <%= render "chats/message" %>
-               </ol>
+                <table class="message table">
+                <ol id="messages">
+                    <%= render "chats/message" %>
+                </ol>
             </table>
             <div id="error_messages">
                 <%= render "shared/error_messages", object:@chat %>

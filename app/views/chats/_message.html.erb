@@ -1,8 +1,6 @@
 <% @chats.each do |chat| %>
-  <!-- 自分のメッセージの場合 -->
   <% if chat.user == current_user %>
     <tr class="row">
-      <!-- アイコンを左側に表示する -->
       <td class="col-1.5">
         <% if chat.user.image? %>
           <p><%= link_to image_tag(chat.user.image.url, size: "50x50"), user_path(chat.user) %></p>
@@ -13,10 +11,8 @@
           <%= chat.user.name %>
         </div>
       </td>
-      <!-- メッセージを右側に表示する -->
       <td class="col-10">
         <br />
-        <!-- 自分用の吹き出しCSSクラスを適用する -->
         <div class="comment">
           <%= chat.message %><br/ >
           <%= chat.message_time %>
@@ -24,19 +20,15 @@
       </td>
     </tr>
 
-  <!-- 自分以外のメッセージの場合 -->
   <% else %>
     <tr class="row justify-content-center">
-      <!-- メッセージを左側に表示する -->
       <td class="col-11" style="float-right">
         <br />
-        <!-- 自分以外用の吹き出しCSSクラスを適用する -->
         <div class="another-comment">
           <%= chat.message %><br />
           <%= chat.message_time %>
         </div>
       </td>
-      <!-- アイコンを右側に表示する -->
       <td class="col-1">
         <%#= link_to attachment_image_tag(m.user, :image, :fill, 80, 80, fallback: "noimage.png", size:'80x80', class:"profile-image align-top"), user_path(m.user) %>
         <% if chat.user.image? %>

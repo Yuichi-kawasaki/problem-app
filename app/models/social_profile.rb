@@ -3,7 +3,6 @@ class SocialProfile < ApplicationRecord
     store      :others
     validates_uniqueness_of :uid, scope: :provider
 
-
     scope :search_with_providers, ->(provider) { where(provider: provider) }
 
     def set_values(omniauth)

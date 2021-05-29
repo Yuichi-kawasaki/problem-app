@@ -1,38 +1,36 @@
 <%= form_with(model: @problem, local: true, url: choose_new_or_edit) do |form| %>
-<% if @problem.errors.any? %>
-  <div id="error_explanation">
-    <h2><%= @problem.errors.count %>件のエラーがあります。</h2>
-    <ul>
-      <% @problem.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-    </ul>
+  <% if @problem.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= @problem.errors.count %>件のエラーがあります。</h2>
+      <ul>
+        <% @problem.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="pt-2">
+    <table border="0" align="center" width="80%">
+      <tr>
+        <th class="problem_title"><%= form.label :title,"タイトル" %>
+        <%= form.text_field :title , autofocus: true, id: "text" %></th>
+        <th class="problem_image"><%= form.label :image,"写真" %>
+        <%= form.file_field :image %></th>
+      </tr>
+    </table>
   </div>
-<% end %>
-<div class="pt-2">
-  <table border="0" align="center" width="80%">
-    <tr>
-      <th class="problem_title"><%= form.label :title,"タイトル" %>
-      <%= form.text_field :title , autofocus: true, id: "text" %></th>
-      <th class="problem_image"><%= form.label :image,"写真" %>
-      <%= form.file_field :image %></th>
-    </tr>
-  </table>
-</div>
   <table border="0" align="center" width="95%" height="80">
     <tr>
       <th><%= form.label :title, "困り事種類:" %></th>
       <p><td><%= form.collection_check_boxes(:label_ids, Label.all, :id, :title) %></td></p>
     </tr>
   </table>
-
   <table border="0" align="center" width="70%">
         <tr>
           <th><%= form.label :content, "内容" %></th>
           <td><%= form.text_area :content, size: "80x3",class:'form_control',id:"content", rows: 50, placeholder: "コメントを書く"%></td>
         </tr>
   </table>
-
   <div class="submit pb-2">
     <%= form.submit "投稿する", class:"button" %>
   </div>
