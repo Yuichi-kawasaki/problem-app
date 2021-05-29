@@ -7,7 +7,9 @@
       <h5><%= @user.name %>のページ</h5>
       <% if @user.id != current_user.id %>
         <div class="item">
-          <%= link_to "#{@user.name}へメッセージをする", chat_path(@user.id), class:"btn btn-outline-primary btn-sm" %>
+          <i class="fa fa-commenting fa-3x" aria-hidden="true">
+            <%= link_to "#{@user.name}へメッセージをする", chat_path(@user.id), class:"btn btn-outline-primary btn-sm" %>
+          </i>
         </div>
       <% end %>
       <br>
@@ -25,7 +27,9 @@
     </div>
   <% else %>
     <div class="item">
-      <%= link_to "#{@user.name}へメッセージをする", chat_path(@user.id), class:"btn btn-outline-primary btn-sm" %>
+      <i class="fa fa-commenting fa-3x" aria-hidden="true">
+        <%= link_to "#{@user.name}へメッセージをする", chat_path(@user.id), class:"btn btn-outline-primary btn-sm" %>
+      </li>
     </div>
     <div class="profile_icon">
       <% if @user.image? %>

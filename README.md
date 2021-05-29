@@ -72,3 +72,4 @@ carrierwave
 / rails_admin-i18n
 / cancancan
 / jquery-rails
+/ font-awesome-rails

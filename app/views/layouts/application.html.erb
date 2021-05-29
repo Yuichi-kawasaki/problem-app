@@ -21,13 +21,13 @@
       <div class = "text-right">
         <% if user_signed_in? %>
           <strong><p><%= current_user.name %>としてログイン中</p></strong>
-          <%= link_to "Home", problems_path, {class: "home pr-2"} %>
-          <%= link_to "Profile", user_path(current_user.id), {class: "profile pr-2"} %>
-          <%= link_to "Logout", destroy_user_session_path, method: :delete %>
+          <%= link_to "Home", problems_path, {class: "fa fa-home home pr-2"} %>
+          <%= link_to "Profile", user_path(current_user.id), {class: "fa fa-user profile pr-2"} %>
+          <%= link_to "Logout", destroy_user_session_path, class: "fa fa-sign-out", method: :delete %>
         <% else %>
           <strong><p>ログインしていません。ゲストとして閲覧中</p></strong>
-          <%= link_to "新規登録", new_user_registration_path,{class: "pr-2"} %>
-          <%= link_to "ログイン", new_user_session_path %>
+          <%= link_to "新規登録", new_user_registration_path,{class: "fa fa-user-plus pr-2"} %>
+          <%= link_to "ログイン", new_user_session_path, class:"fa fa-sign-in" %>
         <% end %>
       </div>
     </div>

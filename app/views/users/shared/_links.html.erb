@@ -3,11 +3,19 @@
     <%= link_to "ログイン画面へ", new_user_session_path(resource_name) %><br />
   <% end %>
   <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
-    <%= link_to "新規登録", new_registration_path(resource_name) %><br />
+    <i class="fa fa-sign-in" aria-hidden="true">
+      <%= link_to "新規登録", new_registration_path(resource_name) %>
+    </i>
+    <br />
   <% end %>
   <%- if devise_mapping.omniauthable? %>
-    <%- resource_class.omniauth_providers.each do |provider| %>
-      <%= link_to "#{OmniAuth::Utils.camelize(provider)}アカウントでサインイン", omniauth_authorize_path(resource_name, provider) %><br />
-    <% end %>
+      <i class="fa fa-google" aria-hidden="true">
+        <%= link_to "Googleアカウントでサインイン", user_google_omniauth_authorize_path %>
+      </i>
+      <br />
+      <i class="fa fa-facebook-official" aria-hidden="true">
+        <%= link_to "Facebookアカウントでサインイン", user_facebook_omniauth_authorize_path %>
+      </i>
+      <br />
   <% end %>
 </div>
