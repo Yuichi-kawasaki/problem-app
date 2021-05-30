@@ -16,7 +16,8 @@ https://floating-ravine-67011.herokuapp.com
 
 DB: PostgreSQL
 
-インフラ:AWS(EC2x2,ELB,S3,RDS)
+インフラ:heroku
+、AWS(EC2x2,ELB,S3,RDS)※消去済み
 
 ※インフラ面については、EC2インスタンスを二つ用意し、片方のダウンに対応できるようにした。
 
